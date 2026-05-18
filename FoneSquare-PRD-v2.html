@@ -532,7 +532,7 @@ body.editing .edit-mode-banner { display:block; }
       <div class="swim-step" style="grid-template-columns:36px 1fr 1fr 1fr 1fr;">
         <div class="swim-num">8</div>
         <div class="swim-cell"><div class="swim-node sn-user">设置密码（必填）</div></div>
-        <div class="swim-cell"><div class="flow-arrow">→</div><div class="swim-node sn-app" style="background:#FEF3C7;border-color:#D97706;">🔐 密码设置页<br>8-20位，字母+数字<br>不可跳过<span class="arrow-down">↓</span></div></div>
+        <div class="swim-cell"><div class="flow-arrow">→</div><div class="swim-node sn-app" style="background:#FEF3C7;border-color:#D97706;">🔐 密码设置页<br>8-20位，大小写字母+数字+特殊字符<br>不可跳过<span class="arrow-down">↓</span></div></div>
         <div class="swim-cell"><div class="flow-arrow">→</div><div class="swim-node sn-backend">bcrypt加密存储<br>has_password=true</div></div>
         <div class="swim-cell"></div>
       </div>
@@ -605,7 +605,7 @@ body.editing .edit-mode-banner { display:block; }
       <div class="swim-step" style="grid-template-columns:36px 1fr 1fr 1fr 1fr;">
         <div class="swim-num">8</div>
         <div class="swim-cell"><div class="swim-node sn-user">设置密码（必填）</div></div>
-        <div class="swim-cell"><div class="flow-arrow">→</div><div class="swim-node sn-app" style="background:#FEF3C7;border-color:#D97706;">🔐 密码设置页<br>8-20位，字母+数字<br>不可跳过<span class="arrow-down">↓</span></div></div>
+        <div class="swim-cell"><div class="flow-arrow">→</div><div class="swim-node sn-app" style="background:#FEF3C7;border-color:#D97706;">🔐 密码设置页<br>8-20位，大小写字母+数字+特殊字符<br>不可跳过<span class="arrow-down">↓</span></div></div>
         <div class="swim-cell"><div class="flow-arrow">→</div><div class="swim-node sn-backend">bcrypt加密存储<br>has_password=true</div></div>
         <div class="swim-cell"></div>
       </div>
@@ -733,7 +733,7 @@ body.editing .edit-mode-banner { display:block; }
       </div>
     </div>
     <div class="swim-note">
-      ⚠️ <strong>重复身份</strong>：邮箱注册时不做账号关联检测（无手机号信息），改为 KYC 阶段通过证件号识别重复身份并引导登录已认证账号 ｜ <strong>密码规则</strong>：8-20位，需包含字母+数字 ｜ <strong>忘记密码</strong>：通过手机号或邮箱验证码重置（底部弹层Tab切换） ｜ <strong>注册后不引导身份认证</strong>：首页不展示KYC入口，下单前或"Me"页面主动触发KYC ｜ <strong>邮箱不再有独立设密码页</strong>：统一使用通用密码设置页面
+      ⚠️ <strong>重复身份</strong>：邮箱注册时不做账号关联检测（无手机号信息），改为 KYC 阶段通过证件号识别重复身份并引导登录已认证账号 ｜ <strong>密码规则</strong>：8-20位，必须包含大小写字母+数字+特殊字符 ｜ <strong>忘记密码</strong>：通过手机号或邮箱验证码重置（底部弹层Tab切换） ｜ <strong>注册后不引导身份认证</strong>：首页不展示KYC入口，下单前或"Me"页面主动触发KYC ｜ <strong>邮箱不再有独立设密码页</strong>：统一使用通用密码设置页面
     </div>
   </div>
 
@@ -760,7 +760,7 @@ body.editing .edit-mode-banner { display:block; }
       </div>
       <div class="swim-step" style="grid-template-columns:36px 1.2fr 1fr 1fr;">
         <div class="swim-num">2</div>
-        <div class="swim-cell"><div class="swim-node sn-app" style="background:#FEF3C7;border-color:#D97706;">展示密码设置页面（<strong>不可跳过</strong>）<br>▸ 新密码（8-20位，字母+数字）<br>▸ 确认密码<br>▸ 实时强度指示器<span class="arrow-down">↓</span></div></div>
+        <div class="swim-cell"><div class="swim-node sn-app" style="background:#FEF3C7;border-color:#D97706;">展示密码设置页面（<strong>不可跳过</strong>）<br>▸ 新密码（8-20位，大小写字母+数字+特殊字符）<br>▸ 确认密码<br>▸ 实时强度指示器<span class="arrow-down">↓</span></div></div>
         <div class="swim-cell"></div><div class="swim-cell"></div>
       </div>
       <div class="swim-step" style="grid-template-columns:36px 1.2fr 1fr 1fr;">
@@ -781,7 +781,7 @@ body.editing .edit-mode-banner { display:block; }
       </div>
     </div>
     <div class="swim-note">
-      ⚠️ <strong>注册场景不可跳过</strong>：所有注册方式（手机号/WhatsApp/邮箱）的新用户必须完成密码设置后才能进入首页 ｜ <strong>设置后</strong>：用户可用 手机号+密码 或 邮箱+密码 或 WhatsApp号+密码 方式快捷登录 ｜ <strong>密码规则</strong>：8-20位，需包含字母+数字 ｜ <strong>注册完成过渡页</strong>：密码设置后先显示"Registration Complete!"确认页，约2.5秒自动跳转首页&nbsp;</div>
+      ⚠️ <strong>注册场景不可跳过</strong>：所有注册方式（手机号/WhatsApp/邮箱）的新用户必须完成密码设置后才能进入首页 ｜ <strong>设置后</strong>：用户可用 手机号+密码 或 邮箱+密码 或 WhatsApp号+密码 方式快捷登录 ｜ <strong>密码规则</strong>：8-20位，必须包含大小写字母+数字+特殊字符 ｜ <strong>注册完成过渡页</strong>：密码设置后先显示"Registration Complete!"确认页，约2.5秒自动跳转首页&nbsp;</div>
   </div>
 
   <!-- ===== 泳道图：KYC认证 ===== -->
@@ -890,7 +890,7 @@ body.editing .edit-mode-banner { display:block; }
       <tr><td>1</td><td>数据需求</td><td style="position: relative;"><span style="background-color: rgb(249, 250, 251);">全局页面埋点UV/PV（详细见下方埋点说明表格）：</span><br><span style="background-color: rgb(249, 250, 251);">① 注册转化漏斗：启动APP → 选择登录方式 → 发送OTP → 验证成功 → 完成注册</span><br><span style="background-color: rgb(249, 250, 251);">② KYC转化率：注册用户 → 发起认证 → 提交材料 → 校验通过</span><br><span style="background-color: rgb(249, 250, 251);">③ 登录方式分布：按手机号/WhatsApp/邮箱统计注册用户占比</span><br><span style="background-color: rgb(249, 250, 251);">④ 各国/地区注册用户数量分布</span><br></td></tr>
       
       <tr><td>2</td><td>性能需求</td><td style="position: relative;">OTP发送延迟 ≤ 5秒；KYC OCR识别 ≤ 8秒；KYC制裁名单校验 ≤ 3秒；登录页首屏加载 ≤ 2秒</td></tr>
-      <tr><td>3</td><td>安全需求</td><td style="position: relative;">① OTP防刷：同号码60秒限发1次，同IP每小时≤10次<br>② OTP验证码安全规则（全局统一）：6位纯数字，有效期5分钟，重发间隔60秒，连续错误5次后锁定1小时<br>③ 制裁名单校验仅在KYC身份认证阶段执行<br>④ 密码输入错误处理规则：连续输入错误 5 次后，账号登录锁定 30 分钟；锁定期间禁止密码登录，但允许 OTP 登录；锁定次数在 24 小时内累计，24 小时后自动重置</td></tr>
+      <tr><td>3</td><td>安全需求</td><td style="position: relative;">① OTP防刷：同号码60秒限发1次，同IP每小时≤10次<br>② OTP验证码安全规则（全局统一）：6位纯数字，有效期5分钟，重发间隔60秒，连续错误5次后锁定1小时<br>③ 制裁名单校验仅在KYC身份认证阶段执行<br>④ 密码输入错误处理规则：连续输入错误 5 次后，账号登录锁定 1 小时；锁定期间禁止密码登录，但允许 OTP 登录；锁定次数在 24 小时内累计，24 小时后自动重置</td></tr>
       
       
       <tr><td>4</td><td>设计要求</td><td style="position: relative;">
@@ -1528,7 +1528,7 @@ body.editing .edit-mode-banner { display:block; }
             <div class="inp"><span class="ico">🔒</span><span class="val">••••••••••</span><span class="act">👁</span></div>
             <div class="fl">Confirm Password</div>
             <div class="inp"><span class="ico">🔒</span><span class="val">••••••••••</span><span class="act">👁</span></div>
-            <div style="font-size:7.5px;color:#34C759;margin:6px 0;">✓ 8+ chars ✓ Number ✓ Letter</div>
+            <div style="font-size:7.5px;color:#34C759;margin:6px 0;">✓ 8+ chars ✓ Upper & Lower ✓ Number ✓ Special char</div>
             <div class="cta">SET PASSWORD &amp; CONTINUE</div>
           </div>
           <div class="hi"></div>
@@ -1805,17 +1805,19 @@ body.editing .edit-mode-banner { display:block; }
   <div class="spec-group">
     <div class="spec-group-title">✉️ 邮箱登录/注册 <span class="tag tag-p0" style="margin-left:8px;">P1</span></div>
     <div class="spec-row"><div class="spec-label">邮箱地址</div><div class="spec-value">标准email格式校验，不区分大小写，企业/个人邮箱均可</div></div>
-    <div class="spec-row"><div class="spec-label">密码规则</div><div class="spec-value">8-20位，需包含字母+数字，bcrypt加密存储</div></div>
-    <div class="spec-row"><div class="spec-label">邮箱验证码</div><div class="spec-value">6位数字，10分钟有效，新注册+未设密码用户登录时发送</div></div>
+    <div class="spec-row"><div class="spec-label">密码规则</div><div class="spec-value">8-20位，必须包含大写字母+小写字母+数字+特殊字符，bcrypt加密存储</div></div>
+    <div class="spec-row"><div class="spec-label">邮箱验证码</div><div class="spec-value">6位数字，5分钟有效，新注册+未设密码用户登录时发送</div></div>
     <div class="spec-row"><div class="spec-label">登录分支</div><div class="spec-value">已注册+有密码→密码登录 ｜ 已注册+无密码→验证码登录+引导设密码 ｜ 未注册→验证码验证+设密码+注册</div></div>
-    <div class="spec-row"><div class="spec-label">忘记密码</div><div class="spec-value">支持手机号或邮箱双模式验证（底部弹层Tab切换：📱 Phone / ✉️ Email）→ OTP验证 → 重设密码，验证码10分钟有效</div></div>
+    <div class="spec-row"><div class="spec-label">忘记密码</div><div class="spec-value">支持手机号或邮箱双模式验证（底部弹层Tab切换：📱 Phone / ✉️ Email）→ OTP验证 → 重设密码，验证码5分钟有效</div></div>
   </div>
   <div class="spec-group">
-    <div class="spec-group-title">🔐 密码设置（OTP用户引导） <span class="tag tag-p0" style="margin-left:8px;">P0</span></div>
-    <div class="spec-row"><div class="spec-label">触发时机</div><div class="spec-value">手机OTP首次登录后 / WhatsApp OTP首次登录后 / 个人中心主动设置</div></div>
-    <div class="spec-row"><div class="spec-label">展示方式</div><div class="spec-value">登录成功后弹窗引导，包含「立即设置」和「以后再说」两个按钮</div></div>
-    <div class="spec-row"><div class="spec-label">跳过逻辑</div><div class="spec-value">「以后再说」→跳过，同一设备7天内不再弹出，个人中心始终可设置</div></div>
-    <div class="spec-row"><div class="spec-label">设置后效果</div><div class="spec-value">用户可用 手机号+密码 或 邮箱+密码 快捷登录</div></div>
+    <div class="spec-group-title">🔐 密码设置（通用，注册必填） <span class="tag tag-p0" style="margin-left:8px;">P0</span></div>
+    <div class="spec-row"><div class="spec-label">触发时机</div><div class="spec-value">所有注册方式（手机OTP / WhatsApp OTP / 邮箱验证码）验证通过后，新用户强制进入密码设置页</div></div>
+    <div class="spec-row"><div class="spec-label">是否可跳过</div><div class="spec-value"><strong>不可跳过</strong>，密码设置页无返回/关闭按钮，必须完成后才能进入首页</div></div>
+    <div class="spec-row"><div class="spec-label">密码规则</div><div class="spec-value">8-20位，必须包含大写字母+小写字母+数字+特殊字符，bcrypt加密存储</div></div>
+    <div class="spec-row"><div class="spec-label">页面元素</div><div class="spec-value">新密码输入框 + 确认密码输入框 + 实时强度指示器（弱/中/强）+ 密码明文/密文切换</div></div>
+    <div class="spec-row"><div class="spec-label">设置后效果</div><div class="spec-value">展示"Registration Complete!"过渡页（~2.5s自动跳转首页）；用户后续可用 手机号/WhatsApp号/邮箱 + 密码 快捷登录</div></div>
+    <div class="spec-row"><div class="spec-label">已有密码用户</div><div class="spec-value">老用户可在个人中心「Change Password」修改密码，需先验证当前密码</div></div>
   </div>
   <h3>登录/注册业务规则汇总</h3>
   <table style="position: relative;">
@@ -1826,7 +1828,7 @@ body.editing .edit-mode-banner { display:block; }
       <tr><td>LR-03</td><td>邮箱注册需先验证邮箱地址。已注册+有密码→密码登录；已注册+无密码→验证码+引导设密码（通用密码页，不再有独立 Email Pwd 页）；未注册→验证码+通用设密码页+注册</td><td style="position: relative;">邮箱登录</td></tr>
       <tr><td>LR-04</td><td>同一用户可绑定多种登录方式（手机+邮箱+WhatsApp），关联到同一账号。WhatsApp号与手机号相同时自动绑定</td><td style="position: relative;">账号绑定</td></tr>
       <tr><td>LR-05</td><td>邮箱注册时不做账号关联检测（注册流程无手机号信息）。改为 KYC 阶段通过「证件类型+证件号」匹配已认证账号，检测到同一证件时<strong>拒绝认证并引导用户登录已认证账号</strong>，补全登录信息后进行二次验证。当前未认证账号废弃（一个身份仅允许一个有效账号）</td><td style="position: relative;">KYC 重复身份处理</td></tr>
-      <tr><td>LR-06</td><td><strong>所有注册方式（手机/WhatsApp/邮箱）的新用户必须在注册流程中设置密码，不可跳过。</strong>密码规则：8-20位，需包含字母+数字。已有密码的老用户可在个人中心修改密码</td><td style="position: relative;">密码必填</td></tr>
+      <tr><td>LR-06</td><td><strong>所有注册方式（手机/WhatsApp/邮箱）的新用户必须在注册流程中设置密码，不可跳过。</strong>密码规则：8-20位，必须包含大写字母+小写字母+数字+特殊字符。已有密码的老用户可在个人中心修改密码</td><td style="position: relative;">密码必填</td></tr>
       <tr><td>LR-07</td><td>国家/地区选择后联动：区号自动切换、证件类型列表、货币偏好</td><td style="position: relative;">注册首页</td></tr>
       <tr><td>LR-13</td><td>KYC身份认证页使用<strong>单框多级联动地区选择器</strong>（有几级选几级，不固定三级），支持搜索。排序规则：① 置顶设备所在地国家；② 常用地区（香港、澳门、中国大陆、台湾、新加坡）；③ 其余按字母顺序排列，无需按大洲分组。选择地区后联动证件类型。</td><td style="position: relative;">KYC身份认证</td></tr>
       <tr><td>LR-14</td><td>KYC身份认证页<strong>证件类型根据所选国家/地区动态展示</strong>：香港→HK ID/护照；澳门→MO ID/护照；中国大陆→居民身份证/护照；其他地区→仅护照。切换地区时证件类型自动重置。</td><td style="position: relative;">KYC身份认证</td></tr>
@@ -1834,7 +1836,7 @@ body.editing .edit-mode-banner { display:block; }
       <tr><td>LR-16</td><td>个人中心订单状态展示三种：<strong>Unpaid（待支付）、Paid（已支付）、Cancelled（已取消）</strong>。订单列表页筛选Tab同步为这三种状态+All。</td><td style="position: relative;">个人中心/订单</td></tr>
       <tr><td>LR-08</td><td>注册流程不主动引导身份认证。完成密码设置后展示<strong>"注册完成"过渡页</strong>（含动画反馈），约2.5秒自动跳转首页。KYC入口仅在：①下单前校验未认证时引导 ②"Me"页面身份认证入口。<strong>密码登录成功后</strong>同样展示"Welcome Back!"过渡页，自动跳转首页（无按钮）</td><td style="position: relative;">注册/登录完成后</td></tr>
       <tr><td>LR-09</td><td>KYC身份认证提交后自动触发制裁名单校验（OCR识别 First Name + Last Name + 证件号 + 国籍），命中则拦截。注册阶段暂不做风控校验（OFAC不支持手机号/邮箱筛查）</td><td style="position: relative;">KYC身份认证</td></tr>
-      <tr><td>LR-10</td><td>Token有效期90天，支持多设备登录</td><td style="position: relative;">登录成功</td></tr>
+      <tr><td>LR-10</td><td>Token有效期30天，用户活跃时自动续期；支持多设备登录</td><td style="position: relative;">登录成功</td></tr>
       <tr><td>LR-11</td><td>忘记密码支持<strong>手机号+邮箱双模式验证</strong>，底部弹层Tab切换（📱 Phone / ✉️ Email）。输入手机号或邮箱后发送OTP验证码，验证通过后进入密码重设页面</td><td style="position: relative;">忘记密码</td></tr>
       <tr><td>LR-12</td><td>语言选择支持 English / 简体中文 / 繁體中文（3种），选择器不展示国旗图标，使用通用图标</td><td style="position: relative;">多语言</td></tr>
     </tbody>

@@ -1204,8 +1204,8 @@ body{
         </div>
         <div class="pw-hints">
           <span class="pw-h ok">✓ 8+ chars</span>
+          <span class="pw-h ok">✓ Upper & Lower</span>
           <span class="pw-h ok">✓ Number</span>
-          <span class="pw-h ok">✓ Uppercase</span>
           <span class="pw-h ok">✓ Special char</span>
         </div>
         <label class="form-label">Confirm Password</label>
@@ -2246,12 +2246,11 @@ setPwd: `【页面功能】
 
 【密码强度规则】
 • 最低长度：8个字符，最大20个字符
-• 必须包含：字母 + 数字（至少各1个）
-• 建议包含：特殊字符（显示为额外加分项）
+• 必须包含：大写字母 + 小写字母 + 数字 + 特殊字符（全部必须，至少各1个）
 • 实时校验并展示强度条（4段式：弱/中/强/很强）
 
 【密码强度指示器】
-• 4个条件标签实时反馈：8+ chars / Number / Uppercase / Special char
+• 4个条件标签实时反馈：8+ chars / Upper & Lower / Number / Special char
 • 满足条件变绿打勾，未满足灰显
 • 强度条颜色：红(1/4) → 橙(2/4) → 蓝(3/4) → 绿(4/4)
 
@@ -2603,7 +2602,7 @@ pwdLogin: `【页面功能】
 
 【登录失败处理】
 • 密码错误 → "Incorrect password. X attempts remaining."
-• 连续错误5次 → 锁定账号30分钟
+• 连续错误5次 → 锁定账号1小时
 • 账号不存在 → "Account not found. Please sign up first."
 
 【安全措施】
@@ -2632,7 +2631,7 @@ Step 2 — 验证OTP
 • 根据Step 1选择，显示脱敏手机号或邮箱
 
 Step 3 — 设置新密码
-• 密码规则同注册设密码：8+字符、含大写、含数字
+• 密码规则同注册设密码：8+字符、含大小写字母、含数字、含特殊字符
 • 实时强度指示条（4段式）
 • 需二次确认密码
 • 提交后关闭弹层+toast提示"Password changed successfully!"
@@ -2855,7 +2854,7 @@ en: {
   'setPwd.new.placeholder': 'At least 8 characters',
   'setPwd.hint.chars': '✓ 8+ chars',
   'setPwd.hint.number': '✓ Number',
-  'setPwd.hint.upper': '✓ Uppercase',
+  'setPwd.hint.upper': '✓ Upper & Lower',
   'setPwd.hint.special': '✓ Special char',
   'setPwd.confirm.label': 'Confirm Password',
   'setPwd.confirm.placeholder': 'Re-enter password',
@@ -3047,7 +3046,7 @@ zh: {
   'setPwd.new.placeholder': '至少8个字符',
   'setPwd.hint.chars': '✓ 8位以上',
   'setPwd.hint.number': '✓ 含数字',
-  'setPwd.hint.upper': '✓ 含大写',
+  'setPwd.hint.upper': '✓ 含大小写',
   'setPwd.hint.special': '✓ 含特殊字符',
   'setPwd.confirm.label': '确认密码',
   'setPwd.confirm.placeholder': '再次输入密码',
@@ -3239,7 +3238,7 @@ zh: {
   'setPwd.new.placeholder': '至少8個字元',
   'setPwd.hint.chars': '✓ 8位以上',
   'setPwd.hint.number': '✓ 含數字',
-  'setPwd.hint.upper': '✓ 含大寫',
+  'setPwd.hint.upper': '✓ 含大小寫',
   'setPwd.hint.special': '✓ 含特殊字元',
   'setPwd.confirm.label': '確認密碼',
   'setPwd.confirm.placeholder': '再次輸入密碼',
