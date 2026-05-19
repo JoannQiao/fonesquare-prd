@@ -452,12 +452,6 @@ body{
       <span class="time">9:41</span>
       <span class="ic"><svg width="52" height="12"><use href="#sb-icons"/></svg></span>
     </div>
-    <div class="hdr" style="padding-right:8px;">
-      <span class="hdr-title" style="margin-right:0;text-align:left;padding-left:12px;">My Center</span>
-      <button class="wa-cs-btn" onclick="toast(t('toast.waSupport'))">
-        <svg viewBox="0 0 24 24"><use href="#wa-icon"/></svg>
-      </button>
-    </div>
     <div class="body" style="padding-top:0;">
       <div class="profile-card">
         <div class="profile-avatar">J</div>
@@ -527,7 +521,15 @@ body{
           <div class="mi-icon" style="background:var(--blue-bg);">💬</div>
           <div>
             <div class="mi-text">Help & Support</div>
-            <div class="mi-sub">FAQ, contact us, feedback</div>
+            <div class="mi-sub">WhatsApp, WeChat support</div>
+          </div>
+          <span class="mi-arrow">›</span>
+        </div>
+        <div class="menu-item" onclick="toast('Opening FAQ...')">
+          <div class="mi-icon" style="background:var(--bgi);">❓</div>
+          <div>
+            <div class="mi-text">FAQ</div>
+            <div class="mi-sub">Frequently asked questions</div>
           </div>
           <span class="mi-arrow">›</span>
         </div>
@@ -983,14 +985,9 @@ body{
           <div><div class="mi-text">WhatsApp Support</div><div class="mi-sub">Chat with us on WhatsApp</div></div>
           <span class="mi-arrow">›</span>
         </div>
-        <div class="menu-item" onclick="toast(t('toast.openEmail'))">
-          <div class="mi-icon" style="background:var(--blue-bg);">✉️</div>
-          <div><div class="mi-text">Email Support</div><div class="mi-sub">support@fonesquare.com</div></div>
-          <span class="mi-arrow">›</span>
-        </div>
-        <div class="menu-item">
-          <div class="mi-icon" style="background:var(--bgi);">❓</div>
-          <div><div class="mi-text">FAQ</div><div class="mi-sub">Frequently asked questions</div></div>
+        <div class="menu-item" onclick="toast(t('toast.openWechat'))">
+          <div class="mi-icon" style="background:#E8F8F0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9.5 4C5.36 4 2 6.69 2 10c0 1.86 1.08 3.52 2.76 4.63L4.25 16.5l2.34-1.17c.6.17 1.24.27 1.91.3-.13-.5-.2-1.03-.2-1.57C8.3 10.8 11.46 8 15.3 8c.34 0 .67.02 1 .06C15.36 5.68 12.7 4 9.5 4z" fill="#51C332"/><path d="M22 14.06c0-2.78-2.8-5.06-6.25-5.06S9.5 11.28 9.5 14.06s2.8 5.06 6.25 5.06c.7 0 1.37-.1 2-.27l1.87.93-.38-1.52C20.92 17.22 22 15.75 22 14.06z" fill="#51C332"/><circle cx="13.25" cy="13.5" r=".75" fill="#fff"/><circle cx="17.25" cy="13.5" r=".75" fill="#fff"/></svg></div>
+          <div><div class="mi-text">WeChat Support</div><div class="mi-sub">Chat with us on WeChat</div></div>
           <span class="mi-arrow">›</span>
         </div>
       </div>
@@ -1170,7 +1167,7 @@ body{
 <div class="screen-map">
   <b>👤 My Center:</b> My Center → Profile (KYC) / Orders / Settings<br>
   <b>⚙️ Settings:</b> Settings → Login Methods (→ Add → Verify) / Change Pwd / Language / Privacy / About / Logout<br>
-  <b>💬 Help:</b> Help & Support → WhatsApp / Email / FAQ / Feedback
+  <b>💬 Help:</b> Help & Support → WhatsApp / WeChat
 </div>
 
 <script>
@@ -1903,17 +1900,13 @@ myCenter: `【My Center — 个人中心】
 从底部Tab「Me」进入的核心枢纽页，聚合个人信息、KYC引导、订单概览和快捷入口。
 
 ■ 页面结构
-1. 顶部栏
-   - 左侧：页面标题"My Center"
-   - 右侧：WhatsApp客服图标（绿色），点击唤起WhatsApp Business客服对话
-
-2. 个人信息卡片（红色渐变背景）
+1. 个人信息卡片（红色渐变背景）
    - 头像：取用户 First Name 首字母（如 First Name: Joann → "J"），MVP不支持上传头像
    - 姓名：取自OCR识别结果或注册手机号
    - 手机号：脱敏展示，如 +852 9123 ****
    - KYC状态角标：未认证（黄色⚠️）/ 已认证（绿色✅）/ 账号受限（红色🔒）
 
-3. KYC引导横幅 / 已认证状态 / 账号受限
+2. KYC引导横幅 / 已认证状态 / 账号受限
    - 未认证：黄色警示横幅，点击跳转至Profile身份认证页
    - 已认证：绿色✅状态条，不可点击
    - 账号受限：红色🔒警告横幅，点击唤起WhatsApp客服对话
@@ -1922,17 +1915,18 @@ myCenter: `【My Center — 个人中心】
      ▸ 引导动作：联系客服解决
    - 数据来源：user_profile表kyc_status字段
 
-4. 订单概览（My Orders）
+3. 订单概览（My Orders）
    - 三列统计：待支付 / 待取货 / 可售后
    - 数量实时读取订单服务
    - 点击任意列 → 跳转订单列表并自动筛选对应状态
    - 待支付 > 0 时显示红点
 
-5. 快捷入口
+4. 快捷入口
    - Settings → 设置页
-   - Help & Support → 帮助与支持页（WhatsApp、邮件、FAQ）
+   - Help & Support → 帮助与支持页（WhatsApp、WeChat）
+   - FAQ → 常见问题页（独立入口）
 
-6. 底部Tab栏
+5. 底部Tab栏
    - Home / Cart / Me（当前高亮）
    - MVP阶段仅Me页内可交互
 
@@ -1940,7 +1934,7 @@ myCenter: `【My Center — 个人中心】
 - 个人信息卡片：角标变为红色🔒"Account Restricted"
 - KYC引导横幅区域：替换为红色警告横幅"Account Restricted"
   ▸ 副标题："Contact support to resolve this issue"
-  ▸ 点击行为：唤起WhatsApp客服对话（与右上角WhatsApp按钮一致）
+  ▸ 点击行为：唤起WhatsApp客服对话
 - 订单概览：正常显示历史订单统计（不隐藏）
 - 快捷入口：正常可用
 - 下单限制：由商品详情页和下单按钮侧控制，非本页负责
@@ -2173,7 +2167,7 @@ langSelect: `【Language — 语言选择】
 helpSupport: `【Help & Support — 帮助与支持】
 
 ■ 页面定位
-集中式客户支持入口，为用户提供多渠道帮助。
+集中式客户支持入口，为用户提供即时通讯渠道联系客服。FAQ已移至My Center快捷入口独立展示。
 
 ■ 支持渠道
 1. WhatsApp Support
@@ -2181,26 +2175,20 @@ helpSupport: `【Help & Support — 帮助与支持】
    - 主要实时沟通渠道
    - 按地区配置Business API号码
 
-2. Email Support
-   - 打开邮件客户端，预填收件人 support@fonesquare.com
-   - 用于非紧急咨询和文件提交
-
-3. FAQ
-   - 静态FAQ页面（MVP：硬编码；后续：CMS驱动）
-   - 分类：账户、KYC认证、订单、支付、售后
+2. WeChat Support
+   - 唤起微信客服对话
+   - 面向中国大陆及熟悉微信生态的用户
+   - 配置微信客服企业号
 
 ■ 账号受限用户引导
 - 受限用户从My Center红色横幅点击 → 直接唤起WhatsApp客服
 - 受限用户主动进入Help页 → 所有渠道正常可用
-- FAQ中应包含"Why is my account restricted?"常见问题条目
-  ▸ 答复模板：因合规审核需要，您的账号暂时受限。请通过WhatsApp联系客服团队协助处理。
 - WhatsApp客服工单系统：受限用户发起会话时，预填消息模板（如"My account is restricted, ID: {user_id}"）
 
 ■ 埋点事件
 - page_view: help_support
 - click: whatsapp_support
-- click: email_support
-- click: faq`,
+- click: wechat_support`,
 
 privacy: `【Privacy Policy — 隐私政策】
 
@@ -2523,7 +2511,9 @@ en: {
   'myCenter.settings': 'Settings',
   'myCenter.settingsDesc': 'Account, security, language',
   'myCenter.help': 'Help & Support',
-  'myCenter.helpDesc': 'FAQ, contact us, feedback',
+  'myCenter.helpDesc': 'WhatsApp, WeChat support',
+  'myCenter.faq': 'FAQ',
+  'myCenter.faqDesc': 'Frequently asked questions',
   'tab.home': 'Home',
   'tab.cart': 'Cart',
   'tab.me': 'Me',
@@ -2651,9 +2641,8 @@ en: {
   'help.title': 'Help & Support',
   'help.whatsapp': 'WhatsApp Support',
   'help.whatsappDesc': 'Chat with us on WhatsApp',
-  'help.email': 'Email Support',
-  'help.faq': 'FAQ',
-  'help.faqDesc': 'Frequently asked questions',
+  'help.wechat': 'WeChat Support',
+  'help.wechatDesc': 'Chat with us on WeChat',
   'privacy.title': 'Privacy Policy',
   'privacy.heading': 'Privacy Policy',
   'privacy.lastUpdated': 'Last updated: April 2026 · Version 1.0',
@@ -2675,7 +2664,7 @@ en: {
   'toast.loggedOut': 'Logged out successfully',
   'toast.waSupport': 'Opening WhatsApp support chat…',
   'toast.openWa': 'Opening WhatsApp…',
-  'toast.openEmail': 'Opening email client…',
+  'toast.openWechat': 'Opening WeChat…',
   'toast.cameraPicker': 'Camera / Gallery picker',
   'toast.datePicker': 'Date picker',
   'toast.comingSoon': ' coming soon',
@@ -2702,7 +2691,9 @@ zh: {
   'myCenter.settings': '设置',
   'myCenter.settingsDesc': '账户、安全、语言',
   'myCenter.help': '帮助与支持',
-  'myCenter.helpDesc': '常见问题、联系我们',
+  'myCenter.helpDesc': 'WhatsApp、微信客服',
+  'myCenter.faq': '常见问题',
+  'myCenter.faqDesc': '查看常见问题',
   'tab.home': '首页',
   'tab.cart': '购物车',
   'tab.me': '我的',
@@ -2830,9 +2821,8 @@ zh: {
   'help.title': '帮助与支持',
   'help.whatsapp': 'WhatsApp 客服',
   'help.whatsappDesc': '通过WhatsApp联系我们',
-  'help.email': '邮件客服',
-  'help.faq': '常见问题',
-  'help.faqDesc': '查看常见问题',
+  'help.wechat': '微信客服',
+  'help.wechatDesc': '通过微信联系我们',
   'privacy.title': '隐私政策',
   'privacy.heading': '隐私政策',
   'privacy.lastUpdated': '最后更新：2026年4月 · 版本 1.0',
@@ -2854,7 +2844,7 @@ zh: {
   'toast.loggedOut': '已退出登录',
   'toast.waSupport': '正在打开WhatsApp客服…',
   'toast.openWa': '正在打开WhatsApp…',
-  'toast.openEmail': '正在打开邮件客户端…',
+  'toast.openWechat': '正在打开微信…',
   'toast.cameraPicker': '相机 / 相册选择',
   'toast.datePicker': '日期选择',
   'toast.comingSoon': ' 即将推出',
@@ -2881,7 +2871,9 @@ zh: {
   'myCenter.settings': '設定',
   'myCenter.settingsDesc': '帳戶、安全、語言',
   'myCenter.help': '幫助與支援',
-  'myCenter.helpDesc': '常見問題、聯繫我們',
+  'myCenter.helpDesc': 'WhatsApp、微信客服',
+  'myCenter.faq': '常見問題',
+  'myCenter.faqDesc': '查看常見問題',
   'tab.home': '首頁',
   'tab.cart': '購物車',
   'tab.me': '我的',
@@ -3009,9 +3001,8 @@ zh: {
   'help.title': '幫助與支援',
   'help.whatsapp': 'WhatsApp 客服',
   'help.whatsappDesc': '透過WhatsApp聯繫我們',
-  'help.email': '郵件客服',
-  'help.faq': '常見問題',
-  'help.faqDesc': '查看常見問題',
+  'help.wechat': '微信客服',
+  'help.wechatDesc': '透過微信聯繫我們',
   'privacy.title': '隱私政策',
   'privacy.heading': '隱私政策',
   'privacy.lastUpdated': '最後更新：2026年4月 · 版本 1.0',
@@ -3033,7 +3024,7 @@ zh: {
   'toast.loggedOut': '已登出',
   'toast.waSupport': '正在開啟WhatsApp客服…',
   'toast.openWa': '正在開啟WhatsApp…',
-  'toast.openEmail': '正在開啟郵件用戶端…',
+  'toast.openWechat': '正在開啟微信…',
   'toast.cameraPicker': '相機 / 相簿選擇',
   'toast.datePicker': '日期選擇',
   'toast.comingSoon': ' 即將推出',
@@ -3056,7 +3047,6 @@ function applyLocale() {
   function qsa(id, sel) { var r = document.getElementById(id); return r ? [].slice.call(r.querySelectorAll(sel)) : []; }
 
   // ── s-myCenter (个人中心) ──
-  setText(qs('s-myCenter', '.hdr-title'), t('myCenter.title'));
   var badgeKeys = {unverified: 'myCenter.unverified', verified: 'myCenter.verified', restricted: 'myCenter.restricted'};
   var badgeIcons = {unverified: '⚠️', verified: '✅', restricted: '🔒'};
   setText(document.getElementById('mcBadgeText'), t(badgeKeys[accountState] || badgeKeys.unverified));
@@ -3090,6 +3080,7 @@ function applyLocale() {
   var mcMenu = qsa('s-myCenter', '.menu-item');
   if (mcMenu[0]) { setText(mcMenu[0].querySelector('.mi-text'), t('myCenter.settings')); setText(mcMenu[0].querySelector('.mi-sub'), t('myCenter.settingsDesc')); }
   if (mcMenu[1]) { setText(mcMenu[1].querySelector('.mi-text'), t('myCenter.help')); setText(mcMenu[1].querySelector('.mi-sub'), t('myCenter.helpDesc')); }
+  if (mcMenu[2]) { setText(mcMenu[2].querySelector('.mi-text'), t('myCenter.faq')); setText(mcMenu[2].querySelector('.mi-sub'), t('myCenter.faqDesc')); }
 
   var tbItems = qsa('s-myCenter', '.tb-item');
   ['tab.home','tab.cart','tab.me'].forEach(function(k, i) {
@@ -3205,8 +3196,7 @@ function applyLocale() {
 
   var helpMenu = qsa('s-helpSupport', '.menu-item');
   if (helpMenu[0]) { setText(helpMenu[0].querySelector('.mi-text'), t('help.whatsapp')); setText(helpMenu[0].querySelector('.mi-sub'), t('help.whatsappDesc')); }
-  if (helpMenu[1]) { setText(helpMenu[1].querySelector('.mi-text'), t('help.email')); }
-  if (helpMenu[2]) { setText(helpMenu[2].querySelector('.mi-text'), t('help.faq')); setText(helpMenu[2].querySelector('.mi-sub'), t('help.faqDesc')); }
+  if (helpMenu[1]) { setText(helpMenu[1].querySelector('.mi-text'), t('help.wechat')); setText(helpMenu[1].querySelector('.mi-sub'), t('help.wechatDesc')); }
 
   // ── s-privacy (隐私政策) ──
   setText(qs('s-privacy', '.hdr-title'), t('privacy.title'));
