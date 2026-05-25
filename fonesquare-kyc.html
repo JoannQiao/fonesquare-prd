@@ -195,6 +195,31 @@ body{
 .home-ind{height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .home-ind::after{content:'';width:52px;height:5px;background:var(--t1);border-radius:3px;opacity:.15;}
 
+.guest-avatar{width:56px;height:56px;border-radius:50%;background:#E2E8F0;display:flex;align-items:center;justify-content:center;font-size:26px;color:#94A3B8;flex-shrink:0;}
+.guest-prompt{font-size:14px;color:var(--t2);font-weight:500;}
+.guest-prompt-sub{font-size:12px;color:var(--t3);margin-top:2px;}
+.guest-order-stat .os-count{font-size:22px;font-weight:800;color:var(--t3)!important;line-height:1;margin-bottom:4px;}
+.guest-login-bar{
+  margin:0 16px 8px;padding:14px 16px;
+  background:linear-gradient(135deg,#EFF6FF,#F0FDFA);
+  border:1.5px solid var(--blue);border-radius:var(--r-md);
+  display:flex;align-items:center;gap:12px;
+  box-shadow:0 2px 8px rgba(59,130,246,.12);
+  animation:guestPulse 2s ease-in-out infinite;
+}
+.guest-login-bar .glb-icon{font-size:28px;flex-shrink:0;}
+.guest-login-bar .glb-text{flex:1;min-width:0;}
+.guest-login-bar .glb-title{font-size:14px;font-weight:600;color:var(--t1);}
+.guest-login-bar .glb-desc{font-size:12px;color:var(--t2);margin-top:1px;}
+.guest-login-bar .glb-btn{
+  padding:8px 20px;background:var(--pri);color:#fff;
+  border:none;border-radius:var(--r-full);font-size:13px;font-weight:700;
+  cursor:pointer;white-space:nowrap;letter-spacing:.3px;
+  transition:transform .15s,box-shadow .15s;
+}
+.guest-login-bar .glb-btn:hover{transform:scale(1.04);box-shadow:0 2px 8px rgba(30,41,59,.2);}
+@keyframes guestPulse{0%,100%{box-shadow:0 2px 8px rgba(59,130,246,.12);}50%{box-shadow:0 2px 16px rgba(59,130,246,.25);}}
+
 .order-card{margin:0 16px 10px;padding:14px 16px;background:#fff;border:1.5px solid var(--bd);border-radius:var(--r-md);cursor:pointer;transition:all .15s;}
 .order-card:hover{border-color:var(--pri);box-shadow:0 2px 8px rgba(0,0,0,.06);}
 .order-card .oc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
@@ -396,6 +421,8 @@ body{
 
 <!-- Quick Nav -->
 <div class="nav-bar" id="navBar">
+  <button class="nav-btn" onclick="go('meGuest')">My Center (Guest)</button>
+  <span class="nav-sep">|</span>
   <button class="nav-btn active" onclick="go('myCenter')">My Center</button>
   <span class="nav-sep">›</span>
   <button class="nav-btn" onclick="go('profile')">Profile</button>
@@ -423,6 +450,8 @@ body{
   <button class="active" onclick="setAccountState('unverified')">Unverified</button>
   <button onclick="setAccountState('verified')">Verified</button>
   <button onclick="setAccountState('restricted')">Restricted</button>
+  <span class="state-sim-label" style="margin-left:12px;">登录状态：</span>
+  <button id="btnToggleLogin" class="active" onclick="toggleLoginState()">Logged In</button>
 </div>
 
 <div class="main-stage">
@@ -445,6 +474,85 @@ body{
       <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.96 7.96 0 01-4.106-1.138l-.294-.176-2.862.852.852-2.862-.176-.294A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="#25D366"/>
     </symbol>
   </svg>
+
+  <!-- ====== ME GUEST (NOT LOGGED IN) ====== -->
+  <div class="screen" id="s-meGuest">
+    <div class="sb">
+      <span class="time">9:41</span>
+      <span class="ic"><svg width="52" height="12"><use href="#sb-icons"/></svg></span>
+    </div>
+    <div class="body" style="padding-top:0;">
+      <div class="profile-card" onclick="guestAction()" style="cursor:pointer;">
+        <div class="guest-avatar">👤</div>
+        <div class="profile-info">
+          <div class="guest-prompt" data-i18n-guest="meGuest.loginPrompt">Log in / Sign up</div>
+        </div>
+        <span class="mi-arrow" style="font-size:18px;color:var(--t3);">›</span>
+      </div>
+
+      <div class="section-title">
+        <h3 data-i18n-guest="meGuest.myOrders">My Orders</h3>
+        <span class="st-link" onclick="guestAction()">View All ›</span>
+      </div>
+      <div class="order-stats">
+        <div class="order-stat guest-order-stat" onclick="guestAction()">
+          <div class="os-count">0</div>
+          <div class="os-label" data-i18n-label="myCenter.toPay">To Pay</div>
+        </div>
+        <div class="order-stat guest-order-stat" onclick="guestAction()">
+          <div class="os-count">0</div>
+          <div class="os-label" data-i18n-label="myCenter.preparingStock">Preparing Stock</div>
+        </div>
+        <div class="order-stat guest-order-stat" onclick="guestAction()">
+          <div class="os-count">0</div>
+          <div class="os-label" data-i18n-label="myCenter.readyForPickup">Ready For Pickup</div>
+        </div>
+      </div>
+
+      <div class="menu-group">
+        <div class="mg-title">Quick Actions</div>
+        <div class="menu-item" onclick="guestAction()">
+          <div class="mi-icon" style="background:var(--bgi);">⚙️</div>
+          <div>
+            <div class="mi-text">Settings</div>
+            <div class="mi-sub">Account, security, language</div>
+          </div>
+          <span class="mi-arrow">›</span>
+        </div>
+        <div class="menu-item" onclick="guestAction()">
+          <div class="mi-icon" style="background:var(--blue-bg);">💬</div>
+          <div>
+            <div class="mi-text">Help & Support</div>
+            <div class="mi-sub">WhatsApp, WeChat support</div>
+          </div>
+          <span class="mi-arrow">›</span>
+        </div>
+        <div class="menu-item" onclick="guestAction()">
+          <div class="mi-icon" style="background:var(--bgi);">❓</div>
+          <div>
+            <div class="mi-text">FAQ</div>
+            <div class="mi-sub">Frequently asked questions</div>
+          </div>
+          <span class="mi-arrow">›</span>
+        </div>
+      </div>
+
+      <div class="guest-login-bar" id="guestLoginBar">
+        <div class="glb-icon">🔓</div>
+        <div class="glb-text">
+          <div class="glb-title" data-i18n-guest="meGuest.loginTitle">Log in to unlock all features</div>
+        </div>
+        <button class="glb-btn" data-i18n-guest="meGuest.loginBtn" onclick="window.open('fonesquare-login.html','_blank')">LOG IN</button>
+      </div>
+    </div>
+
+    <div class="tab-bar">
+      <div class="tb-item"><span class="tb-i">🏠</span>Home</div>
+      <div class="tb-item"><span class="tb-i">🛒</span>Cart</div>
+      <div class="tb-item on"><span class="tb-i">👤</span>Me</div>
+    </div>
+    <div class="home-ind"></div>
+  </div>
 
   <!-- ====== MY CENTER ====== -->
   <div class="screen active" id="s-myCenter">
@@ -1175,8 +1283,10 @@ const hist = [];
 let current = 'myCenter';
 let profileCompleted = false;
 let accountState = 'unverified'; // 'unverified' | 'verified' | 'restricted'
+let isLoggedIn = true;
 
 const screenMeta = [
+  {id:'meGuest', label:'My Center (Guest — Not Logged In)'},
   {id:'myCenter', label:'My Center'},
   {id:'profile', label:'Profile — Identity Verification'},
   {id:'kycDup', label:'KYC — Duplicate Identity Detected'},
@@ -1237,6 +1347,24 @@ function toast(msg) {
   t.textContent = msg;
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+function guestAction() {
+  toast(t('toast.loginRequired'));
+  const bar = document.getElementById('guestLoginBar');
+  if (bar) {
+    bar.style.transform = 'scale(1.03)';
+    bar.style.borderColor = 'var(--pri)';
+    setTimeout(() => { bar.style.transform = ''; bar.style.borderColor = ''; }, 600);
+  }
+}
+
+function toggleLoginState() {
+  isLoggedIn = !isLoggedIn;
+  const btn = document.getElementById('btnToggleLogin');
+  btn.textContent = isLoggedIn ? 'Logged In' : 'Guest';
+  btn.classList.toggle('active', isLoggedIn);
+  go(isLoggedIn ? 'myCenter' : 'meGuest');
 }
 
 function pickLang(opt, name) {
@@ -1952,6 +2080,58 @@ myCenter: `【My Center — 个人中心】
 - click: wa_support（WhatsApp图标）
 - click: menu_{item}`,
 
+meGuest: `【My Center (Guest) — 未登录个人中心】
+
+■ 页面定位
+用户未登录时，底部Tab「Me」展示的占位页面，保持与已登录 My Center 一致的布局框架，引导用户登录。
+
+■ 触发条件
+APP启动时检测 isLoggedIn 状态（JWT Token 有效性），若未登录则 Me Tab 进入此页面。
+
+■ 页面结构
+1. 头像区域
+   - 灰色默认头像（👤）替代真实用户头像
+   - 文案："Log in / Sign up" / "登录 / 注册"（单行，无副标题）
+   - 整个区域可点击，点击触发登录引导
+
+2. KYC引导区域
+   - 不展示任何KYC横幅（未认证/已认证/受限）
+
+3. 订单概览（My Orders）
+   - 三列统计数字全部显示为 0
+   - 点击任意列触发 toast 提示"请先登录"并高亮底部登录卡片
+   - "View All" 链接同样触发登录引导
+
+4. 快捷入口
+   - Settings / Help & Support / FAQ 正常展示图标和文案
+   - 点击行为统一改为：toast 提示"请先登录" + 高亮底部登录引导卡片
+   - 不跳转任何子页面
+
+5. 底部登录引导卡片（Guest Login Bar）
+   - 位置：紧贴 Tab Bar 上方
+   - 样式：蓝绿渐变背景、圆角卡片、轻阴影、呼吸动画
+   - 内容：🔓 图标 + "Log in to unlock all features" + "LOG IN" 按钮（无副描述文案）
+   - 点击 LOG IN → 跳转 fonesquare-login.html 登录页
+
+6. 底部Tab栏
+   - Home / Cart / Me（Me 为选中态）
+   - 正常展示，与已登录状态一致
+
+■ 交互逻辑
+- 页面所有可点击元素（订单、菜单、头像区域）统一调用 guestAction()
+- guestAction()：先 toast 提示"请先登录"，然后高亮登录引导卡片（放大+边框变色 600ms）
+- LOG IN 按钮：直接跳转登录页
+- 登录成功后：Me Tab 自动切换为 myCenter（已登录个人中心）
+
+■ 埋点事件
+- PV: me_guest_view（未登录Me页曝光）
+- CLK: me_guest_action_click（未登录态点击功能入口，携带 target 参数）
+- CLK: me_guest_login_btn（点击底部 LOG IN 按钮）
+
+■ 原型演示说明
+- 通过顶部「登录状态」开关切换 Logged In / Guest 模式
+- Guest 模式下自动展示此页面，Logged In 切回 My Center`,
+
 profile: `【Profile — 身份认证】
 
 ■ 页面定位
@@ -2514,6 +2694,10 @@ en: {
   'myCenter.helpDesc': 'WhatsApp, WeChat support',
   'myCenter.faq': 'FAQ',
   'myCenter.faqDesc': 'Frequently asked questions',
+  'meGuest.loginPrompt': 'Log in / Sign up',
+  'meGuest.myOrders': 'My Orders',
+  'meGuest.loginTitle': 'Log in to unlock all features',
+  'meGuest.loginBtn': 'LOG IN',
   'tab.home': 'Home',
   'tab.cart': 'Cart',
   'tab.me': 'Me',
@@ -2668,6 +2852,7 @@ en: {
   'toast.waSupport': 'Opening WhatsApp support chat…',
   'toast.openWa': 'Opening WhatsApp…',
   'toast.openWechat': 'Opening WeChat…',
+  'toast.loginRequired': 'Please log in first',
   'toast.cameraPicker': 'Camera / Gallery picker',
   'toast.datePicker': 'Date picker',
   'toast.comingSoon': ' coming soon',
@@ -2697,6 +2882,10 @@ zh: {
   'myCenter.helpDesc': 'WhatsApp、微信客服',
   'myCenter.faq': '常见问题',
   'myCenter.faqDesc': '查看常见问题',
+  'meGuest.loginPrompt': '登录 / 注册',
+  'meGuest.myOrders': '我的订单',
+  'meGuest.loginTitle': '登录解锁全部功能',
+  'meGuest.loginBtn': '去登录',
   'tab.home': '首页',
   'tab.cart': '购物车',
   'tab.me': '我的',
@@ -2851,6 +3040,7 @@ zh: {
   'toast.waSupport': '正在打开WhatsApp客服…',
   'toast.openWa': '正在打开WhatsApp…',
   'toast.openWechat': '正在打开微信…',
+  'toast.loginRequired': '请先登录',
   'toast.cameraPicker': '相机 / 相册选择',
   'toast.datePicker': '日期选择',
   'toast.comingSoon': ' 即将推出',
@@ -2880,6 +3070,10 @@ zh: {
   'myCenter.helpDesc': 'WhatsApp、微信客服',
   'myCenter.faq': '常見問題',
   'myCenter.faqDesc': '查看常見問題',
+  'meGuest.loginPrompt': '登入 / 註冊',
+  'meGuest.myOrders': '我的訂單',
+  'meGuest.loginTitle': '登入解鎖全部功能',
+  'meGuest.loginBtn': '去登入',
   'tab.home': '首頁',
   'tab.cart': '購物車',
   'tab.me': '我的',
@@ -3034,6 +3228,7 @@ zh: {
   'toast.waSupport': '正在開啟WhatsApp客服…',
   'toast.openWa': '正在開啟WhatsApp…',
   'toast.openWechat': '正在開啟微信…',
+  'toast.loginRequired': '請先登入',
   'toast.cameraPicker': '相機 / 相簿選擇',
   'toast.datePicker': '日期選擇',
   'toast.comingSoon': ' 即將推出',
@@ -3094,6 +3289,27 @@ function applyLocale() {
   var tbItems = qsa('s-myCenter', '.tb-item');
   ['tab.home','tab.cart','tab.me'].forEach(function(k, i) {
     if (tbItems[i]) { var ic = tbItems[i].querySelector('.tb-i'); tbItems[i].innerHTML = (ic ? ic.outerHTML : '') + t(k); }
+  });
+
+  // ── s-meGuest (未登录 Me 页) ──
+  document.querySelectorAll('#s-meGuest [data-i18n-guest]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-guest');
+    el.textContent = t(key);
+  });
+  document.querySelectorAll('#s-meGuest [data-i18n-label]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-label');
+    el.innerHTML = t(key).replace(/\n/g, '<br>');
+  });
+  setText(qs('s-meGuest', '.section-title h3'), t('meGuest.myOrders'));
+  setText(qs('s-meGuest', '.st-link'), t('myCenter.viewAll'));
+  setText(qs('s-meGuest', '.mg-title'), t('myCenter.quickActions'));
+  var guestMenu = qsa('s-meGuest', '.menu-item');
+  if (guestMenu[0]) { setText(guestMenu[0].querySelector('.mi-text'), t('myCenter.settings')); setText(guestMenu[0].querySelector('.mi-sub'), t('myCenter.settingsDesc')); }
+  if (guestMenu[1]) { setText(guestMenu[1].querySelector('.mi-text'), t('myCenter.help')); setText(guestMenu[1].querySelector('.mi-sub'), t('myCenter.helpDesc')); }
+  if (guestMenu[2]) { setText(guestMenu[2].querySelector('.mi-text'), t('myCenter.faq')); setText(guestMenu[2].querySelector('.mi-sub'), t('myCenter.faqDesc')); }
+  var guestTb = qsa('s-meGuest', '.tb-item');
+  ['tab.home','tab.cart','tab.me'].forEach(function(k, i) {
+    if (guestTb[i]) { var ic = guestTb[i].querySelector('.tb-i'); guestTb[i].innerHTML = (ic ? ic.outerHTML : '') + t(k); }
   });
 
   // ── s-profile (身份认证) ──

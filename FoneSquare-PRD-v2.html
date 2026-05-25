@@ -389,7 +389,7 @@ body.editing .edit-mode-banner { display:block; }
       
       
       
-      <tr><td>2026-03-31</td><td>新建：登录注册、KYC实名认证、商家管理后台 PRD 初稿</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-04-07</td><td>V1.1 更新：注册流程密码必填、去除身份认证主动引导、身份重复引导优化、后台限额配置简化</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-04-15</td><td>V1.1 更新：语言支持调整为 English / 简体中文 / 繁體中文，去除菲律宾语和阿拉伯语</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-04-15</td><td>V1.2 更新：注册完成过渡页、邮箱统一使用通用密码设置页、忘记密码支持手机号+邮箱双模式</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-04-16</td><td>V1.4 更新：① 身份认证页三级联动地区选择器（国家→省份→城市，同一弹窗面包屑导航）；② 证件类型按地区动态展示（HK→HK ID/护照、MO→MO ID/护照、CN→身份证/护照、其他→仅护照）；③ 繁體中文（zh-TW）完整语言包支持；④ 个人中心订单状态调整为 Unpaid/Paid/Cancelled 三状态；⑤ 企业信息选填加引导文案鼓励填写；⑥ KYC重复身份处理流程集成到身份认证页</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-04-28</td><td>V2.6 后台原型菜单回归 + 每页页面定位下放交互图：① 「<strong>商家列表 / 商家详情 / 添加商家</strong>」三页的<strong>「页面定位」info-box 紧下方</strong>各嵌入一份完整可交互原型；② 原型保留<strong>侧边菜单</strong>（参考截图样式），但仅含两组：「<strong>商家管理 → 商家列表</strong>」与「<strong>下载中心 → 我的文件</strong>」（导出文件存放页，30 天有效）；③ 原型用&nbsp;<code>data-prototype="merchant-admin"</code>&nbsp;+&nbsp;<code>data-init-view</code>&nbsp;占位 + 通用模板渲染脚本 实现，三页共享同一份代码、独立状态；④ 列表页「📥 导出」会演示提交导出任务后跳转到「我的文件」；「我的文件」支持下载.</td><td style="position: relative;">乔谦<br></td></tr><tr><td>2026-04-28</td><td>V2.9 详情页结构按 PRD 规约重塑 + 列表操作精简：① 列表操作列删「编辑」，改为<strong>「查看 + 停用/启用」</strong>（按 status 动态切换文案与色）；② 详情头部第二行采用&nbsp;<strong>「ID · 维护人：姓名(OB号) · 注册日期」</strong>；③ Tab 4 名称<strong>「维护人绑定 → 维护人绑定」</strong>；④ Tab 1 基本信息拆为<strong>「个人信息」+「企业信息（选填）」</strong>双卡，卡内右上角配独立<strong>「编辑」</strong>入口；⑤ Tab 2 KYC 拆为<strong>「个人 KYC」+「企业 KYC（选填）」</strong>，证件号脱敏 + 「点击查看原值」；⑥ Tab 4 重写：当前绑定（姓名/OB账号/绑定时间/操作人）+ 绑定/解绑/更换 + 历史绑定列表；⑦ Tab 5 操作日志补全 7 类事件（创建/KYC/编辑/限额/换绑/停用/启用），每条带操作人、操作时间、变更前后值（红→绿对比）。</td><td style="position: relative;">乔谦</td></tr>
+      <tr><td>2026-03-31</td><td>新建：登录注册、KYC实名认证、商家管理后台 PRD 初稿</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-04-07</td><td>V1.1 更新：注册流程密码必填、去除身份认证主动引导、身份重复引导优化、后台限额配置简化</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-04-15</td><td>V1.1 更新：语言支持调整为 English / 简体中文 / 繁體中文，去除菲律宾语和阿拉伯语</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-04-15</td><td>V1.2 更新：注册完成过渡页、邮箱统一使用通用密码设置页、忘记密码支持手机号+邮箱双模式</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-04-16</td><td>V1.4 更新：① 身份认证页三级联动地区选择器（国家→省份→城市，同一弹窗面包屑导航）；② 证件类型按地区动态展示（HK→HK ID/护照、MO→MO ID/护照、CN→身份证/护照、其他→仅护照）；③ 繁體中文（zh-TW）完整语言包支持；④ 个人中心订单状态调整为 Unpaid/Paid/Cancelled 三状态；⑤ 企业信息选填加引导文案鼓励填写；⑥ KYC重复身份处理流程集成到身份认证页</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-04-28</td><td>V2.6 后台原型菜单回归 + 每页页面定位下放交互图：① 「<strong>商家列表 / 商家详情 / 添加商家</strong>」三页的<strong>「页面定位」info-box 紧下方</strong>各嵌入一份完整可交互原型；② 原型保留<strong>侧边菜单</strong>（参考截图样式），但仅含两组：「<strong>商家管理 → 商家列表</strong>」与「<strong>下载中心 → 我的文件</strong>」（导出文件存放页，30 天有效）；③ 原型用&nbsp;<code>data-prototype="merchant-admin"</code>&nbsp;+&nbsp;<code>data-init-view</code>&nbsp;占位 + 通用模板渲染脚本 实现，三页共享同一份代码、独立状态；④ 列表页「📥 导出」会演示提交导出任务后跳转到「我的文件」；「我的文件」支持下载.</td><td style="position: relative;">乔谦<br></td></tr><tr><td>2026-04-28</td><td>V2.9 详情页结构按 PRD 规约重塑 + 列表操作精简：① 列表操作列删「编辑」，改为<strong>「查看 + 停用/启用」</strong>（按 status 动态切换文案与色）；② 详情头部第二行采用&nbsp;<strong>「ID · 维护人：姓名(OB号) · 注册日期」</strong>；③ Tab 4 名称<strong>「维护人绑定 → 维护人绑定」</strong>；④ Tab 1 基本信息拆为<strong>「个人信息」+「企业信息（选填）」</strong>双卡，卡内右上角配独立<strong>「编辑」</strong>入口；⑤ Tab 2 KYC 拆为<strong>「个人 KYC」+「企业 KYC（选填）」</strong>，证件号脱敏 + 「点击查看原值」；⑥ Tab 4 重写：当前绑定（姓名/OB账号/绑定时间/操作人）+ 绑定/解绑/更换 + 历史绑定列表；⑦ Tab 5 操作日志补全 7 类事件（创建/KYC/编辑/限额/换绑/停用/启用），每条带操作人、操作时间、变更前后值（红→绿对比）。</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-05-19</td><td>V1.5 个人中心 &amp; 帮助页结构优化：① <strong>个人中心头部精简</strong>：移除「My Center」标题与 WhatsApp 客服按钮，页面内容上移；② <strong>FAQ 升级为一级入口</strong>：从 Help &amp; Support 内部移出，置于 Me 页面 Quick Actions 区域，与「Help &amp; Support」并列；③ <strong>Help &amp; Support 重构</strong>：仅保留「WhatsApp Support」+「WeChat Support」两个客服渠道（去除 Email Support 与 FAQ 入口），WeChat 使用 SVG 品牌图标；④ <strong>i18n 全量同步</strong>：EN / zh-CN / zh-HK 三语言包新增 <code>myCenter.faq</code>、<code>help.wechat</code>、<code>toast.openWechat</code>；⑤ <strong>埋点表全局重编号</strong>：消除两表序号重叠，统一为 #1–#124 连续编号，新增 <code>my_center_faq</code> / <code>help_wechat_support</code>，移除 <code>my_center_wa_support</code> / <code>help_email_support</code> / <code>help_faq</code>。</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-05-25</td><td>V1.6 Me 页面未登录态（Guest）：① <strong>新增 My Center (Guest) 独立页面</strong>：未登录时 Me Tab 展示占位页面，保持已登录 My Center 布局框架，头部显示「Log in / Sign up」引导，订单数量显示 0，所有功能入口点击触发「请先登录」toast 并高亮底部登录条；② <strong>底部登录引导条</strong>：蓝绿渐变卡片 + 呼吸动画，点击 LOG IN 跳转 <code>fonesquare-login.html</code>；③ <strong>原型 Demo 支持</strong>：快捷导航新增「My Center (Guest)」按钮，状态模拟区新增「Toggle Login State」切换；④ <strong>静态交互图</strong>：新增 Guest Me 缩略图（MG），标注未登录占位页；⑤ <strong>埋点 +3 事件</strong>：<code>me_guest_view</code>（PV）、<code>me_guest_action_click</code>（CLK）、<code>me_guest_login_btn</code>（CLK），全表重编号 #1–#127；⑥ <strong>i18n 全量同步</strong>：EN / zh-CN / zh-HK 三语言包新增 <code>meGuest.*</code> 和 <code>toast.loginRequired</code>。</td><td style="position: relative;">乔谦</td></tr>
     </tbody>
   </table>
 </div>
@@ -1121,7 +1121,7 @@ body.editing .edit-mode-banner { display:block; }
   </div>
   <div class="info-box info">
     <span class="ib-icon">📊</span>
-    <div><strong>埋点范围</strong>：覆盖登录注册（fonesquare-login）和个人中心/KYC（fonesquare-kyc）两个模块的全部页面与核心交互，共计 <strong>124</strong> 项埋点事件。埋点类型分为：<strong>PV</strong>（页面曝光）、<strong>CLK</strong>（点击事件）、<strong>INPUT</strong>（输入/提交事件）、<strong>RESULT</strong>（结果回调）。序号全局连续编号，已废弃的历史埋点不再展示。</div>
+    <div><strong>埋点范围</strong>：覆盖登录注册（fonesquare-login）和个人中心/KYC（fonesquare-kyc）两个模块的全部页面与核心交互，共计 <strong>127</strong> 项埋点事件。埋点类型分为：<strong>PV</strong>（页面曝光）、<strong>CLK</strong>（点击事件）、<strong>INPUT</strong>（输入/提交事件）、<strong>RESULT</strong>（结果回调）。序号全局连续编号，已废弃的历史埋点不再展示。</div>
   </div>
 
   <h3>一、登录注册模块（fonesquare-login）</h3>
@@ -1232,82 +1232,87 @@ body.editing .edit-mode-banner { display:block; }
       <tr><td>72</td><td>My Center</td><td>CLK</td><td>my_center_tab_switch</td><td>点击底部Tab（Home/Cart/Me）</td><td style="position: relative;">target_tab</td></tr>
       <tr><td>73</td><td>My Center</td><td>CLK</td><td>my_center_restricted_banner</td><td>账号受限用户点击红色横幅（跳转WhatsApp客服）</td><td style="position: relative;">account_status</td></tr>
 
+      <tr><td colspan="6" style="background: rgb(248, 250, 252); font-weight: 600; position: relative;">My Center (Guest) 未登录个人中心（V1.6 新增）</td></tr>
+      <tr><td>74</td><td>My Center (Guest)</td><td>PV</td><td>me_guest_view</td><td>未登录 Me 页曝光（订单数显示 0，头像区显示「Log in / Sign up」）</td><td style="position: relative;">—</td></tr>
+      <tr><td>75</td><td>My Center (Guest)</td><td>CLK</td><td>me_guest_action_click</td><td>未登录态点击功能入口，触发 toast「请先登录」+ 高亮底部登录引导条</td><td style="position: relative;">target (profile/orders/settings/help/faq/view_all)</td></tr>
+      <tr><td>76</td><td>My Center (Guest)</td><td>CLK</td><td>me_guest_login_btn</td><td>点击底部登录引导条 LOG IN 按钮，跳转登录页</td><td style="position: relative;">—</td></tr>
+
       <tr><td colspan="6" style="background: rgb(248, 250, 252); font-weight: 600; position: relative;">Profile 身份认证（KYC流程内 · V1.4 更新）</td></tr>
-      <tr><td>74</td><td>Profile (KYC)</td><td>PV</td><td>kyc_profile_view</td><td>KYC身份认证页曝光</td><td style="position: relative;">entry_source (banner/settings)</td></tr>
-      <tr><td>75</td><td>Profile (KYC)</td><td>CLK</td><td>kyc_region_picker_open</td><td>打开联动地区选择器</td><td style="position: relative;">—</td></tr>
-      <tr><td>76</td><td>Profile (KYC)</td><td>CLK</td><td>kyc_country_select</td><td>选择国家/地区（第一级）</td><td style="position: relative;">country_code</td></tr>
-      <tr><td>77</td><td>Profile (KYC)</td><td>CLK</td><td>kyc_province_select</td><td>选择省份/州（第二级）</td><td style="position: relative;">country_code, province_id</td></tr>
-      <tr><td>78</td><td>Profile (KYC)</td><td>CLK</td><td>kyc_city_select</td><td>选择城市/区（第三级）</td><td style="position: relative;">country_code, province_id, city_name</td></tr>
-      <tr><td>79</td><td>Profile (KYC)</td><td>CLK</td><td>kyc_id_type_select</td><td>选择证件类型（根据地区动态展示）</td><td style="position: relative;">id_type (hk_id/mo_id/cn_id/passport), country_code</td></tr>
-      <tr><td>80</td><td>Profile (KYC)</td><td>CLK</td><td>kyc_id_upload</td><td>点击上传证件照片</td><td style="position: relative;">id_type, side</td></tr>
-      <tr><td>81</td><td>Profile (KYC)</td><td>RESULT</td><td>kyc_ocr_result</td><td>OCR识别结果</td><td style="position: relative;">success, fields_recognized</td></tr>
-      <tr><td>82</td><td>Profile (KYC)</td><td>CLK</td><td>kyc_biz_expand</td><td>展开企业信息区（引导文案引导填写）</td><td style="position: relative;">—</td></tr>
-      <tr><td>83</td><td>Profile (KYC)</td><td>CLK</td><td>kyc_submit</td><td>点击 SUBMIT &amp; CONTINUE</td><td style="position: relative;">has_biz_info, id_type, country_code</td></tr>
+      <tr><td>77</td><td>Profile (KYC)</td><td>PV</td><td>kyc_profile_view</td><td>KYC身份认证页曝光</td><td style="position: relative;">entry_source (banner/settings)</td></tr>
+      <tr><td>78</td><td>Profile (KYC)</td><td>CLK</td><td>kyc_region_picker_open</td><td>打开联动地区选择器</td><td style="position: relative;">—</td></tr>
+      <tr><td>79</td><td>Profile (KYC)</td><td>CLK</td><td>kyc_country_select</td><td>选择国家/地区（第一级）</td><td style="position: relative;">country_code</td></tr>
+      <tr><td>80</td><td>Profile (KYC)</td><td>CLK</td><td>kyc_province_select</td><td>选择省份/州（第二级）</td><td style="position: relative;">country_code, province_id</td></tr>
+      <tr><td>81</td><td>Profile (KYC)</td><td>CLK</td><td>kyc_city_select</td><td>选择城市/区（第三级）</td><td style="position: relative;">country_code, province_id, city_name</td></tr>
+      <tr><td>82</td><td>Profile (KYC)</td><td>CLK</td><td>kyc_id_type_select</td><td>选择证件类型（根据地区动态展示）</td><td style="position: relative;">id_type (hk_id/mo_id/cn_id/passport), country_code</td></tr>
+      <tr><td>83</td><td>Profile (KYC)</td><td>CLK</td><td>kyc_id_upload</td><td>点击上传证件照片</td><td style="position: relative;">id_type, side</td></tr>
+      <tr><td>84</td><td>Profile (KYC)</td><td>RESULT</td><td>kyc_ocr_result</td><td>OCR识别结果</td><td style="position: relative;">success, fields_recognized</td></tr>
+      <tr><td>85</td><td>Profile (KYC)</td><td>CLK</td><td>kyc_biz_expand</td><td>展开企业信息区（引导文案引导填写）</td><td style="position: relative;">—</td></tr>
+      <tr><td>86</td><td>Profile (KYC)</td><td>CLK</td><td>kyc_submit</td><td>点击 SUBMIT &amp; CONTINUE</td><td style="position: relative;">has_biz_info, id_type, country_code</td></tr>
 
       <tr><td colspan="6" style="background: rgb(248, 250, 252); font-weight: 600; position: relative;">KYC 重复身份处理（V1.4 新增）</td></tr>
-      <tr><td>84</td><td>KYC Dup</td><td>PV</td><td>kyc_dup_detected_view</td><td>重复身份检测结果页曝光</td><td style="position: relative;">verified_account_phone</td></tr>
-      <tr><td>85</td><td>KYC Dup</td><td>CLK</td><td>kyc_dup_login_btn</td><td>点击「LOG IN TO VERIFIED ACCOUNT」</td><td style="position: relative;">—</td></tr>
-      <tr><td>86</td><td>KYC Dup Supplement</td><td>PV</td><td>kyc_dup_supplement_view</td><td>补全登录信息页曝光</td><td style="position: relative;">—</td></tr>
-      <tr><td>87</td><td>KYC Dup Supplement</td><td>CLK</td><td>kyc_dup_supplement_submit</td><td>点击「VERIFY &amp; LINK」补全信息</td><td style="position: relative;">supplement_type (email/phone)</td></tr>
-      <tr><td>88</td><td>KYC Dup OTP</td><td>PV</td><td>kyc_dup_otp_view</td><td>二次OTP验证页曝光</td><td style="position: relative;">—</td></tr>
-      <tr><td>89</td><td>KYC Dup OTP</td><td>CLK</td><td>kyc_dup_otp_verify</td><td>输入OTP并验证</td><td style="position: relative;">success (bool)</td></tr>
-      <tr><td>90</td><td>KYC Dup Done</td><td>PV</td><td>kyc_dup_done_view</td><td>账号迁移完成页曝光</td><td style="position: relative;">—</td></tr>
-      <tr><td>91</td><td>KYC Dup Done</td><td>CLK</td><td>kyc_dup_done_continue</td><td>点击「CONTINUE」进入已认证账号</td><td style="position: relative;">—</td></tr>
+      <tr><td>87</td><td>KYC Dup</td><td>PV</td><td>kyc_dup_detected_view</td><td>重复身份检测结果页曝光</td><td style="position: relative;">verified_account_phone</td></tr>
+      <tr><td>88</td><td>KYC Dup</td><td>CLK</td><td>kyc_dup_login_btn</td><td>点击「LOG IN TO VERIFIED ACCOUNT」</td><td style="position: relative;">—</td></tr>
+      <tr><td>89</td><td>KYC Dup Supplement</td><td>PV</td><td>kyc_dup_supplement_view</td><td>补全登录信息页曝光</td><td style="position: relative;">—</td></tr>
+      <tr><td>90</td><td>KYC Dup Supplement</td><td>CLK</td><td>kyc_dup_supplement_submit</td><td>点击「VERIFY &amp; LINK」补全信息</td><td style="position: relative;">supplement_type (email/phone)</td></tr>
+      <tr><td>91</td><td>KYC Dup OTP</td><td>PV</td><td>kyc_dup_otp_view</td><td>二次OTP验证页曝光</td><td style="position: relative;">—</td></tr>
+      <tr><td>92</td><td>KYC Dup OTP</td><td>CLK</td><td>kyc_dup_otp_verify</td><td>输入OTP并验证</td><td style="position: relative;">success (bool)</td></tr>
+      <tr><td>93</td><td>KYC Dup Done</td><td>PV</td><td>kyc_dup_done_view</td><td>账号迁移完成页曝光</td><td style="position: relative;">—</td></tr>
+      <tr><td>94</td><td>KYC Dup Done</td><td>CLK</td><td>kyc_dup_done_continue</td><td>点击「CONTINUE」进入已认证账号</td><td style="position: relative;">—</td></tr>
 
       <tr><td colspan="6" style="background: rgb(248, 250, 252); font-weight: 600; position: relative;">KYC 重复身份 — 登录方式冲突（V1.4 新增）</td></tr>
-      <tr><td>92</td><td>KYC Dup Conflict</td><td>PV</td><td>kyc_dup_conflict_view</td><td>登录方式类型冲突页曝光（已认证账号已有相同类型登录方式）</td><td style="position: relative;">conflict_type (email/phone/whatsapp)</td></tr>
-      <tr><td>93</td><td>KYC Dup Conflict</td><td>CLK</td><td>kyc_dup_conflict_go_login</td><td>点击「Go to Login / 前往登录」</td><td style="position: relative;">—</td></tr>
-      <tr><td>94</td><td>KYC Dup Conflict</td><td>CLK</td><td>kyc_dup_conflict_use_other</td><td>点击「Use a different ID / 使用其他证件」</td><td style="position: relative;">—</td></tr>
+      <tr><td>95</td><td>KYC Dup Conflict</td><td>PV</td><td>kyc_dup_conflict_view</td><td>登录方式类型冲突页曝光（已认证账号已有相同类型登录方式）</td><td style="position: relative;">conflict_type (email/phone/whatsapp)</td></tr>
+      <tr><td>96</td><td>KYC Dup Conflict</td><td>CLK</td><td>kyc_dup_conflict_go_login</td><td>点击「Go to Login / 前往登录」</td><td style="position: relative;">—</td></tr>
+      <tr><td>97</td><td>KYC Dup Conflict</td><td>CLK</td><td>kyc_dup_conflict_use_other</td><td>点击「Use a different ID / 使用其他证件」</td><td style="position: relative;">—</td></tr>
 
       <tr><td colspan="6" style="background: rgb(248, 250, 252); font-weight: 600; position: relative;">My Orders 订单列表</td></tr>
-      <tr><td>95</td><td>My Orders</td><td>PV</td><td>orders_view</td><td>订单列表页曝光</td><td style="position: relative;">total_orders</td></tr>
-      <tr><td>96</td><td>My Orders</td><td>CLK</td><td>orders_tab_filter</td><td>切换订单筛选Tab</td><td style="position: relative;">filter_type (all/unpaid/paid/cancelled)</td></tr>
-      <tr><td>97</td><td>My Orders</td><td>CLK</td><td>orders_card_click</td><td>点击订单卡片进入订单详情</td><td style="position: relative;">order_id, order_status</td></tr>
+      <tr><td>98</td><td>My Orders</td><td>PV</td><td>orders_view</td><td>订单列表页曝光</td><td style="position: relative;">total_orders</td></tr>
+      <tr><td>99</td><td>My Orders</td><td>CLK</td><td>orders_tab_filter</td><td>切换订单筛选Tab</td><td style="position: relative;">filter_type (all/unpaid/paid/cancelled)</td></tr>
+      <tr><td>100</td><td>My Orders</td><td>CLK</td><td>orders_card_click</td><td>点击订单卡片进入订单详情</td><td style="position: relative;">order_id, order_status</td></tr>
 
       <tr><td colspan="6" style="background: rgb(248, 250, 252); font-weight: 600; position: relative;">Settings 设置</td></tr>
-      <tr><td>98</td><td>Settings</td><td>PV</td><td>settings_view</td><td>设置页曝光</td><td style="position: relative;">—</td></tr>
-      <tr><td>99</td><td>Settings</td><td>CLK</td><td>settings_identity_verify</td><td>点击 Identity Verification</td><td style="position: relative;">kyc_status</td></tr>
-      <tr><td>100</td><td>Settings</td><td>CLK</td><td>settings_login_methods</td><td>点击 Login Methods（管理登录方式）</td><td style="position: relative;">—</td></tr>
-      <tr><td>101</td><td>Settings</td><td>CLK</td><td>settings_change_pwd</td><td>点击 Change Password</td><td style="position: relative;">—</td></tr>
-      <tr><td>102</td><td>Settings</td><td>CLK</td><td>settings_language</td><td>点击 Language</td><td style="position: relative;">current_lang</td></tr>
-      <tr><td>103</td><td>Settings</td><td>CLK</td><td>settings_privacy</td><td>点击 Privacy Policy</td><td style="position: relative;">—</td></tr>
-      <tr><td>104</td><td>Settings</td><td>CLK</td><td>settings_about</td><td>点击 About FoneSquare</td><td style="position: relative;">—</td></tr>
-      <tr><td>105</td><td>Settings</td><td>CLK</td><td>settings_logout</td><td>点击 Log Out</td><td style="position: relative;">—</td></tr>
+      <tr><td>101</td><td>Settings</td><td>PV</td><td>settings_view</td><td>设置页曝光</td><td style="position: relative;">—</td></tr>
+      <tr><td>102</td><td>Settings</td><td>CLK</td><td>settings_identity_verify</td><td>点击 Identity Verification</td><td style="position: relative;">kyc_status</td></tr>
+      <tr><td>103</td><td>Settings</td><td>CLK</td><td>settings_login_methods</td><td>点击 Login Methods（管理登录方式）</td><td style="position: relative;">—</td></tr>
+      <tr><td>104</td><td>Settings</td><td>CLK</td><td>settings_change_pwd</td><td>点击 Change Password</td><td style="position: relative;">—</td></tr>
+      <tr><td>105</td><td>Settings</td><td>CLK</td><td>settings_language</td><td>点击 Language</td><td style="position: relative;">current_lang</td></tr>
+      <tr><td>106</td><td>Settings</td><td>CLK</td><td>settings_privacy</td><td>点击 Privacy Policy</td><td style="position: relative;">—</td></tr>
+      <tr><td>107</td><td>Settings</td><td>CLK</td><td>settings_about</td><td>点击 About FoneSquare</td><td style="position: relative;">—</td></tr>
+      <tr><td>108</td><td>Settings</td><td>CLK</td><td>settings_logout</td><td>点击 Log Out</td><td style="position: relative;">—</td></tr>
 
       <tr><td colspan="6" style="background: rgb(248, 250, 252); font-weight: 600; position: relative;">Change Password 修改密码</td></tr>
-      <tr><td>106</td><td>Change Pwd</td><td>PV</td><td>change_pwd_view</td><td>修改密码页曝光</td><td style="position: relative;">—</td></tr>
-      <tr><td>107</td><td>Change Pwd</td><td>CLK</td><td>change_pwd_submit</td><td>点击 UPDATE PASSWORD</td><td style="position: relative;">—</td></tr>
-      <tr><td>108</td><td>Change Pwd</td><td>RESULT</td><td>change_pwd_result</td><td>密码修改结果</td><td style="position: relative;">success (bool)</td></tr>
+      <tr><td>109</td><td>Change Pwd</td><td>PV</td><td>change_pwd_view</td><td>修改密码页曝光</td><td style="position: relative;">—</td></tr>
+      <tr><td>110</td><td>Change Pwd</td><td>CLK</td><td>change_pwd_submit</td><td>点击 UPDATE PASSWORD</td><td style="position: relative;">—</td></tr>
+      <tr><td>111</td><td>Change Pwd</td><td>RESULT</td><td>change_pwd_result</td><td>密码修改结果</td><td style="position: relative;">success (bool)</td></tr>
 
       <tr><td colspan="6" style="background: rgb(248, 250, 252); font-weight: 600; position: relative;">Language 语言选择</td></tr>
-      <tr><td>109</td><td>Language</td><td>PV</td><td>lang_select_view</td><td>语言选择页曝光</td><td style="position: relative;">current_lang</td></tr>
-      <tr><td>110</td><td>Language</td><td>CLK</td><td>lang_select_change</td><td>选择语言</td><td style="position: relative;">from_lang, to_lang</td></tr>
+      <tr><td>112</td><td>Language</td><td>PV</td><td>lang_select_view</td><td>语言选择页曝光</td><td style="position: relative;">current_lang</td></tr>
+      <tr><td>113</td><td>Language</td><td>CLK</td><td>lang_select_change</td><td>选择语言</td><td style="position: relative;">from_lang, to_lang</td></tr>
 
       <tr><td colspan="6" style="background: rgb(248, 250, 252); font-weight: 600; position: relative;">Help &amp; Support 帮助与支持</td></tr>
-      <tr><td>111</td><td>Help &amp; Support</td><td>PV</td><td>help_support_view</td><td>帮助与支持页曝光</td><td style="position: relative;">—</td></tr>
-      <tr><td>112</td><td>Help &amp; Support</td><td>CLK</td><td>help_wa_support</td><td>点击 WhatsApp Support</td><td style="position: relative;">—</td></tr>
-      <tr><td>113</td><td>Help &amp; Support</td><td>CLK</td><td>help_wechat_support</td><td>点击 WeChat Support</td><td style="position: relative;">—</td></tr>
+      <tr><td>114</td><td>Help &amp; Support</td><td>PV</td><td>help_support_view</td><td>帮助与支持页曝光</td><td style="position: relative;">—</td></tr>
+      <tr><td>115</td><td>Help &amp; Support</td><td>CLK</td><td>help_wa_support</td><td>点击 WhatsApp Support</td><td style="position: relative;">—</td></tr>
+      <tr><td>116</td><td>Help &amp; Support</td><td>CLK</td><td>help_wechat_support</td><td>点击 WeChat Support</td><td style="position: relative;">—</td></tr>
 
       <tr><td colspan="6" style="background: rgb(248, 250, 252); font-weight: 600; position: relative;">Privacy Policy 隐私政策</td></tr>
-      <tr><td>114</td><td>Privacy Policy</td><td>PV</td><td>privacy_view</td><td>隐私政策页曝光</td><td style="position: relative;">—</td></tr>
+      <tr><td>117</td><td>Privacy Policy</td><td>PV</td><td>privacy_view</td><td>隐私政策页曝光</td><td style="position: relative;">—</td></tr>
 
       <tr><td colspan="6" style="background: rgb(248, 250, 252); font-weight: 600; position: relative;">About 关于</td></tr>
-      <tr><td>115</td><td>About</td><td>PV</td><td>about_view</td><td>关于页曝光</td><td style="position: relative;">app_version</td></tr>
+      <tr><td>118</td><td>About</td><td>PV</td><td>about_view</td><td>关于页曝光</td><td style="position: relative;">app_version</td></tr>
 
       <tr><td colspan="6" style="background: rgb(248, 250, 252); font-weight: 600; position: relative;">Login Methods 登录方式管理（V1.4 新增）</td></tr>
-      <tr><td>116</td><td>Login Methods</td><td>PV</td><td>login_methods_view</td><td>登录方式管理页曝光</td><td style="position: relative;">methods_count, has_phone, has_email, has_whatsapp</td></tr>
-      <tr><td>117</td><td>Login Methods</td><td>CLK</td><td>login_methods_add_click</td><td>点击「Add Login Method」或安全提示引导</td><td style="position: relative;">entry (add_button / nudge_banner)</td></tr>
+      <tr><td>119</td><td>Login Methods</td><td>PV</td><td>login_methods_view</td><td>登录方式管理页曝光</td><td style="position: relative;">methods_count, has_phone, has_email, has_whatsapp</td></tr>
+      <tr><td>120</td><td>Login Methods</td><td>CLK</td><td>login_methods_add_click</td><td>点击「Add Login Method」或安全提示引导</td><td style="position: relative;">entry (add_button / nudge_banner)</td></tr>
 
       <tr><td colspan="6" style="background: rgb(248, 250, 252); font-weight: 600; position: relative;">Add Login Method 添加登录方式（V1.4 新增）</td></tr>
-      <tr><td>118</td><td>Add Method</td><td>PV</td><td>add_method_view</td><td>添加登录方式页曝光</td><td style="position: relative;">available_types</td></tr>
-      <tr><td>119</td><td>Add Method</td><td>CLK</td><td>add_method_type_select</td><td>选择登录方式类型（Phone/Email/WhatsApp）</td><td style="position: relative;">selected_type</td></tr>
-      <tr><td>120</td><td>Add Method</td><td>CLK</td><td>add_method_send_code</td><td>点击 SEND VERIFICATION CODE</td><td style="position: relative;">method_type, phone_country_code</td></tr>
+      <tr><td>121</td><td>Add Method</td><td>PV</td><td>add_method_view</td><td>添加登录方式页曝光</td><td style="position: relative;">available_types</td></tr>
+      <tr><td>122</td><td>Add Method</td><td>CLK</td><td>add_method_type_select</td><td>选择登录方式类型（Phone/Email/WhatsApp）</td><td style="position: relative;">selected_type</td></tr>
+      <tr><td>123</td><td>Add Method</td><td>CLK</td><td>add_method_send_code</td><td>点击 SEND VERIFICATION CODE</td><td style="position: relative;">method_type, phone_country_code</td></tr>
 
       <tr><td colspan="6" style="background: rgb(248, 250, 252); font-weight: 600; position: relative;">Verify Phone 验证手机号（V1.4 新增）</td></tr>
-      <tr><td>121</td><td>Verify Phone</td><td>PV</td><td>verify_phone_view</td><td>验证手机号OTP页曝光</td><td style="position: relative;">phone_masked</td></tr>
-      <tr><td>122</td><td>Verify Phone</td><td>CLK</td><td>verify_phone_submit</td><td>点击 VERIFY 提交验证码</td><td style="position: relative;">—</td></tr>
-      <tr><td>123</td><td>Verify Phone</td><td>RESULT</td><td>verify_phone_result</td><td>手机号绑定结果</td><td style="position: relative;">success (bool), error_code</td></tr>
-      <tr><td>124</td><td>Verify Phone</td><td>CLK</td><td>verify_phone_resend</td><td>点击重新发送验证码</td><td style="position: relative;">resend_count</td></tr>
+      <tr><td>124</td><td>Verify Phone</td><td>PV</td><td>verify_phone_view</td><td>验证手机号OTP页曝光</td><td style="position: relative;">phone_masked</td></tr>
+      <tr><td>125</td><td>Verify Phone</td><td>CLK</td><td>verify_phone_submit</td><td>点击 VERIFY 提交验证码</td><td style="position: relative;">—</td></tr>
+      <tr><td>126</td><td>Verify Phone</td><td>RESULT</td><td>verify_phone_result</td><td>手机号绑定结果</td><td style="position: relative;">success (bool), error_code</td></tr>
+      <tr><td>127</td><td>Verify Phone</td><td>CLK</td><td>verify_phone_resend</td><td>点击重新发送验证码</td><td style="position: relative;">resend_count</td></tr>
     </tbody>
   </table>
 
@@ -1876,6 +1881,44 @@ body.editing .edit-mode-banner { display:block; }
   <div style="font-size:11px;color:#94a3b8;margin-bottom:16px;">注册完成后，用户从底部Tab「Me」进入个人中心，管理身份认证、订单、账户设置、客服帮助</div>
 
   <div class="phone-flow">
+    <!-- Row 0: Guest Me -->
+    <div class="phone-row">
+
+      <!-- MG My Center (Guest) -->
+      <div class="phone-wrap">
+        <div class="scr">
+          <div class="sb rd"><span class="t">9:41</span><span class="ic"></span></div>
+          <div class="bd" style="padding:4px 14px;">
+            <div style="display:flex;align-items:center;gap:10px;background:#F1F5F9;border-radius:14px;padding:14px;margin-bottom:10px;">
+              <div style="width:44px;height:44px;border-radius:50%;background:#E2E8F0;display:flex;align-items:center;justify-content:center;font-size:20px;color:#94A3B8;">👤</div>
+              <div style="flex:1;"><div style="font-size:11px;font-weight:600;color:#64748B;">Log in to view your profile</div><div style="font-size:8px;color:#94A3B8;margin-top:2px;">Access orders, settings &amp; more</div></div>
+              <span style="color:#94A3B8;font-size:14px;">›</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><b style="font-size:11px;">My Orders</b><span style="font-size:9px;color:#94A3B8;">View All ›</span></div>
+            <div style="display:flex;gap:4px;margin-bottom:10px;">
+              <div style="flex:1;text-align:center;padding:8px;"><div style="font-size:16px;font-weight:800;color:#CBD5E1;">—</div><div style="font-size:7px;color:#6B7280;">To Pay</div></div>
+              <div style="flex:1;text-align:center;padding:8px;"><div style="font-size:16px;font-weight:800;color:#CBD5E1;">—</div><div style="font-size:7px;color:#6B7280;">Preparing</div></div>
+              <div style="flex:1;text-align:center;padding:8px;"><div style="font-size:16px;font-weight:800;color:#CBD5E1;">—</div><div style="font-size:7px;color:#6B7280;">Ready</div></div>
+            </div>
+            <div class="mi"><span>⚙️ Settings</span><span class="ar">›</span></div>
+            <div class="mi"><span>💬 Help &amp; Support</span><span class="ar">›</span></div>
+            <div class="mi"><span>❓ FAQ</span><span class="ar">›</span></div>
+            <div style="margin:8px 0;padding:10px 12px;background:linear-gradient(135deg,#EFF6FF,#F0FDFA);border:1.5px solid #3B82F6;border-radius:10px;display:flex;align-items:center;gap:8px;">
+              <span style="font-size:18px;">🔓</span>
+              <div style="flex:1;"><div style="font-size:9px;font-weight:600;">Log in to unlock all features</div><div style="font-size:7px;color:#64748B;">Orders, settings &amp; verification</div></div>
+              <span style="padding:4px 10px;background:#1E293B;color:#fff;border-radius:20px;font-size:8px;font-weight:700;">LOG IN</span>
+            </div>
+          </div>
+          <div class="tb"><div><span class="ti">🏠</span>Home</div><div><span class="ti">🛒</span>Cart</div><div class="a"><span class="ti">👤</span>Me</div></div>
+          <div class="hi"></div>
+        </div>
+        <div class="phone-label">MG · My Center (Guest)<br><span class="tg" style="background:#EFF6FF;color:#3B82F6;">未登录占位页</span></div>
+      </div>
+
+      <div class="fc"><div class="fl2">LOG IN</div><div class="fa">→</div><div class="fl2" style="font-size:7px;">fonesquare-login.html</div></div>
+
+    </div>
+
     <!-- Row 1: My Center → Profile → Orders -->
     <div class="phone-row">
 
