@@ -338,18 +338,6 @@ body{
 .inp::placeholder{color:var(--t3);}
 .inp.no-icon{padding-left:16px;}
 
-.form-label-row{
-  display:flex;align-items:center;justify-content:space-between;
-  gap:8px;margin-bottom:8px;
-}
-.form-label-row .form-label{margin-bottom:0;}
-.pwd-account-switch{
-  background:none;border:none;padding:0;flex-shrink:0;
-  font-size:12px;font-weight:600;color:var(--pri);
-  cursor:pointer;font-family:inherit;white-space:nowrap;
-}
-.pwd-account-switch:hover{text-decoration:underline;}
-
 /* phone input */
 .phone-grp{
   display:flex;align-items:stretch;
@@ -958,27 +946,10 @@ body{
 
         <!-- Password Tab -->
         <div id="tab-pwd" style="display:none;">
-          <div class="pwd-account-section" data-mode="phone">
-            <div class="form-label-row">
-              <label class="form-label">Phone or Email</label>
-              <button type="button" class="pwd-account-switch" onclick="switchPwdAccountMode(this,'email')">Use email instead</button>
-            </div>
-            <div class="pwd-account-phone">
-              <div class="phone-grp">
-                <div class="phone-pfx" onclick="openCountryPicker(this)">
-                  <span class="f">🇭🇰</span>
-                  <span class="code">+852</span>
-                  <span class="a">▾</span>
-                </div>
-                <input type="tel" placeholder="Enter phone number" inputmode="numeric" value="9123 4567" oninput="sanitizePhoneDigits(this)">
-              </div>
-            </div>
-            <div class="pwd-account-email" style="display:none;">
-              <div class="inp-wrap">
-                <span class="ico">✉️</span>
-                <input class="inp" type="email" placeholder="Enter email address" value="john@company.com">
-              </div>
-            </div>
+          <label class="form-label">Phone or Email</label>
+          <div class="inp-wrap">
+            <span class="ico">👤</span>
+            <input class="inp" type="text" placeholder="Phone number or email" value="+852 9123 4567">
           </div>
           <label class="form-label">Password</label>
           <div class="inp-wrap">
@@ -1233,8 +1204,8 @@ body{
         </div>
         <div class="pw-hints">
           <span class="pw-h ok">✓ 8+ chars</span>
-          <span class="pw-h ok">✓ Upper & Lower</span>
           <span class="pw-h ok">✓ Number</span>
+          <span class="pw-h ok">✓ Uppercase</span>
           <span class="pw-h ok">✓ Special char</span>
         </div>
         <label class="form-label">Confirm Password</label>
@@ -1523,27 +1494,10 @@ body{
           <button class="tab" onclick="go('login')">📱 Phone</button>
           <button class="tab on">🔒 Password</button>
         </div>
-        <div class="pwd-account-section" data-mode="phone">
-          <div class="form-label-row">
-            <label class="form-label">Phone or Email</label>
-            <button type="button" class="pwd-account-switch" onclick="switchPwdAccountMode(this,'email')">Use email instead</button>
-          </div>
-          <div class="pwd-account-phone">
-            <div class="phone-grp">
-              <div class="phone-pfx" onclick="openCountryPicker(this)">
-                <span class="f">🇭🇰</span>
-                <span class="code">+852</span>
-                <span class="a">▾</span>
-              </div>
-              <input type="tel" placeholder="Enter phone number" inputmode="numeric" value="9123 4567" oninput="sanitizePhoneDigits(this)">
-            </div>
-          </div>
-          <div class="pwd-account-email" style="display:none;">
-            <div class="inp-wrap">
-              <span class="ico">✉️</span>
-              <input class="inp" type="email" placeholder="Enter email address" value="john@company.com">
-            </div>
-          </div>
+        <label class="form-label">Phone or Email</label>
+        <div class="inp-wrap">
+          <span class="ico">👤</span>
+          <input class="inp" type="text" placeholder="Phone number or email" value="+852 9123 4567">
         </div>
         <label class="form-label">Password</label>
         <div class="inp-wrap">
@@ -1782,59 +1736,6 @@ function switchTab(tab) {
   document.querySelectorAll('#loginTabs .tab').forEach(t => t.classList.toggle('on', t.dataset.tab === tab));
   document.getElementById('tab-phone').style.display = tab === 'phone' ? '' : 'none';
   document.getElementById('tab-pwd').style.display = tab === 'pwd' ? '' : 'none';
-}
-
-function sanitizePhoneDigits(input) {
-  if (!input) return;
-  const digits = input.value.replace(/\D/g, '');
-  if (input.value !== digits) input.value = digits;
-}
-
-function switchPwdAccountMode(btn, mode) {
-  const section = btn.closest('.pwd-account-section');
-  if (!section) return;
-  section.dataset.mode = mode;
-  const phonePanel = section.querySelector('.pwd-account-phone');
-  const emailPanel = section.querySelector('.pwd-account-email');
-  const switchBtn = section.querySelector('.pwd-account-switch');
-  if (phonePanel) phonePanel.style.display = mode === 'phone' ? '' : 'none';
-  if (emailPanel) emailPanel.style.display = mode === 'email' ? '' : 'none';
-  if (switchBtn) {
-    switchBtn.textContent = mode === 'phone' ? t('login.pwd.useEmail') : t('login.pwd.usePhone');
-    switchBtn.onclick = function() { switchPwdAccountMode(switchBtn, mode === 'phone' ? 'email' : 'phone'); };
-  }
-}
-
-function getPwdAccountValue(section) {
-  if (!section) return '';
-  if (section.dataset.mode === 'email') {
-    const emailInp = section.querySelector('.pwd-account-email .inp');
-    return emailInp ? emailInp.value.trim() : '';
-  }
-  const codeEl = section.querySelector('.phone-pfx .code');
-  const phoneInp = section.querySelector('.pwd-account-phone input[type="tel"]');
-  const code = codeEl ? codeEl.textContent.trim() : '';
-  const num = phoneInp ? phoneInp.value.replace(/\D/g, '') : '';
-  return code && num ? code + num : '';
-}
-
-function applyPwdAccountSectionI18n(root) {
-  const section = root && root.classList && root.classList.contains('pwd-account-section')
-    ? root
-    : (root ? root.querySelector('.pwd-account-section') : null);
-  if (!section) return;
-  const label = section.querySelector('.form-label-row .form-label');
-  if (label) label.textContent = t('login.pwd.account.label');
-  const phoneInp = section.querySelector('.pwd-account-phone input[type="tel"]');
-  if (phoneInp) phoneInp.placeholder = t('login.phone.placeholder');
-  const emailInp = section.querySelector('.pwd-account-email .inp');
-  if (emailInp) emailInp.placeholder = t('login.pwd.email.placeholder');
-  const mode = section.dataset.mode || 'phone';
-  const switchBtn = section.querySelector('.pwd-account-switch');
-  if (switchBtn) {
-    switchBtn.textContent = mode === 'phone' ? t('login.pwd.useEmail') : t('login.pwd.usePhone');
-    switchBtn.onclick = function() { switchPwdAccountMode(switchBtn, mode === 'phone' ? 'email' : 'phone'); };
-  }
 }
 
 function openSheet() {
@@ -2345,11 +2246,12 @@ setPwd: `【页面功能】
 
 【密码强度规则】
 • 最低长度：8个字符，最大20个字符
-• 必须包含：大写字母 + 小写字母 + 数字 + 特殊字符（全部必须，至少各1个）
+• 必须包含：字母 + 数字（至少各1个）
+• 建议包含：特殊字符（显示为额外加分项）
 • 实时校验并展示强度条（4段式：弱/中/强/很强）
 
 【密码强度指示器】
-• 4个条件标签实时反馈：8+ chars / Upper & Lower / Number / Special char
+• 4个条件标签实时反馈：8+ chars / Number / Uppercase / Special char
 • 满足条件变绿打勾，未满足灰显
 • 强度条颜色：红(1/4) → 橙(2/4) → 蓝(3/4) → 绿(4/4)
 
@@ -2691,8 +2593,7 @@ pwdLogin: `【页面功能】
 
 【登录方式】
 • 支持手机号+密码 或 邮箱+密码
-• 手机号模式：与 OTP 登录相同的国家/区号选择器 + 本地号码输入（默认 +852），提交时拼接为 E.164（如 +85291234567），避免用户漏填区号
-• 邮箱模式：点击「改用邮箱登录」切换为邮箱输入框；可切回手机号
+• 输入框智能判断：含@识别为邮箱，纯数字识别为手机号
 
 【语言切换】
 • 独立语言切换器（与Login页同规格）
@@ -2702,7 +2603,7 @@ pwdLogin: `【页面功能】
 
 【登录失败处理】
 • 密码错误 → "Incorrect password. X attempts remaining."
-• 连续错误5次 → 锁定账号1小时
+• 连续错误5次 → 锁定账号30分钟
 • 账号不存在 → "Account not found. Please sign up first."
 
 【安全措施】
@@ -2731,7 +2632,7 @@ Step 2 — 验证OTP
 • 根据Step 1选择，显示脱敏手机号或邮箱
 
 Step 3 — 设置新密码
-• 密码规则同注册设密码：8+字符、含大小写字母、含数字、含特殊字符
+• 密码规则同注册设密码：8+字符、含大写、含数字
 • 实时强度指示条（4段式）
 • 需二次确认密码
 • 提交后关闭弹层+toast提示"Password changed successfully!"
@@ -2930,9 +2831,6 @@ en: {
   'login.btn': 'LOGIN / SIGN UP',
   'login.pwd.account.label': 'Phone or Email',
   'login.pwd.account.placeholder': 'Phone number or email',
-  'login.pwd.email.placeholder': 'Enter email address',
-  'login.pwd.useEmail': 'Use email instead',
-  'login.pwd.usePhone': 'Use phone number',
   'login.pwd.label': 'Password',
   'login.pwd.placeholder': 'Enter password',
   'login.forgot': 'Forgot password?',
@@ -2957,7 +2855,7 @@ en: {
   'setPwd.new.placeholder': 'At least 8 characters',
   'setPwd.hint.chars': '✓ 8+ chars',
   'setPwd.hint.number': '✓ Number',
-  'setPwd.hint.upper': '✓ Upper & Lower',
+  'setPwd.hint.upper': '✓ Uppercase',
   'setPwd.hint.special': '✓ Special char',
   'setPwd.confirm.label': 'Confirm Password',
   'setPwd.confirm.placeholder': 'Re-enter password',
@@ -3125,9 +3023,6 @@ zh: {
   'login.btn': '登录 / 注册',
   'login.pwd.account.label': '手机号或邮箱',
   'login.pwd.account.placeholder': '请输入手机号或邮箱',
-  'login.pwd.email.placeholder': '请输入邮箱地址',
-  'login.pwd.useEmail': '改用邮箱登录',
-  'login.pwd.usePhone': '改用手机号登录',
   'login.pwd.label': '密码',
   'login.pwd.placeholder': '请输入密码',
   'login.forgot': '忘记密码？',
@@ -3152,7 +3047,7 @@ zh: {
   'setPwd.new.placeholder': '至少8个字符',
   'setPwd.hint.chars': '✓ 8位以上',
   'setPwd.hint.number': '✓ 含数字',
-  'setPwd.hint.upper': '✓ 含大小写',
+  'setPwd.hint.upper': '✓ 含大写',
   'setPwd.hint.special': '✓ 含特殊字符',
   'setPwd.confirm.label': '确认密码',
   'setPwd.confirm.placeholder': '再次输入密码',
@@ -3320,9 +3215,6 @@ zh: {
   'login.btn': '登入 / 註冊',
   'login.pwd.account.label': '手機號或郵箱',
   'login.pwd.account.placeholder': '請輸入手機號或郵箱',
-  'login.pwd.email.placeholder': '請輸入郵箱地址',
-  'login.pwd.useEmail': '改用郵箱登入',
-  'login.pwd.usePhone': '改用手機號登入',
   'login.pwd.label': '密碼',
   'login.pwd.placeholder': '請輸入密碼',
   'login.forgot': '忘記密碼？',
@@ -3347,7 +3239,7 @@ zh: {
   'setPwd.new.placeholder': '至少8個字元',
   'setPwd.hint.chars': '✓ 8位以上',
   'setPwd.hint.number': '✓ 含數字',
-  'setPwd.hint.upper': '✓ 含大小寫',
+  'setPwd.hint.upper': '✓ 含大寫',
   'setPwd.hint.special': '✓ 含特殊字元',
   'setPwd.confirm.label': '確認密碼',
   'setPwd.confirm.placeholder': '再次輸入密碼',
@@ -3536,12 +3428,13 @@ function applyLocale() {
     _h(login.querySelector('.alt-btn.wa span:last-child'), 'login.wa');
     _h(login.querySelector('.alt-btn:not(.wa) span:last-child'), 'login.email');
     const pwdTab = login.querySelector('#tab-pwd');
-    if (pwdTab) applyPwdAccountSectionI18n(pwdTab);
     if (pwdTab) {
       const labels = pwdTab.querySelectorAll('.form-label');
-      _h(labels[labels.length - 1], 'login.pwd.label');
-      const pwdInp = pwdTab.querySelector('.inp-wrap .inp[type="password"]');
-      _p(pwdInp, 'login.pwd.placeholder');
+      _h(labels[0], 'login.pwd.account.label');
+      _h(labels[1], 'login.pwd.label');
+      const inps = pwdTab.querySelectorAll('.inp');
+      _p(inps[0], 'login.pwd.account.placeholder');
+      _p(inps[1], 'login.pwd.placeholder');
       _h(pwdTab.querySelector('.link-right'), 'login.forgot');
       _h(pwdTab.querySelector('.btn'), 'login.pwd.btn');
       const foot = pwdTab.querySelector('.foot-text');
@@ -3748,11 +3641,12 @@ function applyLocale() {
     const plTabs = pwdLogin.querySelectorAll('.tab');
     _h(plTabs[0], 'pwdLogin.tab.phone');
     _h(plTabs[1], 'pwdLogin.tab.pwd');
-    applyPwdAccountSectionI18n(pwdLogin);
     const plLabels = pwdLogin.querySelectorAll('.form-label');
-    _h(plLabels[plLabels.length - 1], 'pwdLogin.pwd.label');
-    const plPwdInp = pwdLogin.querySelector('.inp-wrap .inp[type="password"]');
-    _p(plPwdInp, 'pwdLogin.pwd.placeholder');
+    _h(plLabels[0], 'pwdLogin.account.label');
+    _h(plLabels[1], 'pwdLogin.pwd.label');
+    const plInps = pwdLogin.querySelectorAll('.inp');
+    _p(plInps[0], 'pwdLogin.account.placeholder');
+    _p(plInps[1], 'pwdLogin.pwd.placeholder');
     _h(pwdLogin.querySelector('.link-right'), 'pwdLogin.forgot');
     _h(pwdLogin.querySelector('.btn:not(.ghost)'), 'pwdLogin.btn');
     const plFoot = pwdLogin.querySelectorAll('.foot-text');

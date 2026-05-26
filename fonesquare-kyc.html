@@ -195,40 +195,15 @@ body{
 .home-ind{height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .home-ind::after{content:'';width:52px;height:5px;background:var(--t1);border-radius:3px;opacity:.15;}
 
-.guest-avatar{width:56px;height:56px;border-radius:50%;background:#E2E8F0;display:flex;align-items:center;justify-content:center;font-size:26px;color:#94A3B8;flex-shrink:0;}
-.guest-prompt{font-size:14px;color:var(--t2);font-weight:500;}
-.guest-prompt-sub{font-size:12px;color:var(--t3);margin-top:2px;}
-.guest-order-stat .os-count{font-size:22px;font-weight:800;color:var(--t3)!important;line-height:1;margin-bottom:4px;}
-.guest-login-bar{
-  margin:0 16px 8px;padding:14px 16px;
-  background:linear-gradient(135deg,#EFF6FF,#F0FDFA);
-  border:1.5px solid var(--blue);border-radius:var(--r-md);
-  display:flex;align-items:center;gap:12px;
-  box-shadow:0 2px 8px rgba(59,130,246,.12);
-  animation:guestPulse 2s ease-in-out infinite;
-}
-.guest-login-bar .glb-icon{font-size:28px;flex-shrink:0;}
-.guest-login-bar .glb-text{flex:1;min-width:0;}
-.guest-login-bar .glb-title{font-size:14px;font-weight:600;color:var(--t1);}
-.guest-login-bar .glb-desc{font-size:12px;color:var(--t2);margin-top:1px;}
-.guest-login-bar .glb-btn{
-  padding:8px 20px;background:var(--pri);color:#fff;
-  border:none;border-radius:var(--r-full);font-size:13px;font-weight:700;
-  cursor:pointer;white-space:nowrap;letter-spacing:.3px;
-  transition:transform .15s,box-shadow .15s;
-}
-.guest-login-bar .glb-btn:hover{transform:scale(1.04);box-shadow:0 2px 8px rgba(30,41,59,.2);}
-@keyframes guestPulse{0%,100%{box-shadow:0 2px 8px rgba(59,130,246,.12);}50%{box-shadow:0 2px 16px rgba(59,130,246,.25);}}
-
 .order-card{margin:0 16px 10px;padding:14px 16px;background:#fff;border:1.5px solid var(--bd);border-radius:var(--r-md);cursor:pointer;transition:all .15s;}
 .order-card:hover{border-color:var(--pri);box-shadow:0 2px 8px rgba(0,0,0,.06);}
 .order-card .oc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
 .order-card .oc-id{font-size:12px;font-weight:600;color:var(--t2);}
 .order-card .oc-status{font-size:11px;font-weight:600;padding:3px 8px;border-radius:var(--r-full);}
-.oc-status.pending,.oc-status.toPay{background:var(--warn-bg);color:#D97706;}
-.oc-status.pickup,.oc-status.preparing{background:var(--blue-bg);color:var(--blue);}
+.oc-status.pending{background:var(--warn-bg);color:#D97706;}
+.oc-status.pickup{background:var(--blue-bg);color:var(--blue);}
 .oc-status.service{background:#FEE2E2;color:#DC2626;}
-.oc-status.done,.oc-status.readyPickup{background:var(--ok-bg);color:var(--ok-dk);}
+.oc-status.done{background:var(--ok-bg);color:var(--ok-dk);}
 .order-card .oc-product{display:flex;gap:10px;align-items:center;}
 .order-card .oc-thumb{width:52px;height:52px;border-radius:var(--r-sm);background:var(--bgi);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
 .order-card .oc-info{flex:1;min-width:0;}
@@ -328,7 +303,7 @@ body{
 .sec-tag.req{background:#FEE2E2;color:#DC2626;}
 .sec-tag.opt{background:#E0F2FE;color:#0284C7;}
 .region-row{display:flex;gap:6px;margin-bottom:14px;}
-.region-sel{flex:1;padding:10px 12px;background:var(--bgi);border:1.5px solid var(--bd);border-radius:var(--r-sm);font-size:13px;color:var(--t1);cursor:pointer;text-align:left;font-weight:500;transition:all .15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.region-sel{flex:1;padding:10px 8px;background:var(--bgi);border:1.5px solid var(--bd);border-radius:var(--r-sm);font-size:12px;color:var(--t1);cursor:pointer;text-align:center;font-weight:500;transition:all .15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .region-sel:hover{border-color:var(--pri);}
 .region-sel.empty{color:var(--t3);}
 .id-type-row{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;}
@@ -421,8 +396,6 @@ body{
 
 <!-- Quick Nav -->
 <div class="nav-bar" id="navBar">
-  <button class="nav-btn" onclick="go('meGuest')">My Center (Guest)</button>
-  <span class="nav-sep">|</span>
   <button class="nav-btn active" onclick="go('myCenter')">My Center</button>
   <span class="nav-sep">›</span>
   <button class="nav-btn" onclick="go('profile')">Profile</button>
@@ -450,8 +423,6 @@ body{
   <button class="active" onclick="setAccountState('unverified')">Unverified</button>
   <button onclick="setAccountState('verified')">Verified</button>
   <button onclick="setAccountState('restricted')">Restricted</button>
-  <span class="state-sim-label" style="margin-left:12px;">登录状态：</span>
-  <button id="btnToggleLogin" class="active" onclick="toggleLoginState()">Logged In</button>
 </div>
 
 <div class="main-stage">
@@ -475,90 +446,17 @@ body{
     </symbol>
   </svg>
 
-  <!-- ====== ME GUEST (NOT LOGGED IN) ====== -->
-  <div class="screen" id="s-meGuest">
-    <div class="sb">
-      <span class="time">9:41</span>
-      <span class="ic"><svg width="52" height="12"><use href="#sb-icons"/></svg></span>
-    </div>
-    <div class="body" style="padding-top:0;">
-      <div class="profile-card" onclick="guestAction()" style="cursor:pointer;">
-        <div class="guest-avatar">👤</div>
-        <div class="profile-info">
-          <div class="guest-prompt" data-i18n-guest="meGuest.loginPrompt">Log in / Sign up</div>
-        </div>
-        <span class="mi-arrow" style="font-size:18px;color:var(--t3);">›</span>
-      </div>
-
-      <div class="section-title">
-        <h3 data-i18n-guest="meGuest.myOrders">My Orders</h3>
-        <span class="st-link" onclick="guestAction()">View All ›</span>
-      </div>
-      <div class="order-stats">
-        <div class="order-stat guest-order-stat" onclick="guestAction()">
-          <div class="os-count">0</div>
-          <div class="os-label" data-i18n-label="myCenter.toPay">To Pay</div>
-        </div>
-        <div class="order-stat guest-order-stat" onclick="guestAction()">
-          <div class="os-count">0</div>
-          <div class="os-label" data-i18n-label="myCenter.preparingStock">Preparing Stock</div>
-        </div>
-        <div class="order-stat guest-order-stat" onclick="guestAction()">
-          <div class="os-count">0</div>
-          <div class="os-label" data-i18n-label="myCenter.readyForPickup">Ready For Pickup</div>
-        </div>
-      </div>
-
-      <div class="menu-group">
-        <div class="mg-title">Quick Actions</div>
-        <div class="menu-item" onclick="guestAction()">
-          <div class="mi-icon" style="background:var(--bgi);">⚙️</div>
-          <div>
-            <div class="mi-text">Settings</div>
-            <div class="mi-sub">Account, security, language</div>
-          </div>
-          <span class="mi-arrow">›</span>
-        </div>
-        <div class="menu-item" onclick="guestAction()">
-          <div class="mi-icon" style="background:var(--blue-bg);">💬</div>
-          <div>
-            <div class="mi-text">Help & Support</div>
-            <div class="mi-sub">WhatsApp, WeChat support</div>
-          </div>
-          <span class="mi-arrow">›</span>
-        </div>
-        <div class="menu-item" onclick="guestAction()">
-          <div class="mi-icon" style="background:var(--bgi);">❓</div>
-          <div>
-            <div class="mi-text">FAQ</div>
-            <div class="mi-sub">Frequently asked questions</div>
-          </div>
-          <span class="mi-arrow">›</span>
-        </div>
-      </div>
-
-      <div class="guest-login-bar" id="guestLoginBar">
-        <div class="glb-icon">🔓</div>
-        <div class="glb-text">
-          <div class="glb-title" data-i18n-guest="meGuest.loginTitle">Log in to unlock all features</div>
-        </div>
-        <button class="glb-btn" data-i18n-guest="meGuest.loginBtn" onclick="window.open('fonesquare-login.html','_blank')">LOG IN</button>
-      </div>
-    </div>
-
-    <div class="tab-bar">
-      <div class="tb-item"><span class="tb-i">🏠</span>Home</div>
-      <div class="tb-item"><span class="tb-i">🛒</span>Cart</div>
-      <div class="tb-item on"><span class="tb-i">👤</span>Me</div>
-    </div>
-    <div class="home-ind"></div>
-  </div>
-
   <!-- ====== MY CENTER ====== -->
   <div class="screen active" id="s-myCenter">
     <div class="sb">
       <span class="time">9:41</span>
       <span class="ic"><svg width="52" height="12"><use href="#sb-icons"/></svg></span>
+    </div>
+    <div class="hdr" style="padding-right:8px;">
+      <span class="hdr-title" style="margin-right:0;text-align:left;padding-left:12px;">My Center</span>
+      <button class="wa-cs-btn" onclick="toast(t('toast.waSupport'))">
+        <svg viewBox="0 0 24 24"><use href="#wa-icon"/></svg>
+      </button>
     </div>
     <div class="body" style="padding-top:0;">
       <div class="profile-card">
@@ -603,15 +501,15 @@ body{
         <div class="order-stat" onclick="go('orders')">
           <div class="os-dot"></div>
           <div class="os-count">3</div>
-          <div class="os-label" data-i18n-label="myCenter.toPay">To Pay</div>
+          <div class="os-label" data-i18n-label="myCenter.pendingPay">Unpaid</div>
         </div>
         <div class="order-stat" onclick="go('orders')">
           <div class="os-count">5</div>
-          <div class="os-label" data-i18n-label="myCenter.preparingStock">Preparing Stock</div>
+          <div class="os-label" data-i18n-label="myCenter.paid">Paid</div>
         </div>
         <div class="order-stat" onclick="go('orders')">
           <div class="os-count">1</div>
-          <div class="os-label" data-i18n-label="myCenter.readyForPickup">Ready For Pickup</div>
+          <div class="os-label" data-i18n-label="myCenter.cancelled">Cancelled</div>
         </div>
       </div>
 
@@ -629,15 +527,7 @@ body{
           <div class="mi-icon" style="background:var(--blue-bg);">💬</div>
           <div>
             <div class="mi-text">Help & Support</div>
-            <div class="mi-sub">WhatsApp, WeChat support</div>
-          </div>
-          <span class="mi-arrow">›</span>
-        </div>
-        <div class="menu-item" onclick="toast('Opening FAQ...')">
-          <div class="mi-icon" style="background:var(--bgi);">❓</div>
-          <div>
-            <div class="mi-text">FAQ</div>
-            <div class="mi-sub">Frequently asked questions</div>
+            <div class="mi-sub">FAQ, contact us, feedback</div>
           </div>
           <span class="mi-arrow">›</span>
         </div>
@@ -675,12 +565,12 @@ body{
           <span class="sec-tag req">Required</span>
         </div>
         <div class="region-row" id="regionSummaryRow" onclick="openCascadePicker()" style="cursor:pointer;">
-          <div class="region-sel" id="regionPick" style="flex:1;min-width:0;">🇭🇰 Hong Kong</div>
-          <div class="region-sel" id="provincePick" style="display:none;"></div>
-          <div class="region-sel" id="cityPick" style="display:none;"></div>
+          <div class="region-sel" id="regionPick">🇭🇰 Hong Kong</div>
+          <div class="region-sel empty" id="provincePick"></div>
+          <div class="region-sel empty" id="cityPick"></div>
         </div>
 
-        <!-- Multi-level cascade picker (single searchable modal) -->
+        <!-- Three-level cascade picker (single modal) -->
         <div class="region-modal" id="regionModal" onclick="if(event.target===this)closeCascadePicker()">
           <div class="region-sheet">
             <div class="region-sheet-hdr">
@@ -731,17 +621,10 @@ body{
         </div>
         <div class="ocr-row">
           <div class="ocr-field">
-            <div class="of-label">First Name</div>
-            <div class="of-val editable" contenteditable="true">Joann</div>
+            <div class="of-label">Full Name</div>
+            <div class="of-val editable" contenteditable="true">Joann Qiao</div>
             <div class="of-edit">✏️ tap to edit</div>
           </div>
-          <div class="ocr-field">
-            <div class="of-label">Last Name</div>
-            <div class="of-val editable" contenteditable="true">Qiao</div>
-            <div class="of-edit">✏️ tap to edit</div>
-          </div>
-        </div>
-        <div class="ocr-row">
           <div class="ocr-field">
             <div class="of-label">ID Number</div>
             <div class="of-val editable" contenteditable="true">A123456(7)</div>
@@ -755,6 +638,16 @@ body{
           <span style="color:var(--t3);margin:0 4px;">—</span>
           <span class="df-val">2030-01-14</span>
           <span class="df-arrow">▾</span>
+        </div>
+
+        <div class="sec-hd" style="margin-top:16px;">
+          <span class="sec-icon">✉️</span>
+          <span class="sec-title">Contact Email</span>
+          <span class="sec-tag opt">Optional</span>
+        </div>
+        <div class="inp-wrap">
+          <span class="ico">✉️</span>
+          <input class="inp" type="email" placeholder="For order notifications">
         </div>
 
         <div class="sec-hd" style="margin-top:16px;">
@@ -802,6 +695,7 @@ body{
 
         <div style="margin-top:16px;padding-bottom:20px;">
           <button class="btn" onclick="completeProfile()" data-i18n="profile.submit">SUBMIT & CONTINUE</button>
+          <button class="btn ghost" onclick="goBack()" data-i18n="profile.skip">Skip for now →</button>
           <button class="btn ghost" onclick="go('kycDup')" style="margin-top:6px;color:#E89400;border-color:#F5D568;" data-i18n="profile.demoDup">🎬 Demo: Simulate duplicate identity</button>
         </div>
       </div>
@@ -874,7 +768,7 @@ body{
       <div style="width:100%;background:#EFF6FF;border:1.5px solid #93C5FD;border-radius:var(--r-md);padding:14px;margin-bottom:20px;">
         <div style="display:flex;gap:10px;align-items:flex-start;">
           <span style="font-size:16px;flex-shrink:0;line-height:1;">ℹ️</span>
-          <div style="font-size:12px;color:#1E40AF;line-height:1.55;" data-i18n="kycDupConflict.infoNote">The verified account already has a login method of the same type (e.g., you logged in with phone number A, but the verified account already has phone number B). Please sign in directly with the verified account. Your current account cannot replace the original login info.</div>
+          <div style="font-size:12px;color:#1E40AF;line-height:1.55;" data-i18n="kycDupConflict.infoNote">The verified account already has a login method of the same type (e.g., both use email). Please sign in directly with the verified account.</div>
         </div>
       </div>
 
@@ -966,13 +860,13 @@ body{
     </div>
     <div class="body">
       <div class="filter-tabs">
-        <button class="filter-tab on" data-order-filter="toPay">To Pay</button>
-        <button class="filter-tab" data-order-filter="preparingStock">Preparing Stock</button>
-        <button class="filter-tab" data-order-filter="readyForPickup">Ready For Pickup</button>
+        <button class="filter-tab on">Unpaid</button>
+        <button class="filter-tab">Paid</button>
+        <button class="filter-tab">Cancelled</button>
       </div>
-      <div class="order-card"><div class="oc-top"><span class="oc-id">FS-2024120301</span><span class="oc-status toPay">To Pay</span></div><div class="oc-product"><div class="oc-thumb">📱</div><div class="oc-info"><div class="oc-name">iPhone 15 Pro Max 256GB</div><div class="oc-price">HK$ 6,800 <span class="oc-qty">× 1</span></div></div></div></div>
-      <div class="order-card"><div class="oc-top"><span class="oc-id">FS-2024120202</span><span class="oc-status preparing">Preparing Stock</span></div><div class="oc-product"><div class="oc-thumb">📱</div><div class="oc-info"><div class="oc-name">Samsung Galaxy S24 Ultra</div><div class="oc-price">HK$ 5,200 <span class="oc-qty">× 2</span></div></div></div></div>
-      <div class="order-card"><div class="oc-top"><span class="oc-id">FS-2024120105</span><span class="oc-status readyPickup">Ready For Pickup</span></div><div class="oc-product"><div class="oc-thumb">📱</div><div class="oc-info"><div class="oc-name">Google Pixel 8 Pro 128GB</div><div class="oc-price">HK$ 3,900 <span class="oc-qty">× 1</span></div></div></div></div>
+      <div class="order-card"><div class="oc-top"><span class="oc-id">FS-2024120301</span><span class="oc-status pending">Unpaid</span></div><div class="oc-product"><div class="oc-thumb">📱</div><div class="oc-info"><div class="oc-name">iPhone 15 Pro Max 256GB</div><div class="oc-price">HK$ 6,800 <span class="oc-qty">× 1</span></div></div></div></div>
+      <div class="order-card"><div class="oc-top"><span class="oc-id">FS-2024120202</span><span class="oc-status pending">Unpaid</span></div><div class="oc-product"><div class="oc-thumb">📱</div><div class="oc-info"><div class="oc-name">Samsung Galaxy S24 Ultra</div><div class="oc-price">HK$ 5,200 <span class="oc-qty">× 2</span></div></div></div></div>
+      <div class="order-card"><div class="oc-top"><span class="oc-id">FS-2024120105</span><span class="oc-status done">Paid</span></div><div class="oc-product"><div class="oc-thumb">📱</div><div class="oc-info"><div class="oc-name">Google Pixel 8 Pro 128GB</div><div class="oc-price">HK$ 3,900 <span class="oc-qty">× 1</span></div></div></div></div>
     </div>
     <div class="home-ind"></div>
   </div>
@@ -1093,9 +987,14 @@ body{
           <div><div class="mi-text">WhatsApp Support</div><div class="mi-sub">Chat with us on WhatsApp</div></div>
           <span class="mi-arrow">›</span>
         </div>
-        <div class="menu-item" onclick="toast(t('toast.openWechat'))">
-          <div class="mi-icon" style="background:#E8F8F0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9.5 4C5.36 4 2 6.69 2 10c0 1.86 1.08 3.52 2.76 4.63L4.25 16.5l2.34-1.17c.6.17 1.24.27 1.91.3-.13-.5-.2-1.03-.2-1.57C8.3 10.8 11.46 8 15.3 8c.34 0 .67.02 1 .06C15.36 5.68 12.7 4 9.5 4z" fill="#51C332"/><path d="M22 14.06c0-2.78-2.8-5.06-6.25-5.06S9.5 11.28 9.5 14.06s2.8 5.06 6.25 5.06c.7 0 1.37-.1 2-.27l1.87.93-.38-1.52C20.92 17.22 22 15.75 22 14.06z" fill="#51C332"/><circle cx="13.25" cy="13.5" r=".75" fill="#fff"/><circle cx="17.25" cy="13.5" r=".75" fill="#fff"/></svg></div>
-          <div><div class="mi-text">WeChat Support</div><div class="mi-sub">Chat with us on WeChat</div></div>
+        <div class="menu-item" onclick="toast(t('toast.openEmail'))">
+          <div class="mi-icon" style="background:var(--blue-bg);">✉️</div>
+          <div><div class="mi-text">Email Support</div><div class="mi-sub">support@fonesquare.com</div></div>
+          <span class="mi-arrow">›</span>
+        </div>
+        <div class="menu-item">
+          <div class="mi-icon" style="background:var(--bgi);">❓</div>
+          <div><div class="mi-text">FAQ</div><div class="mi-sub">Frequently asked questions</div></div>
           <span class="mi-arrow">›</span>
         </div>
       </div>
@@ -1275,7 +1174,7 @@ body{
 <div class="screen-map">
   <b>👤 My Center:</b> My Center → Profile (KYC) / Orders / Settings<br>
   <b>⚙️ Settings:</b> Settings → Login Methods (→ Add → Verify) / Change Pwd / Language / Privacy / About / Logout<br>
-  <b>💬 Help:</b> Help & Support → WhatsApp / WeChat
+  <b>💬 Help:</b> Help & Support → WhatsApp / Email / FAQ / Feedback
 </div>
 
 <script>
@@ -1283,10 +1182,8 @@ const hist = [];
 let current = 'myCenter';
 let profileCompleted = false;
 let accountState = 'unverified'; // 'unverified' | 'verified' | 'restricted'
-let isLoggedIn = true;
 
 const screenMeta = [
-  {id:'meGuest', label:'My Center (Guest — Not Logged In)'},
   {id:'myCenter', label:'My Center'},
   {id:'profile', label:'Profile — Identity Verification'},
   {id:'kycDup', label:'KYC — Duplicate Identity Detected'},
@@ -1347,24 +1244,6 @@ function toast(msg) {
   t.textContent = msg;
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2000);
-}
-
-function guestAction() {
-  toast(t('toast.loginRequired'));
-  const bar = document.getElementById('guestLoginBar');
-  if (bar) {
-    bar.style.transform = 'scale(1.03)';
-    bar.style.borderColor = 'var(--pri)';
-    setTimeout(() => { bar.style.transform = ''; bar.style.borderColor = ''; }, 600);
-  }
-}
-
-function toggleLoginState() {
-  isLoggedIn = !isLoggedIn;
-  const btn = document.getElementById('btnToggleLogin');
-  btn.textContent = isLoggedIn ? 'Logged In' : 'Guest';
-  btn.classList.toggle('active', isLoggedIn);
-  go(isLoggedIn ? 'myCenter' : 'meGuest');
 }
 
 function pickLang(opt, name) {
@@ -1701,29 +1580,15 @@ function renderCurrentList(q) {
   var html = '';
 
   if (cascadeLevel === 0) {
-    var allItems = [];
-    REGIONS.forEach(function(grp) { grp.items.forEach(function(it) { allItems.push(it); }); });
-    var filtered = allItems.filter(function(it) {
-      if (!q) return true;
-      return it.en.toLowerCase().indexOf(q) >= 0 || it.zh.indexOf(q) >= 0 ||
-             (it['zh-HK'] && it['zh-HK'].indexOf(q) >= 0) || it.code.toLowerCase().indexOf(q) >= 0;
-    });
-    var POPULAR_CODES = ['HK','MO','CN','TW','SG'];
-    var DEVICE_CODE = 'HK';
-    var deviceItem = [], popularItems = [], otherItems = [];
-    filtered.forEach(function(it) {
-      if (it.code === DEVICE_CODE) deviceItem.push(it);
-      else if (POPULAR_CODES.indexOf(it.code) >= 0) popularItems.push(it);
-      else otherItems.push(it);
-    });
-    otherItems.sort(function(a,b) { return getLocName(a).localeCompare(getLocName(b)); });
-    var sections = [];
-    if (deviceItem.length) sections.push({title: currentLocale === 'en' ? 'Current Location' : (currentLocale === 'zh-HK' ? '當前位置' : '当前位置'), items: deviceItem});
-    if (popularItems.length) sections.push({title: currentLocale === 'en' ? 'Popular' : (currentLocale === 'zh-HK' ? '常用地區' : '常用地区'), items: popularItems});
-    if (otherItems.length) sections.push({title: currentLocale === 'en' ? 'All Regions' : (currentLocale === 'zh-HK' ? '所有地區' : '所有地区'), items: otherItems});
-    sections.forEach(function(sec) {
-      html += '<div class="region-list-group"><div class="rlg-title">' + sec.title + '</div>';
-      sec.items.forEach(function(it) {
+    REGIONS.forEach(function(grp) {
+      var items = grp.items.filter(function(it) {
+        if (!q) return true;
+        return it.en.toLowerCase().indexOf(q) >= 0 || it.zh.indexOf(q) >= 0 ||
+               (it['zh-HK'] && it['zh-HK'].indexOf(q) >= 0) || it.code.toLowerCase().indexOf(q) >= 0;
+      });
+      if (!items.length) return;
+      html += '<div class="region-list-group"><div class="rlg-title">' + getGroupName(grp.group) + '</div>';
+      items.forEach(function(it) {
         var sel = it.code === selectedRegionCode ? ' selected' : '';
         html += '<div class="region-item' + sel + '" onclick="pickCountry(\'' + it.code + '\')">';
         html += '<span class="ri-flag">' + it.flag + '</span><span>' + getLocName(it) + '</span>';
@@ -1796,22 +1661,32 @@ function filterCascadeList(q) {
 /* ── Update summary row ── */
 function syncRegionSummary() {
   var rp = document.getElementById('regionPick');
+  var pp = document.getElementById('provincePick');
+  var cp = document.getElementById('cityPick');
   var r = findRegionByCode(selectedRegionCode);
-  if (!r || !rp) return;
-  var parts = [r.flag + ' ' + getLocName(r)];
-  if (selectedProvinceId) {
-    var provs = PROVINCES[selectedRegionCode] || [];
-    var prov = provs.filter(function(p){return p.id===selectedProvinceId;})[0];
-    if (prov) parts.push(getLocName(prov));
+  if (r && rp) { rp.textContent = r.flag + ' ' + getLocName(r); rp.classList.remove('empty'); }
+  if (pp) {
+    if (selectedProvinceId) {
+      var provs = PROVINCES[selectedRegionCode] || [];
+      var prov = provs.filter(function(p){return p.id===selectedProvinceId;})[0];
+      pp.textContent = prov ? getLocName(prov) : '—';
+      pp.classList.remove('empty');
+    } else {
+      pp.textContent = t('profile.province');
+      pp.classList.add('empty');
+    }
   }
-  if (selectedCityName) {
-    var cities = CITIES[selectedProvinceId] || [];
-    var city = cities.filter(function(c){return c.en===selectedCityName||getLocName(c)===selectedCityName;})[0];
-    if (city) parts.push(getLocName(city));
-    else parts.push(selectedCityName);
+  if (cp) {
+    if (selectedCityName) {
+      var cities = CITIES[selectedProvinceId] || [];
+      var city = cities.filter(function(c){return c.en===selectedCityName||getLocName(c)===selectedCityName;})[0];
+      cp.textContent = city ? getLocName(city) : selectedCityName;
+      cp.classList.remove('empty');
+    } else {
+      cp.textContent = t('profile.city');
+      cp.classList.add('empty');
+    }
   }
-  rp.textContent = parts.join(' › ');
-  rp.classList.remove('empty');
 }
 
 /* ── Selection handlers (stay in the same modal) ── */
@@ -2028,13 +1903,17 @@ myCenter: `【My Center — 个人中心】
 从底部Tab「Me」进入的核心枢纽页，聚合个人信息、KYC引导、订单概览和快捷入口。
 
 ■ 页面结构
-1. 个人信息卡片（红色渐变背景）
-   - 头像：取用户 First Name 首字母（如 First Name: Joann → "J"），MVP不支持上传头像
+1. 顶部栏
+   - 左侧：页面标题"My Center"
+   - 右侧：WhatsApp客服图标（绿色），点击唤起WhatsApp Business客服对话
+
+2. 个人信息卡片（红色渐变背景）
+   - 头像：取用户姓名首字母（如 Joann Qiao → "J"），MVP不支持上传头像
    - 姓名：取自OCR识别结果或注册手机号
    - 手机号：脱敏展示，如 +852 9123 ****
    - KYC状态角标：未认证（黄色⚠️）/ 已认证（绿色✅）/ 账号受限（红色🔒）
 
-2. KYC引导横幅 / 已认证状态 / 账号受限
+3. KYC引导横幅 / 已认证状态 / 账号受限
    - 未认证：黄色警示横幅，点击跳转至Profile身份认证页
    - 已认证：绿色✅状态条，不可点击
    - 账号受限：红色🔒警告横幅，点击唤起WhatsApp客服对话
@@ -2043,18 +1922,17 @@ myCenter: `【My Center — 个人中心】
      ▸ 引导动作：联系客服解决
    - 数据来源：user_profile表kyc_status字段
 
-3. 订单概览（My Orders）
-   - 三列统计：**To Pay（待支付）** / **Preparing Stock（备货中）** / **Ready For Pickup（待提货）**
+4. 订单概览（My Orders）
+   - 三列统计：待支付 / 待取货 / 可售后
    - 数量实时读取订单服务
    - 点击任意列 → 跳转订单列表并自动筛选对应状态
-   - To Pay 数量 > 0 时，第一列数字右上角显示红点
+   - 待支付 > 0 时显示红点
 
-4. 快捷入口
+5. 快捷入口
    - Settings → 设置页
-   - Help & Support → 帮助与支持页（WhatsApp、WeChat）
-   - FAQ → 常见问题页（独立入口）
+   - Help & Support → 帮助与支持页（WhatsApp、邮件、FAQ）
 
-5. 底部Tab栏
+6. 底部Tab栏
    - Home / Cart / Me（当前高亮）
    - MVP阶段仅Me页内可交互
 
@@ -2062,7 +1940,7 @@ myCenter: `【My Center — 个人中心】
 - 个人信息卡片：角标变为红色🔒"Account Restricted"
 - KYC引导横幅区域：替换为红色警告横幅"Account Restricted"
   ▸ 副标题："Contact support to resolve this issue"
-  ▸ 点击行为：唤起WhatsApp客服对话
+  ▸ 点击行为：唤起WhatsApp客服对话（与右上角WhatsApp按钮一致）
 - 订单概览：正常显示历史订单统计（不隐藏）
 - 快捷入口：正常可用
 - 下单限制：由商品详情页和下单按钮侧控制，非本页负责
@@ -2080,58 +1958,6 @@ myCenter: `【My Center — 个人中心】
 - click: wa_support（WhatsApp图标）
 - click: menu_{item}`,
 
-meGuest: `【My Center (Guest) — 未登录个人中心】
-
-■ 页面定位
-用户未登录时，底部Tab「Me」展示的占位页面，保持与已登录 My Center 一致的布局框架，引导用户登录。
-
-■ 触发条件
-APP启动时检测 isLoggedIn 状态（JWT Token 有效性），若未登录则 Me Tab 进入此页面。
-
-■ 页面结构
-1. 头像区域
-   - 灰色默认头像（👤）替代真实用户头像
-   - 文案："Log in / Sign up" / "登录 / 注册"（单行，无副标题）
-   - 整个区域可点击，点击触发登录引导
-
-2. KYC引导区域
-   - 不展示任何KYC横幅（未认证/已认证/受限）
-
-3. 订单概览（My Orders）
-   - 三列统计数字全部显示为 0
-   - 点击任意列触发 toast 提示"请先登录"并高亮底部登录卡片
-   - "View All" 链接同样触发登录引导
-
-4. 快捷入口
-   - Settings / Help & Support / FAQ 正常展示图标和文案
-   - 点击行为统一改为：toast 提示"请先登录" + 高亮底部登录引导卡片
-   - 不跳转任何子页面
-
-5. 底部登录引导卡片（Guest Login Bar）
-   - 位置：紧贴 Tab Bar 上方
-   - 样式：蓝绿渐变背景、圆角卡片、轻阴影、呼吸动画
-   - 内容：🔓 图标 + "Log in to unlock all features" + "LOG IN" 按钮（无副描述文案）
-   - 点击 LOG IN → 跳转 fonesquare-login.html 登录页
-
-6. 底部Tab栏
-   - Home / Cart / Me（Me 为选中态）
-   - 正常展示，与已登录状态一致
-
-■ 交互逻辑
-- 页面所有可点击元素（订单、菜单、头像区域）统一调用 guestAction()
-- guestAction()：先 toast 提示"请先登录"，然后高亮登录引导卡片（放大+边框变色 600ms）
-- LOG IN 按钮：直接跳转登录页
-- 登录成功后：Me Tab 自动切换为 myCenter（已登录个人中心）
-
-■ 埋点事件
-- PV: me_guest_view（未登录Me页曝光）
-- CLK: me_guest_action_click（未登录态点击功能入口，携带 target 参数）
-- CLK: me_guest_login_btn（点击底部 LOG IN 按钮）
-
-■ 原型演示说明
-- 通过顶部「登录状态」开关切换 Logged In / Guest 模式
-- Guest 模式下自动展示此页面，Logged In 切回 My Center`,
-
 profile: `【Profile — 身份认证】
 
 ■ 页面定位
@@ -2139,8 +1965,7 @@ profile: `【Profile — 身份认证】
 
 ■ 页面结构
 1. 国家/地区（必填）
-   - 单框多级联动选择器（支持搜索），有几级选几级，不固定三级
-   - 排序规则：① 置顶设备所在地国家 ② 常用地区（香港、澳门、中国大陆、台湾、新加坡）③ 其余按字母排序，无需按大洲分组
+   - 三级联动选择器：国家 → 省份/州 → 城市/区
    - 选择地区后决定可用证件类型和合规要求
 
 2. 身份验证（必填）
@@ -2148,20 +1973,21 @@ profile: `【Profile — 身份认证】
    - 上传组件根据证件类型动态变化：
      · 港澳身份证 / 中国身份证：正面 + 反面分别上传
      · 护照：仅上传信息页
-   - OCR自动识别：姓名（First Name / Last Name 分别填入）、证件号码
+   - OCR自动识别：姓名、证件号码
    - OCR结果可直接编辑（contenteditable）
    - 证件有效期：日期范围选择器
 
-3. 企业信息（选填，默认折叠）
-   - 支持OCR自动识别的证件：营业执照（中国大陆）、商业登记证BR（香港）、公司注册证书CI（香港）
-     → OCR识别后自动填入企业名称、注册号、法人/董事、地址等字段，用户可编辑修正
-   - 不支持OCR的证件：其他国家/地区企业证照
-     → 仅支持图片上传，企业认证信息需手动填写（企业名称、注册号等为空白输入框）
-   - 判断逻辑：根据用户所选国家/地区自动切换（中国大陆、香港为OCR模式，其余为手动模式）
+3. 联系邮箱（选填）
+   - 用于订单通知
+
+4. 企业信息（选填，默认折叠）
+   - 营业执照上传 + OCR自动识别
+   - 识别字段：证照类型、注册号、法人/董事、企业地址
    - 执照有效期
 
-4. 操作按钮
+5. 操作按钮
    - SUBMIT & CONTINUE：提交后触发风控制裁名单校验，通过后返回个人中心
+   - Skip for now →：跳过认证，直接返回个人中心
 
 ■ 业务规则
 - OCR置信度 < 60% → 拒绝，提示重新上传
@@ -2178,7 +2004,8 @@ profile: `【Profile — 身份认证】
 - page_view: profile_kyc
 - click: id_type_{type}
 - click: upload_document
-- click: submit_profile（success/fail）`,
+- click: submit_profile（success/fail）
+- click: skip_profile`,
 
 orders: `【My Orders — 订单列表】
 
@@ -2186,14 +2013,14 @@ orders: `【My Orders — 订单列表】
 完整订单列表页，支持按状态筛选，提供所有用户订单的快速概览。
 
 ■ 页面结构
-1. 筛选 Tab（与个人中心三列入口一致）：**To Pay** / **Preparing Stock** / **Ready For Pickup**
+1. 筛选Tab：全部 / 待支付 / 待取货 / 售后 / 已完成
 2. 订单卡片：订单号 + 状态角标 + 商品缩略图 + 名称 + 价格 + 数量
 3. 空状态：插画 + 文案引导
 
 ■ 业务规则
 - 分页：每页20条，上拉加载更多
 - 排序：创建时间倒序
-- To Pay 超时：30分钟自动取消
+- 待支付超时：30分钟自动取消
 - 数据范围：仅当前用户的订单
 
 ■ 账号受限状态下的行为
@@ -2314,7 +2141,7 @@ changePwd: `【Change Password — 修改密码】
 
 ■ 字段说明
 1. Current Password — 后端验证当前密码正确性
-2. New Password — 8-20位，需包含大写字母+小写字母+数字+特殊字符，显示强度指示器（4格）
+2. New Password — 8-20位，需包含字母+数字，显示强度指示器（4格）
 3. Confirm Password — 实时校验与新密码是否一致
 
 ■ 安全策略
@@ -2347,7 +2174,7 @@ langSelect: `【Language — 语言选择】
 helpSupport: `【Help & Support — 帮助与支持】
 
 ■ 页面定位
-集中式客户支持入口，为用户提供即时通讯渠道联系客服。FAQ已移至My Center快捷入口独立展示。
+集中式客户支持入口，为用户提供多渠道帮助。
 
 ■ 支持渠道
 1. WhatsApp Support
@@ -2355,20 +2182,26 @@ helpSupport: `【Help & Support — 帮助与支持】
    - 主要实时沟通渠道
    - 按地区配置Business API号码
 
-2. WeChat Support
-   - 唤起微信客服对话
-   - 面向中国大陆及熟悉微信生态的用户
-   - 配置微信客服企业号
+2. Email Support
+   - 打开邮件客户端，预填收件人 support@fonesquare.com
+   - 用于非紧急咨询和文件提交
+
+3. FAQ
+   - 静态FAQ页面（MVP：硬编码；后续：CMS驱动）
+   - 分类：账户、KYC认证、订单、支付、售后
 
 ■ 账号受限用户引导
 - 受限用户从My Center红色横幅点击 → 直接唤起WhatsApp客服
 - 受限用户主动进入Help页 → 所有渠道正常可用
+- FAQ中应包含"Why is my account restricted?"常见问题条目
+  ▸ 答复模板：因合规审核需要，您的账号暂时受限。请通过WhatsApp联系客服团队协助处理。
 - WhatsApp客服工单系统：受限用户发起会话时，预填消息模板（如"My account is restricted, ID: {user_id}"）
 
 ■ 埋点事件
 - page_view: help_support
 - click: whatsapp_support
-- click: wechat_support`,
+- click: email_support
+- click: faq`,
 
 privacy: `【Privacy Policy — 隐私政策】
 
@@ -2423,13 +2256,6 @@ kycDupConflict: `【KYC 重复身份 — 登录方式类型冲突】
 ■ 触发条件
 用户在"重复身份检测"页点击"继续使用已认证账号"后，后端检测到已认证账号已有与当前账号相同类型的登录方式（如当前用邮箱注册，已认证账号也已绑定邮箱）。
 
-■ 特殊场景：当前登录方式原账号已有
-当前账号的登录方式（如手机号 A）与已认证账号绑定的同类型登录方式（手机号 B）不同，但类型相同（都是手机号）。
-示例：当前用手机号 +852 9111 登录 → 认证时发现证件已关联另一个账号，该账号绑定手机号 +852 9222。
-▸ 提示文案："该证件已关联已认证账号，该账号已有手机号登录方式。请直接登录已认证账号。"
-▸ 当前账号不可替换已认证账号的原有登录信息
-▸ 当前未认证账号不停用，用户可继续使用（但无法通过此证件完成认证）
-
 ■ 页面结构
 1. 头部图标 + 主标题：复用重复身份检测页标题
 2. 说明文案：告知已认证账号已有同类型登录方式，无需迁移
@@ -2444,14 +2270,13 @@ kycDupConflict: `【KYC 重复身份 — 登录方式类型冲突】
 ■ 业务规则
 - 不停用当前未认证账号（用户可继续使用）
 - 不执行任何登录方式迁移
-- 当前账号不可替换已认证账号原有的登录信息
 - 点击"前往登录" → 跳转至登录页
 - 点击"使用其他证件" → 返回身份认证页，更换证件信息
 
 ■ 冲突场景矩阵
 | 当前账号登录方式 | 已认证账号已有 | 结果 |
-| 手机号 A | 手机号 B + 邮箱 | 冲突（同类型手机号）→ 本页 |
-| 邮箱 A | 手机号 + 邮箱 B | 冲突（同类型邮箱）→ 本页 |
+| 手机号 | 手机号+邮箱 | 冲突 → 本页 |
+| 邮箱 | 手机号+邮箱 | 冲突 → 本页 |
 | 手机号 | 仅邮箱 | 无冲突 → 补全流程 |
 | 邮箱 | 仅手机号 | 无冲突 → 补全流程 |
 
@@ -2684,20 +2509,14 @@ en: {
   'myCenter.restrictedDesc': 'Contact support to resolve this issue',
   'myCenter.orders': 'My Orders',
   'myCenter.viewAll': 'View All ›',
-  'myCenter.toPay': 'To Pay',
-  'myCenter.preparingStock': 'Preparing Stock',
-  'myCenter.readyForPickup': 'Ready For Pickup',
+  'myCenter.pendingPay': 'Unpaid',
+  'myCenter.paid': 'Paid',
+  'myCenter.cancelled': 'Cancelled',
   'myCenter.quickActions': 'Quick Actions',
   'myCenter.settings': 'Settings',
   'myCenter.settingsDesc': 'Account, security, language',
   'myCenter.help': 'Help & Support',
-  'myCenter.helpDesc': 'WhatsApp, WeChat support',
-  'myCenter.faq': 'FAQ',
-  'myCenter.faqDesc': 'Frequently asked questions',
-  'meGuest.loginPrompt': 'Log in / Sign up',
-  'meGuest.myOrders': 'My Orders',
-  'meGuest.loginTitle': 'Log in to unlock all features',
-  'meGuest.loginBtn': 'LOG IN',
+  'myCenter.helpDesc': 'FAQ, contact us, feedback',
   'tab.home': 'Home',
   'tab.cart': 'Cart',
   'tab.me': 'Me',
@@ -2721,12 +2540,13 @@ en: {
   'profile.passportHint': 'Photo page with MRZ · JPG/PNG ≤10MB',
   'profile.ocrBanner': 'OCR Recognized',
   'profile.ocrBannerDesc': '— please review and correct if needed',
-  'profile.firstName': 'First Name',
-  'profile.lastName': 'Last Name',
+  'profile.fullName': 'Full Name',
   'profile.idNumber': 'ID Number',
   'profile.tapEdit': '✏️ tap to edit',
   'profile.validity': 'ID Validity Period',
+  'profile.contactEmail': 'Contact Email',
   'profile.optional': 'Optional',
+  'profile.emailPlaceholder': 'For order notifications',
   'profile.bizInfo': 'Business Information',
   'profile.bizGuideTitle': 'Fill in business info to unlock higher limits',
   'profile.bizGuideDesc': 'Enterprise accounts get higher daily purchase limits and priority support.',
@@ -2751,6 +2571,7 @@ en: {
   'profile.noCityData': 'No city data for this province',
   'profile.selectPlaceholder': 'Please select',
   'profile.submit': 'SUBMIT & CONTINUE',
+  'profile.skip': 'Skip for now →',
   'profile.demoDup': '🎬 Demo: Simulate duplicate identity',
   'kycDup.title': 'Identity Notice',
   'kycDup.headline': 'This ID is already associated with an account',
@@ -2762,9 +2583,9 @@ en: {
   'kycDup.cancelBtn': 'Use a different ID',
   'kycDupConflict.title': 'Identity Notice',
   'kycDupConflict.headline': 'This ID is already associated with an account',
-  'kycDupConflict.desc': 'For your security, each verified identity can belong to only one active account. The verified account already has the same type of login method (e.g., both use phone number), so no migration is needed. Please sign in directly with the verified account.',
+  'kycDupConflict.desc': 'For your security, each verified identity can belong to only one active account. The verified account already has the same type of login method, so no migration is needed.',
   'kycDupConflict.existingAcct': 'Existing verified account',
-  'kycDupConflict.infoNote': 'The verified account already has a login method of the same type (e.g., you logged in with phone number A, but the verified account already has phone number B). Please sign in directly with the verified account. Your current account cannot replace the original login info.',
+  'kycDupConflict.infoNote': 'The verified account already has a login method of the same type (e.g., both use email). Please sign in directly with the verified account.',
   'kycDupConflict.goLoginBtn': 'Go to Login',
   'kycDupConflict.cancelBtn': 'Use a different ID',
   'kycDupSup.title': 'Add Login Method',
@@ -2791,12 +2612,9 @@ en: {
   'toast.kycDupVerified': 'Ownership verified ✓',
   'toast.kycDupSwitched': 'Switched to verified account ✓',
   'orders.title': 'My Orders',
-  'orders.toPay': 'To Pay',
-  'orders.preparingStock': 'Preparing Stock',
-  'orders.readyForPickup': 'Ready For Pickup',
-  'orders.statusToPay': 'To Pay',
-  'orders.statusPreparingStock': 'Preparing Stock',
-  'orders.statusReadyForPickup': 'Ready For Pickup',
+  'orders.unpaid': 'Unpaid',
+  'orders.paid': 'Paid',
+  'orders.cancelled': 'Cancelled',
   'orders.statusPending': 'Pending Payment',
   'orders.statusPickup': 'Pending Pickup',
   'orders.statusAfterSales': 'After-Sales',
@@ -2821,15 +2639,16 @@ en: {
   'changePwd.newPlaceholder': 'At least 8 characters',
   'changePwd.confirm': 'Confirm New Password',
   'changePwd.confirmPlaceholder': 'Re-enter new password',
-  'changePwd.hints': '✓ 8+ chars  ✓ Upper & Lower  ✓ Number  ✓ Special char',
+  'changePwd.hints': '✓ 8+ chars   ✓ Number   ✓ Letter',
   'changePwd.btn': 'UPDATE PASSWORD',
   'changePwd.success': 'Password updated ✓',
   'lang.title': 'Language',
   'help.title': 'Help & Support',
   'help.whatsapp': 'WhatsApp Support',
   'help.whatsappDesc': 'Chat with us on WhatsApp',
-  'help.wechat': 'WeChat Support',
-  'help.wechatDesc': 'Chat with us on WeChat',
+  'help.email': 'Email Support',
+  'help.faq': 'FAQ',
+  'help.faqDesc': 'Frequently asked questions',
   'privacy.title': 'Privacy Policy',
   'privacy.heading': 'Privacy Policy',
   'privacy.lastUpdated': 'Last updated: April 2026 · Version 1.0',
@@ -2851,8 +2670,7 @@ en: {
   'toast.loggedOut': 'Logged out successfully',
   'toast.waSupport': 'Opening WhatsApp support chat…',
   'toast.openWa': 'Opening WhatsApp…',
-  'toast.openWechat': 'Opening WeChat…',
-  'toast.loginRequired': 'Please log in first',
+  'toast.openEmail': 'Opening email client…',
   'toast.cameraPicker': 'Camera / Gallery picker',
   'toast.datePicker': 'Date picker',
   'toast.comingSoon': ' coming soon',
@@ -2872,20 +2690,14 @@ zh: {
   'myCenter.restrictedDesc': '请联系客服处理',
   'myCenter.orders': '我的订单',
   'myCenter.viewAll': '查看全部 ›',
-  'myCenter.toPay': '待支付',
-  'myCenter.preparingStock': '备货中',
-  'myCenter.readyForPickup': '待提货',
+  'myCenter.pendingPay': '待支付',
+  'myCenter.paid': '已支付',
+  'myCenter.cancelled': '已取消',
   'myCenter.quickActions': '快捷入口',
   'myCenter.settings': '设置',
   'myCenter.settingsDesc': '账户、安全、语言',
   'myCenter.help': '帮助与支持',
-  'myCenter.helpDesc': 'WhatsApp、微信客服',
-  'myCenter.faq': '常见问题',
-  'myCenter.faqDesc': '查看常见问题',
-  'meGuest.loginPrompt': '登录 / 注册',
-  'meGuest.myOrders': '我的订单',
-  'meGuest.loginTitle': '登录解锁全部功能',
-  'meGuest.loginBtn': '去登录',
+  'myCenter.helpDesc': '常见问题、联系我们',
   'tab.home': '首页',
   'tab.cart': '购物车',
   'tab.me': '我的',
@@ -2909,12 +2721,13 @@ zh: {
   'profile.passportHint': '含MRZ的信息页 · JPG/PNG ≤10MB',
   'profile.ocrBanner': 'OCR 已识别',
   'profile.ocrBannerDesc': '— 请检查并修正',
-  'profile.firstName': '名',
-  'profile.lastName': '姓',
+  'profile.fullName': '姓名',
   'profile.idNumber': '证件号码',
   'profile.tapEdit': '✏️ 点击编辑',
   'profile.validity': '证件有效期',
+  'profile.contactEmail': '联系邮箱',
   'profile.optional': '选填',
+  'profile.emailPlaceholder': '用于接收订单通知',
   'profile.bizInfo': '企业信息',
   'profile.bizGuideTitle': '填写企业信息，解锁更高购买额度',
   'profile.bizGuideDesc': '企业账户可享更高日购买限额与优先客服支持。',
@@ -2939,6 +2752,7 @@ zh: {
   'profile.noCityData': '该省份暂无城市数据',
   'profile.selectPlaceholder': '请选择',
   'profile.submit': '提交并继续',
+  'profile.skip': '暂时跳过 →',
   'profile.demoDup': '🎬 演示：模拟重复身份',
   'kycDup.title': '身份提示',
   'kycDup.headline': '该证件已关联已认证账号',
@@ -2950,9 +2764,9 @@ zh: {
   'kycDup.cancelBtn': '使用其他证件',
   'kycDupConflict.title': '身份提示',
   'kycDupConflict.headline': '该证件已关联已认证账号',
-  'kycDupConflict.desc': '为保障账户安全，同一证件仅可认证一个账号。已认证账号已有同类型登录方式（如都使用手机号），无需迁移。请直接登录已认证账号。',
+  'kycDupConflict.desc': '为保障账户安全，同一认证身份仅可对应一个在用账号。已认证账号已有相同类型的登录方式，无需迁移。',
   'kycDupConflict.existingAcct': '已认证账号',
-  'kycDupConflict.infoNote': '已认证账号已绑定同类型登录方式（如您当前用手机号 A 登录，但已认证账号已绑定手机号 B）。请直接登录已认证账号，当前账号不可替换原有登录信息。',
+  'kycDupConflict.infoNote': '已认证账号已有与当前相同类型的登录方式（如都是邮箱），请直接使用已认证账号登录。',
   'kycDupConflict.goLoginBtn': '前往登录',
   'kycDupConflict.cancelBtn': '使用其他证件',
   'kycDupSup.title': '补全登录方式',
@@ -2979,12 +2793,9 @@ zh: {
   'toast.kycDupVerified': '所有权验证通过 ✓',
   'toast.kycDupSwitched': '已切换至已认证账号 ✓',
   'orders.title': '我的订单',
-  'orders.toPay': '待支付',
-  'orders.preparingStock': '备货中',
-  'orders.readyForPickup': '待提货',
-  'orders.statusToPay': '待支付',
-  'orders.statusPreparingStock': '备货中',
-  'orders.statusReadyForPickup': '待提货',
+  'orders.unpaid': '待支付',
+  'orders.paid': '已支付',
+  'orders.cancelled': '已取消',
   'orders.statusPending': '待支付',
   'orders.statusPickup': '待取货',
   'orders.statusAfterSales': '售后处理',
@@ -3009,15 +2820,16 @@ zh: {
   'changePwd.newPlaceholder': '至少8个字符',
   'changePwd.confirm': '确认新密码',
   'changePwd.confirmPlaceholder': '再次输入新密码',
-  'changePwd.hints': '✓ 8位以上  ✓ 含大小写  ✓ 含数字  ✓ 含特殊字符',
+  'changePwd.hints': '✓ 8位以上   ✓ 含数字   ✓ 含字母',
   'changePwd.btn': '修改密码',
   'changePwd.success': '密码已修改 ✓',
   'lang.title': '语言选择',
   'help.title': '帮助与支持',
   'help.whatsapp': 'WhatsApp 客服',
   'help.whatsappDesc': '通过WhatsApp联系我们',
-  'help.wechat': '微信客服',
-  'help.wechatDesc': '通过微信联系我们',
+  'help.email': '邮件客服',
+  'help.faq': '常见问题',
+  'help.faqDesc': '查看常见问题',
   'privacy.title': '隐私政策',
   'privacy.heading': '隐私政策',
   'privacy.lastUpdated': '最后更新：2026年4月 · 版本 1.0',
@@ -3039,8 +2851,7 @@ zh: {
   'toast.loggedOut': '已退出登录',
   'toast.waSupport': '正在打开WhatsApp客服…',
   'toast.openWa': '正在打开WhatsApp…',
-  'toast.openWechat': '正在打开微信…',
-  'toast.loginRequired': '请先登录',
+  'toast.openEmail': '正在打开邮件客户端…',
   'toast.cameraPicker': '相机 / 相册选择',
   'toast.datePicker': '日期选择',
   'toast.comingSoon': ' 即将推出',
@@ -3060,20 +2871,14 @@ zh: {
   'myCenter.restrictedDesc': '請聯繫客服處理',
   'myCenter.orders': '我的訂單',
   'myCenter.viewAll': '查看全部 ›',
-  'myCenter.toPay': '待支付',
-  'myCenter.preparingStock': '備貨中',
-  'myCenter.readyForPickup': '待提貨',
+  'myCenter.pendingPay': '待支付',
+  'myCenter.paid': '已支付',
+  'myCenter.cancelled': '已取消',
   'myCenter.quickActions': '快捷入口',
   'myCenter.settings': '設定',
   'myCenter.settingsDesc': '帳戶、安全、語言',
   'myCenter.help': '幫助與支援',
-  'myCenter.helpDesc': 'WhatsApp、微信客服',
-  'myCenter.faq': '常見問題',
-  'myCenter.faqDesc': '查看常見問題',
-  'meGuest.loginPrompt': '登入 / 註冊',
-  'meGuest.myOrders': '我的訂單',
-  'meGuest.loginTitle': '登入解鎖全部功能',
-  'meGuest.loginBtn': '去登入',
+  'myCenter.helpDesc': '常見問題、聯繫我們',
   'tab.home': '首頁',
   'tab.cart': '購物車',
   'tab.me': '我的',
@@ -3097,12 +2902,13 @@ zh: {
   'profile.passportHint': '含MRZ的資訊頁 · JPG/PNG ≤10MB',
   'profile.ocrBanner': 'OCR 已辨識',
   'profile.ocrBannerDesc': '— 請檢查並修正',
-  'profile.firstName': '名',
-  'profile.lastName': '姓',
+  'profile.fullName': '姓名',
   'profile.idNumber': '證件號碼',
   'profile.tapEdit': '✏️ 點擊編輯',
   'profile.validity': '證件有效期',
+  'profile.contactEmail': '聯繫信箱',
   'profile.optional': '選填',
+  'profile.emailPlaceholder': '用於接收訂單通知',
   'profile.bizInfo': '企業資訊',
   'profile.bizGuideTitle': '填寫企業資訊，解鎖更高購買額度',
   'profile.bizGuideDesc': '企業帳戶可享更高日購買限額與優先客服支援。',
@@ -3127,6 +2933,7 @@ zh: {
   'profile.noCityData': '該省份暫無城市資料',
   'profile.selectPlaceholder': '請選擇',
   'profile.submit': '提交並繼續',
+  'profile.skip': '暫時跳過 →',
   'profile.demoDup': '🎬 演示：模擬重複身份',
   'kycDup.title': '身份提示',
   'kycDup.headline': '該證件已關聯已認證帳號',
@@ -3138,13 +2945,12 @@ zh: {
   'kycDup.cancelBtn': '使用其他證件',
   'kycDupConflict.title': '身份提示',
   'kycDupConflict.headline': '該證件已關聯已認證帳號',
-  'kycDupConflict.desc': '為保障賬戶安全，同一證件僅可認證一個賬號。已認證賬號已有同類型登入方式（如都使用手機號），無需遷移。請直接登入已認證賬號。',
+  'kycDupConflict.desc': '為保障帳戶安全，同一認證身份僅可對應一個在用帳號。已認證帳號已有相同類型的登入方式，無需遷移。',
   'kycDupConflict.existingAcct': '已認證帳號',
-  'kycDupConflict.infoNote': '已認證賬號已綁定同類型登入方式（如您當前用手機號 A 登入，但已認證賬號已綁定手機號 B）。請直接登入已認證賬號，當前賬號不可替換原有登入信息。',
+  'kycDupConflict.infoNote': '已認證帳號已有與目前相同類型的登入方式（如都是信箱），請直接使用已認證帳號登入。',
   'kycDupConflict.goLoginBtn': '前往登入',
   'kycDupConflict.cancelBtn': '使用其他證件',
   'kycDupSup.title': '補全登入方式',
-  'kycDupSup.headline': '將該信箱綁定到已認證帳號',
   'kycDupSup.desc': '您的已認證帳號目前僅支援手機號登入，信箱新增成功後可用信箱或手機號登入。',
   'kycDupSup.emailLabel': '待新增信箱',
   'kycDupSup.acctLabel': '綁定到帳號',
@@ -3167,12 +2973,9 @@ zh: {
   'toast.kycDupVerified': '所有權驗證通過 ✓',
   'toast.kycDupSwitched': '已切換至已認證帳號 ✓',
   'orders.title': '我的訂單',
-  'orders.toPay': '待支付',
-  'orders.preparingStock': '備貨中',
-  'orders.readyForPickup': '待提貨',
-  'orders.statusToPay': '待支付',
-  'orders.statusPreparingStock': '備貨中',
-  'orders.statusReadyForPickup': '待提貨',
+  'orders.unpaid': '待支付',
+  'orders.paid': '已支付',
+  'orders.cancelled': '已取消',
   'orders.statusPending': '待支付',
   'orders.statusPickup': '待取貨',
   'orders.statusAfterSales': '售後處理',
@@ -3197,15 +3000,16 @@ zh: {
   'changePwd.newPlaceholder': '至少8個字元',
   'changePwd.confirm': '確認新密碼',
   'changePwd.confirmPlaceholder': '再次輸入新密碼',
-  'changePwd.hints': '✓ 8位以上  ✓ 含大小寫  ✓ 含數字  ✓ 含特殊字元',
+  'changePwd.hints': '✓ 8位以上   ✓ 含數字   ✓ 含字母',
   'changePwd.btn': '修改密碼',
   'changePwd.success': '密碼已修改 ✓',
   'lang.title': '語言選擇',
   'help.title': '幫助與支援',
   'help.whatsapp': 'WhatsApp 客服',
   'help.whatsappDesc': '透過WhatsApp聯繫我們',
-  'help.wechat': '微信客服',
-  'help.wechatDesc': '透過微信聯繫我們',
+  'help.email': '郵件客服',
+  'help.faq': '常見問題',
+  'help.faqDesc': '查看常見問題',
   'privacy.title': '隱私政策',
   'privacy.heading': '隱私政策',
   'privacy.lastUpdated': '最後更新：2026年4月 · 版本 1.0',
@@ -3227,8 +3031,7 @@ zh: {
   'toast.loggedOut': '已登出',
   'toast.waSupport': '正在開啟WhatsApp客服…',
   'toast.openWa': '正在開啟WhatsApp…',
-  'toast.openWechat': '正在開啟微信…',
-  'toast.loginRequired': '請先登入',
+  'toast.openEmail': '正在開啟郵件用戶端…',
   'toast.cameraPicker': '相機 / 相簿選擇',
   'toast.datePicker': '日期選擇',
   'toast.comingSoon': ' 即將推出',
@@ -3251,6 +3054,7 @@ function applyLocale() {
   function qsa(id, sel) { var r = document.getElementById(id); return r ? [].slice.call(r.querySelectorAll(sel)) : []; }
 
   // ── s-myCenter (个人中心) ──
+  setText(qs('s-myCenter', '.hdr-title'), t('myCenter.title'));
   var badgeKeys = {unverified: 'myCenter.unverified', verified: 'myCenter.verified', restricted: 'myCenter.restricted'};
   var badgeIcons = {unverified: '⚠️', verified: '✅', restricted: '🔒'};
   setText(document.getElementById('mcBadgeText'), t(badgeKeys[accountState] || badgeKeys.unverified));
@@ -3275,7 +3079,7 @@ function applyLocale() {
   setText(qs('s-myCenter', '.st-link'), t('myCenter.viewAll'));
 
   var osLabels = qsa('s-myCenter', '.os-label');
-  ['myCenter.toPay','myCenter.preparingStock','myCenter.readyForPickup'].forEach(function(k, i) {
+  ['myCenter.pendingPay','myCenter.paid','myCenter.cancelled'].forEach(function(k, i) {
     if (osLabels[i]) setHTML(osLabels[i], t(k).replace(/\n/g, '<br>'));
   });
 
@@ -3284,32 +3088,10 @@ function applyLocale() {
   var mcMenu = qsa('s-myCenter', '.menu-item');
   if (mcMenu[0]) { setText(mcMenu[0].querySelector('.mi-text'), t('myCenter.settings')); setText(mcMenu[0].querySelector('.mi-sub'), t('myCenter.settingsDesc')); }
   if (mcMenu[1]) { setText(mcMenu[1].querySelector('.mi-text'), t('myCenter.help')); setText(mcMenu[1].querySelector('.mi-sub'), t('myCenter.helpDesc')); }
-  if (mcMenu[2]) { setText(mcMenu[2].querySelector('.mi-text'), t('myCenter.faq')); setText(mcMenu[2].querySelector('.mi-sub'), t('myCenter.faqDesc')); }
 
   var tbItems = qsa('s-myCenter', '.tb-item');
   ['tab.home','tab.cart','tab.me'].forEach(function(k, i) {
     if (tbItems[i]) { var ic = tbItems[i].querySelector('.tb-i'); tbItems[i].innerHTML = (ic ? ic.outerHTML : '') + t(k); }
-  });
-
-  // ── s-meGuest (未登录 Me 页) ──
-  document.querySelectorAll('#s-meGuest [data-i18n-guest]').forEach(function(el) {
-    var key = el.getAttribute('data-i18n-guest');
-    el.textContent = t(key);
-  });
-  document.querySelectorAll('#s-meGuest [data-i18n-label]').forEach(function(el) {
-    var key = el.getAttribute('data-i18n-label');
-    el.innerHTML = t(key).replace(/\n/g, '<br>');
-  });
-  setText(qs('s-meGuest', '.section-title h3'), t('meGuest.myOrders'));
-  setText(qs('s-meGuest', '.st-link'), t('myCenter.viewAll'));
-  setText(qs('s-meGuest', '.mg-title'), t('myCenter.quickActions'));
-  var guestMenu = qsa('s-meGuest', '.menu-item');
-  if (guestMenu[0]) { setText(guestMenu[0].querySelector('.mi-text'), t('myCenter.settings')); setText(guestMenu[0].querySelector('.mi-sub'), t('myCenter.settingsDesc')); }
-  if (guestMenu[1]) { setText(guestMenu[1].querySelector('.mi-text'), t('myCenter.help')); setText(guestMenu[1].querySelector('.mi-sub'), t('myCenter.helpDesc')); }
-  if (guestMenu[2]) { setText(guestMenu[2].querySelector('.mi-text'), t('myCenter.faq')); setText(guestMenu[2].querySelector('.mi-sub'), t('myCenter.faqDesc')); }
-  var guestTb = qsa('s-meGuest', '.tb-item');
-  ['tab.home','tab.cart','tab.me'].forEach(function(k, i) {
-    if (guestTb[i]) { var ic = guestTb[i].querySelector('.tb-i'); guestTb[i].innerHTML = (ic ? ic.outerHTML : '') + t(k); }
   });
 
   // ── s-profile (身份认证) ──
@@ -3318,10 +3100,10 @@ function applyLocale() {
   setText(qs('s-profile', 'h2 + p'), t('profile.desc'));
 
   var secTitles = qsa('s-profile', '.sec-title');
-  ['profile.region','profile.idVerify','profile.bizInfo'].forEach(function(k, i) { if (secTitles[i]) setText(secTitles[i], t(k)); });
+  ['profile.region','profile.idVerify','profile.contactEmail','profile.bizInfo'].forEach(function(k, i) { if (secTitles[i]) setText(secTitles[i], t(k)); });
 
   var secTags = qsa('s-profile', '.sec-tag');
-  ['profile.required','profile.required','profile.optional'].forEach(function(k, i) { if (secTags[i]) setText(secTags[i], t(k)); });
+  ['profile.required','profile.required','profile.optional','profile.optional'].forEach(function(k, i) { if (secTags[i]) setText(secTags[i], t(k)); });
 
   syncRegionSummary();
 
@@ -3345,13 +3127,16 @@ function applyLocale() {
   if (ocrPend) setHTML(ocrPend, '<span>⏳</span> ' + t('profile.bizOcrPending'));
 
   var ofLabels = qsa('s-profile', '.of-label');
-  ['profile.firstName','profile.lastName','profile.idNumber','profile.licenseType','profile.regNumber','profile.legalRep','profile.bizAddress'].forEach(function(k, i) { if (ofLabels[i]) setText(ofLabels[i], t(k)); });
+  ['profile.fullName','profile.idNumber','profile.licenseType','profile.regNumber','profile.legalRep','profile.bizAddress'].forEach(function(k, i) { if (ofLabels[i]) setText(ofLabels[i], t(k)); });
   qsa('s-profile', '.of-edit').forEach(function(el) { setText(el, t('profile.tapEdit')); });
   qsa('s-profile', '.of-val.placeholder').forEach(function(el) { setText(el, t('profile.autoDetect')); });
 
   var dateEmpties = qsa('s-profile', '.df-val.empty');
   if (dateEmpties[0]) setText(dateEmpties[0], t('profile.startDate'));
   if (dateEmpties[1]) setText(dateEmpties[1], t('profile.endDate'));
+
+  var emailInp = qs('s-profile', '.inp');
+  if (emailInp) emailInp.placeholder = t('profile.emailPlaceholder');
 
   var bizGuide = qs('s-profile', '.biz-guide');
   if (bizGuide) {
@@ -3364,17 +3149,16 @@ function applyLocale() {
 
   var profBtns = qsa('s-profile', '.btn');
   if (profBtns[0]) setText(profBtns[0], t('profile.submit'));
+  if (profBtns[1]) setText(profBtns[1], t('profile.skip'));
 
   // ── s-orders (我的订单) ──
   setText(qs('s-orders', '.hdr-title'), t('orders.title'));
 
   var fTabs = qsa('s-orders', '.filter-tab');
-  ['orders.toPay','orders.preparingStock','orders.readyForPickup'].forEach(function(k, i) { if (fTabs[i]) setText(fTabs[i], t(k)); });
+  ['orders.unpaid','orders.paid','orders.cancelled'].forEach(function(k, i) { if (fTabs[i]) setText(fTabs[i], t(k)); });
 
   qsa('s-orders', '.oc-status').forEach(function(el) {
-    if (el.classList.contains('toPay') || el.classList.contains('pending')) setText(el, t('orders.statusToPay'));
-    else if (el.classList.contains('preparing')) setText(el, t('orders.statusPreparingStock'));
-    else if (el.classList.contains('readyPickup')) setText(el, t('orders.statusReadyForPickup'));
+    if (el.classList.contains('pending')) setText(el, t('orders.statusPending'));
     else if (el.classList.contains('pickup')) setText(el, t('orders.statusPickup'));
     else if (el.classList.contains('service')) setText(el, t('orders.statusAfterSales'));
     else if (el.classList.contains('done')) setText(el, t('orders.statusDone'));
@@ -3423,7 +3207,8 @@ function applyLocale() {
 
   var helpMenu = qsa('s-helpSupport', '.menu-item');
   if (helpMenu[0]) { setText(helpMenu[0].querySelector('.mi-text'), t('help.whatsapp')); setText(helpMenu[0].querySelector('.mi-sub'), t('help.whatsappDesc')); }
-  if (helpMenu[1]) { setText(helpMenu[1].querySelector('.mi-text'), t('help.wechat')); setText(helpMenu[1].querySelector('.mi-sub'), t('help.wechatDesc')); }
+  if (helpMenu[1]) { setText(helpMenu[1].querySelector('.mi-text'), t('help.email')); }
+  if (helpMenu[2]) { setText(helpMenu[2].querySelector('.mi-text'), t('help.faq')); setText(helpMenu[2].querySelector('.mi-sub'), t('help.faqDesc')); }
 
   // ── s-privacy (隐私政策) ──
   setText(qs('s-privacy', '.hdr-title'), t('privacy.title'));
