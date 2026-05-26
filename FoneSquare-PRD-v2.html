@@ -2218,8 +2218,8 @@ body.editing .edit-mode-banner { display:block; }
   <table style="position: relative;">
     <thead><tr><th>字段</th><th>类型</th><th>必填</th><th>可修改</th><th>校验方式</th></tr></thead>
     <tbody>
-      <tr><td>First Name（名）</td><td>文本</td><td><span class="tag tag-required">必填</span></td><td>可重新上传修改</td><td style="position: relative;">OCR 识别证件上的 Given Name 自动填入，用户可编辑</td></tr>
-      <tr><td>Last Name（姓）</td><td>文本</td><td><span class="tag tag-required">必填</span></td><td>可重新上传修改</td><td style="position: relative;">OCR 识别证件上的 Surname 自动填入，用户可编辑</td></tr>
+      <tr><td>名</td><td>文本</td><td><span class="tag tag-required">必填</span></td><td>可重新上传修改</td><td style="position: relative;">OCR 识别证件上的 Given Name 自动填入，用户可编辑</td></tr>
+      <tr><td>姓</td><td>文本</td><td><span class="tag tag-required">必填</span></td><td>可重新上传修改</td><td style="position: relative;">OCR 识别证件上的 Surname 自动填入，用户可编辑</td></tr>
       <tr><td>国家/地区</td><td>单框多级联动选择器（支持搜索）</td><td><span class="tag tag-required">必填</span></td><td>✅ 可修改</td><td style="position: relative;">单个输入框，支持搜索，多级联动（有几级选几级，不固定三级）；置顶设备所在地国家，其次常用地区（香港、澳门、中国大陆、台湾、新加坡），其余按字母排序，无需按大洲分组；选择地区后联动证件类型</td></tr>
       <tr><td>证件类型</td><td>动态选择</td><td><span class="tag tag-required">必填</span></td><td>可重新上传修改</td><td style="position: relative;">根据国家/地区动态展示：HK→HK ID/Passport；MO→MO ID/Passport；CN→身份证/Passport；其他→仅Passport</td></tr>
       <tr><td>证件号码</td><td>文本</td><td><span class="tag tag-required">必填</span></td><td>可重新上传修改</td><td style="position: relative;">格式校验 + 调用风控</td></tr>
@@ -2965,8 +2965,8 @@ body.editing .edit-mode-banner { display:block; }
   <table style="position: relative;">
     <thead><tr><th>字段</th><th>类型</th><th>说明</th><th>后台操作</th></tr></thead>
     <tbody>
-      <tr><td>First Name（名）</td><td>文本</td><td>APP端OCR识别 Given Name，与证件一致</td><td style="position: relative;">查看/编辑<br></td></tr>
-      <tr><td>Last Name（姓）</td><td>文本</td><td>APP端OCR识别 Surname，与证件一致</td><td style="position: relative;">查看/编辑<br></td></tr>
+      <tr><td>名</td><td>文本</td><td>APP端OCR识别 Given Name，与证件一致</td><td style="position: relative;">查看/编辑<br></td></tr>
+      <tr><td>姓</td><td>文本</td><td>APP端OCR识别 Surname，与证件一致</td><td style="position: relative;">查看/编辑<br></td></tr>
       <tr><td>证件类型</td><td>枚举</td><td>港澳居民身份证 / 护照 / 中国居民身份证</td><td style="position: relative;">查看/编辑<br></td></tr>
       <tr><td>身份证号</td><td>文本</td><td>OCR识别的证件号码，脱敏展示（中间位***）</td><td style="position: relative;">查看/编辑<br></td></tr>
       
@@ -3214,7 +3214,8 @@ body.editing .edit-mode-banner { display:block; }
     <thead><tr><th style="width:140px;">字段</th><th style="width:80px;">类型</th><th>说明</th><th style="width:100px;">排序</th></tr></thead>
     <tbody>
       <tr><td>商家ID</td><td>文本</td><td style="position: relative;">系统自动生成，格式 待定，不要自增长数字</td><td style="position: relative;">默认倒序<br>支持查询<br></td></tr>
-      <tr><td>商家名称</td><td>文本</td><td style="position: relative;">KYC认证姓名，未认证为空</td><td style="position: relative;">支持模糊查询</td></tr>
+      <tr><td>名</td><td>文本</td><td style="position: relative;">KYC认证名，未认证为空</td><td style="position: relative;">支持模糊查询</td></tr>
+      <tr><td>姓</td><td>文本</td><td style="position: relative;">KYC认证姓，未认证为空</td><td style="position: relative;">支持模糊查询</td></tr>
       
       <tr><td>商家类型</td><td>枚举</td><td style="position: relative;">买家（橙色Tag）/ 卖家（蓝色Tag）</td><td style="position: relative;">筛选</td></tr>
       <tr><td>认证状态</td><td>枚举</td><td style="position: relative;">已认证/ 未认证/账号受限</td><td style="position: relative;">筛选</td></tr>
@@ -3234,10 +3235,10 @@ body.editing .edit-mode-banner { display:block; }
   <table style="position: relative;">
     <thead><tr><th style="width:140px;">功能项</th><th>说明</th></tr></thead>
     <tbody>
-      <tr><td><strong>筛选条件</strong></td><td style="position: relative;">商家名称（模糊搜索）、商家类型（全部/买家/卖家）、商家状态（全部/使用/停用）、认证状态（全部/已认证/未认证/账号受限）、维护人（仅拥有全量数据权限的账号可见此筛选项，维护人仅可看自己名下商家）</td></tr>
+      <tr><td><strong>筛选条件</strong></td><td style="position: relative;">商家姓名（姓 / 名 模糊搜索）、商家类型（全部/买家/卖家）、商家状态（全部/使用/停用）、认证状态（全部/已认证/未认证/账号受限）、维护人（仅拥有全量数据权限的账号可见此筛选项，维护人仅可看自己名下商家）</td></tr>
       <tr><td><strong>默认排序</strong></td><td style="position: relative;">按创建时间倒序排列</td></tr>
       <tr><td><strong>分页</strong></td><td style="position: relative;">支持 10 / 20 / 50 条/页切换，默认 10 条/页</td></tr>
-      <tr><td><strong>列表字段</strong></td><td style="position: relative;">商家ID、商家名称、商家类型（买家/卖家）、商家状态（使用/停用）、认证状态（已认证/未认证/账号受限）、维护人（姓名+工号）、创建时间</td></tr>
+      <tr><td><strong>列表字段</strong></td><td style="position: relative;">商家ID、名、姓、商家类型（买家/卖家）、商家状态（使用/停用）、认证状态（已认证/未认证/账号受限）、维护人（姓名+工号）、创建时间</td></tr>
       <tr><td><strong>列表操作</strong></td><td style="position: relative;">查看（进入详情页）、停用/启用（切换商家状态）</td></tr>
       <tr><td><strong>顶部操作</strong></td><td style="position: relative;">「添加商家」按钮（有权限时展示）、「导出」按钮（导出当前筛选结果，异步生成 → 下载中心查看）</td></tr>
       <tr><td><strong>数据权限</strong></td><td style="position: relative;">维护人仅可看到自己绑定的商家；拥有全量数据权限的账号可看到所有商家</td></tr>
@@ -3259,8 +3260,8 @@ body.editing .edit-mode-banner { display:block; }
   <table style="position: relative;">
     <thead><tr><th>查询条件</th><th>匹配方式</th><th>返回字段</th><th>说明</th></tr></thead>
     <tbody>
-      <tr><td>商家ID</td><td>精确匹配</td><td>商家名称、类型、状态、联系方式、所在地区</td><td style="position: relative;">最常用场景：业务系统通过商家ID查询商家信息</td></tr>
-      <tr><td>商家名称</td><td>模糊匹配</td><td>同上，支持分页返回</td><td style="position: relative;">运营查询场景，按名称关键词搜索</td></tr>
+      <tr><td>商家ID</td><td>精确匹配</td><td>姓、名、类型、状态、联系方式、所在地区</td><td style="position: relative;">最常用场景：业务系统通过商家ID查询商家信息</td></tr>
+      <tr><td>商家姓名</td><td>模糊匹配</td><td>同上，支持分页返回</td><td style="position: relative;">运营查询场景，按姓名关键词搜索</td></tr>
       <tr><td>手机号</td><td>精确匹配</td><td>同上</td><td style="position: relative;">风控/客服场景，通过手机号定位商家</td></tr>
     </tbody>
   </table>
@@ -3273,7 +3274,8 @@ body.editing .edit-mode-banner { display:block; }
     <thead><tr><th>返回字段</th><th>类型</th><th>说明</th></tr></thead>
     <tbody>
       <tr><td><code>merchant_id</code></td><td>String</td><td style="position: relative;">海外商家唯一标识（系统中<strong>仅有此一个 ID</strong>，国内系统不再做镜像映射）</td></tr>
-      <tr><td><code>merchant_name</code></td><td>String</td><td style="position: relative;">商家名称</td></tr>
+      <tr><td><code>first_name</code></td><td>String</td><td style="position: relative;">名（与证件一致）</td></tr>
+      <tr><td><code>last_name</code></td><td>String</td><td style="position: relative;">姓（与证件一致）</td></tr>
       <tr><td><code>merchant_type</code></td><td>Enum</td><td style="position: relative;">buyer / seller</td></tr>
       <tr><td><code>status</code></td><td>Enum</td><td style="position: relative;">active / disabled（商家状态：使用 / 停用）</td></tr>
       <tr><td><code>auth_status</code></td><td>Enum</td><td style="position: relative;">verified / unverified / restricted（认证状态：已认证 / 未认证 / 账号受限）</td></tr>
@@ -3328,10 +3330,10 @@ body.editing .edit-mode-banner { display:block; }
   <table style="position: relative;">
     <thead><tr><th style="width:120px;">区域</th><th>展示内容</th><th style="width:160px;">权限说明</th></tr></thead>
     <tbody>
-      <tr><td><strong>头部信息卡</strong></td><td style="position: relative;">商家名称、ID、类型 Tag（买家/卖家）、状态 Tag（使用/停用）、认证状态 Tag（未认证/已认证/账号受限）维护人、注册日期；</td><td style="position: relative;">所有可见角色均展示</td></tr>
+      <tr><td><strong>头部信息卡</strong></td><td style="position: relative;">姓 / 名、ID、类型 Tag（买家/卖家）、状态 Tag（使用/停用）、认证状态 Tag（未认证/已认证/账号受限）维护人、注册日期；</td><td style="position: relative;">所有可见角色均展示</td></tr>
       <tr><td><strong>头部右侧操作</strong></td><td style="position: relative;">停用 / 启用</td><td style="position: relative;">需对应功能权限点</td></tr>
-      <tr><td><strong>Tab 1 — 基本信息</strong></td><td style="position: relative;">个人信息（姓名、手机号、邮箱、WhatsApp、地区、备注）— 选填</td><td style="position: relative;">查看通用；编辑需「编辑商家信息」功能权限</td></tr>
-      <tr><td><strong>Tab 2 — KYC 认证材料</strong></td><td style="position: relative;">证件类型 / 号码 / 姓名（脱敏）/ 有效期 / 证件照片（正面 / 背面 / 护照只一面）+ 选填内容：企业名称、证照类型、证照编号、法定代表/董事、企业地址、证照有效期、证照照片</td><td style="position: relative;">查看通用；证件号默认脱敏，原值需特定权限点击查看</td></tr>
+      <tr><td><strong>Tab 1 — 基本信息</strong></td><td style="position: relative;">个人信息（姓、名、手机号、邮箱、WhatsApp、地区、备注）— 选填</td><td style="position: relative;">查看通用；编辑需「编辑商家信息」功能权限</td></tr>
+      <tr><td><strong>Tab 2 — KYC 认证材料</strong></td><td style="position: relative;">证件类型 / 号码 / 姓 / 名（脱敏）/ 有效期 / 证件照片（正面 / 背面 / 护照只一面）+ 选填内容：企业名称、证照类型、证照编号、法定代表/董事、企业地址、证照有效期、证照照片</td><td style="position: relative;">查看通用；证件号默认脱敏，原值需特定权限点击查看</td></tr>
       <tr><td><strong>Tab 3 — 限额与保证金</strong>（仅买家）</td><td style="position: relative;">香港店每日下单限额（店铺币种）输入框 + 保证金金额（店铺币种）输入框 + 保证金转账凭证图片上传；展示状态 / 确认时间 / 确认人</td><td style="position: relative;">查看通用；编辑需「配置限额 / 保证金」功能权限点（沿用既有权限）</td></tr>
       <tr><td><strong>Tab 4 — 维护人绑定</strong></td><td style="position: relative;">当前绑定维护人（姓名、OB 账号、绑定时间、操作人）+ 绑定/解绑/更换 操作 + 历史绑定列表</td><td style="position: relative;">查看通用；写操作需「绑定维护人」功能权限点</td></tr>
       <tr><td><strong>Tab 5 — 操作日志</strong></td><td style="position: relative;">时间线展示创建、KYC 认证、限额修改、维护人绑定变更、停用/启用 等所有操作；含操作人、操作时间、变更前后值，信息脱敏</td><td style="position: relative;">数据权限按角色裁剪（维护人仅看自己范围）</td></tr>
@@ -3518,15 +3520,17 @@ body.editing .edit-mode-banner { display:block; }
   <table style="position: relative;">
     <thead><tr><th>分组</th><th>字段</th><th>必填</th><th>说明</th></tr></thead>
     <tbody>
-      <tr><td rowspan="6">基本信息（个人）</td><td>姓名</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">与证件一致</td></tr>
+      <tr><td rowspan="7">基本信息（个人）</td><td>名</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">与证件一致</td></tr>
+      <tr><td>姓</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">与证件一致</td></tr>
       <tr><td>手机号</td><td><span class="tag" style="background:#F3F4F6;color:#6B7280;">选填</span></td><td style="position: relative;">含区号，格式校验（手机、邮箱、WhatsApp三选一必填）</td></tr>
       <tr><td>邮箱</td><td><span class="tag" style="background:#F3F4F6;color:#6B7280;">选填</span></td><td style="position: relative;">格式校验</td></tr>
       <tr><td>WhatsApp</td><td><span class="tag" style="background:#F3F4F6;color:#6B7280;">选填</span></td><td style="position: relative;">类似电话号码的WhatsApp账号</td></tr>
       <tr><td>所在地区</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">下拉选择</td></tr>
       <tr><td>备注</td><td><span class="tag" style="background:#F3F4F6;color:#6B7280;">选填</span></td><td style="position: relative;">—</td></tr>
-      <tr><td rowspan="5">KYC 认证材料（个人）</td><td>证件类型</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">HKID / 澳门ID / 身份证 / 护照</td></tr>
+      <tr><td rowspan="6">KYC 认证材料（个人）</td><td>证件类型</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">HKID / 澳门ID / 身份证 / 护照</td></tr>
       <tr><td>证件号码</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">按证件类型格式校验，存储脱敏</td></tr>
-      <tr><td>姓名（与证件一致）</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">与证件一致</td></tr>
+      <tr><td>名（与证件一致）</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">与证件一致</td></tr>
+      <tr><td>姓（与证件一致）</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">与证件一致</td></tr>
       <tr><td>证件有效期</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">不可选过去日期</td></tr>
       <tr><td>证件照片</td><td><span class="tag" style="background:#F3F4F6;color:#6B7280;">选填</span></td><td style="position: relative;">正面 + 背面（护照仅一面），JPG/PNG ≤ 5MB</td></tr>
       <tr><td rowspan="7">KYC 认证材料（企业·选填）</td><td>企业名称</td><td><span class="tag" style="background:#F3F4F6;color:#6B7280;">选填</span></td><td style="position: relative;">—</td></tr>
@@ -3586,17 +3590,19 @@ body.editing .edit-mode-banner { display:block; }
   <table style="position: relative;">
     <thead><tr><th style="width:160px;">分组</th><th style="width:160px;">字段</th><th style="width:60px;">必填</th><th>说明</th></tr></thead>
     <tbody>
-      <tr><td rowspan="8">基本信息（个人）</td><td>商家类型</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">Checkbox 多选：买家 / 卖家，可同时勾选</td></tr>
-      <tr><td>姓名</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">与证件一致</td></tr>
+      <tr><td rowspan="9">基本信息（个人）</td><td>商家类型</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">Checkbox 多选：买家 / 卖家，可同时勾选</td></tr>
+      <tr><td>名</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">与证件一致</td></tr>
+      <tr><td>姓</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">与证件一致</td></tr>
       <tr><td>手机号</td><td><span class="tag" style="background:#F3F4F6;color:#6B7280;">选填</span></td><td style="position: relative;">含区号，格式校验（手机、邮箱、WhatsApp 三选一必填）</td></tr>
       <tr><td>邮箱</td><td><span class="tag" style="background:#F3F4F6;color:#6B7280;">选填</span></td><td style="position: relative;">格式校验</td></tr>
       <tr><td>WhatsApp</td><td><span class="tag" style="background:#F3F4F6;color:#6B7280;">选填</span></td><td style="position: relative;">类似电话号码的 WhatsApp 账号</td></tr>
       <tr><td>所在地区</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">下拉选择</td></tr>
       <tr><td>备注</td><td><span class="tag" style="background:#F3F4F6;color:#6B7280;">选填</span></td><td style="position: relative;">—</td></tr>
       <tr><td colspan="3" style="position: relative; color:#8C8C8C; font-size:11px;">💡 手机号、邮箱、WhatsApp 三个联系方式至少填写一项</td></tr>
-      <tr><td rowspan="5">KYC 认证材料（个人）</td><td>证件类型</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">HKID / 澳门ID / 身份证 / 护照</td></tr>
+      <tr><td rowspan="6">KYC 认证材料（个人）</td><td>证件类型</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">HKID / 澳门ID / 身份证 / 护照</td></tr>
       <tr><td>证件号码</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">按证件类型格式校验</td></tr>
-      <tr><td>姓名（与证件一致）</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">与证件一致</td></tr>
+      <tr><td>名（与证件一致）</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">与证件一致</td></tr>
+      <tr><td>姓（与证件一致）</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">与证件一致</td></tr>
       <tr><td>证件有效期</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">不可选过去日期</td></tr>
       <tr><td>证件照片</td><td><span class="tag" style="background:#F3F4F6;color:#6B7280;">选填</span></td><td style="position: relative;">正面 + 背面（护照仅一面），JPG/PNG ≤ 5MB</td></tr>
       <tr><td rowspan="7">KYC 认证材料<br>（企业·选填）</td><td>企业名称</td><td><span class="tag" style="background:#F3F4F6;color:#6B7280;">选填</span></td><td style="position: relative;">—</td></tr>
@@ -4229,7 +4235,10 @@ mermaid.initialize({
     'edit':['编辑','Edit'],
     'p-basic-personal':['个人信息','Personal Info'],
     'p-basic-corp':['企业信息','Corporate Info'],
-    'b-personal-name':['姓名','Name'],
+    'b-firstName':['名','First Name'],
+    'b-lastName':['姓','Last Name'],
+    'ph-input-fn':['请输入名（与证件一致）','First name (as on ID)'],
+    'ph-input-ln':['请输入姓（与证件一致）','Last name (as on ID)'],
     'b-whatsapp':['WhatsApp','WhatsApp'],
     'b-remark':['备注','Remark'],
     'b-corp-name':['企业名称','Company Name'],
@@ -4438,7 +4447,8 @@ mermaid.initialize({
       +     '<button class="wf-btn-link wf-card-edit" data-act="editBasic" data-i18n="edit">编辑</button>'
       +   '</div>'
       +   '<div class="wf-card-body">'
-      +     descRow('b-personal-name','姓名','陈大文')
+      +     descRow('b-firstName','名','大文')
+      +     descRow('b-lastName','姓','陈')
       +     descRow('b-phone','手机号','+852 9123 4567')
       +     descRow('b-email','邮箱','chen@hkmobile.com')
       +     descRow('b-whatsapp','WhatsApp','+852 9123 4567')
@@ -4603,7 +4613,8 @@ mermaid.initialize({
       +         '<label style="display:flex;align-items:center;gap:4px;cursor:pointer;font-size:12px;"><input type="checkbox" name="mtype" value="seller" style="accent-color:#1677ff;"> <span data-i18n="seller">卖家</span></label>'
       +       '</div>'
       +     '</div>'
-      +     formItem('b-name','姓名',true,'ph-input','请输入（与证件一致）','wf-input')
+      +     formItem('b-firstName','名',true,'ph-input-fn','请输入名（与证件一致）','wf-input')
+      +     formItem('b-lastName','姓',true,'ph-input-ln','请输入姓（与证件一致）','wf-input')
       +   '</div>'
       +   '<div class="wf-form-row">'
       +     formItem('b-phone','手机号',false,'add-phone-ph','含区号，如 +852 1234 5678','wf-input')
