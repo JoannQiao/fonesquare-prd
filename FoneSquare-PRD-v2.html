@@ -3059,9 +3059,8 @@ body.editing .edit-mode-banner { display:block; }
     <tbody>
       <tr><td><strong>保证金金额</strong></td><td>数值输入框</td><td style="position: relative;">正整数，单位 HKD。运营人员填写商家缴纳的保证金金额。该金额 × 10 = 每日下单限额上限</td></tr>
       <tr><td><strong>保证金转账记录</strong></td><td>图片上传</td><td style="position: relative;">上传商家转账凭证截图/照片，支持 JPG/PNG，单张不超过 5MB，最多上传 3 张</td></tr>
-      <tr><td>保证金状态</td><td>枚举</td><td style="position: relative;">未提交 / 已提交待确认 / 已确认。运营确认转账记录后标记为「已确认」，此时限额上限生效</td></tr>
-      <tr><td>确认时间</td><td>时间戳</td><td style="position: relative;">运营确认保证金的时间</td></tr>
-      <tr><td>确认人</td><td>文本</td><td style="position: relative;">确认操作的运营人员账号</td></tr>
+      <tr><td>保证金状态</td><td>枚举</td><td style="position: relative;">未提交 / 已提交。提交保证金转账记录后即标记为「已提交」，此时限额上限生效</td></tr>
+      <tr><td>提交时间</td><td>时间戳</td><td style="position: relative;">保证金转账记录提交的时间</td></tr>
     </tbody>
   </table>
 
@@ -3069,19 +3068,19 @@ body.editing .edit-mode-banner { display:block; }
     <div class="spec-group-title">🔗 保证金与限额关联规则</div>
     <div class="spec-row"><div class="spec-label">限额上限计算</div><div class="spec-value"><strong>保证金金额 × 10</strong>。例：保证金 5,000 HKD → 限额可配置范围 0 ~ 50,000 HKD</div></div>
     <div class="spec-row"><div class="spec-label">未提交保证金</div><div class="spec-value">限额仅可配置为默认最小值（由业务提供），不可调高</div></div>
-    <div class="spec-row"><div class="spec-label">保证金已确认</div><div class="spec-value">限额可在 默认最小值 ~ 保证金×10 范围内自由配置</div></div>
+    <div class="spec-row"><div class="spec-label">保证金已提交</div><div class="spec-value">限额可在 默认最小值 ~ 保证金×10 范围内自由配置</div></div>
     <div class="spec-row"><div class="spec-label">保证金变更</div><div class="spec-value">若保证金金额下调，且当前限额超过新的上限（新保证金×10），需提示运营先调低限额</div></div>
   </div>
 
   <h4>三、权限管控</h4>
   <div class="info-box warning">
     <span class="ib-icon">🔑</span>
-    <div><strong>新增权限：海外回收商户编辑权限</strong> — 单独管控配置额度功能，与现有回收商编辑权限独立。拥有此权限的运营人员可编辑：每日下单限额、保证金金额、确认保证金转账记录。</div>
+    <div><strong>新增权限：海外回收商户编辑权限</strong> — 单独管控配置额度功能，与现有回收商编辑权限独立。拥有此权限的运营人员可编辑：每日下单限额、保证金金额、管理保证金转账记录。</div>
   </div>
   <table style="position: relative;">
     <thead><tr><th style="width:200px;">权限项</th><th>说明</th><th style="width:120px;">默认角色</th></tr></thead>
     <tbody>
-      <tr><td>海外回收商户编辑权限</td><td style="position: relative;">可编辑每日下单限额值、填写/修改保证金金额、上传/查看保证金转账记录、确认保证金状态</td><td style="position: relative;">待业务确认</td></tr>
+      <tr><td>海外回收商户编辑权限</td><td style="position: relative;">可编辑每日下单限额值、填写/修改保证金金额、上传/查看保证金转账记录、管理保证金状态</td><td style="position: relative;">待业务确认</td></tr>
       <tr><td>回收商信息查看权限</td><td style="position: relative;">仅查看限额、保证金信息，不可编辑</td><td style="position: relative;">一般运营</td></tr>
     </tbody>
   </table>
@@ -3334,7 +3333,7 @@ body.editing .edit-mode-banner { display:block; }
       <tr><td><strong>头部右侧操作</strong></td><td style="position: relative;">停用 / 启用</td><td style="position: relative;">需对应功能权限点</td></tr>
       <tr><td><strong>Tab 1 — 基本信息</strong></td><td style="position: relative;">个人信息（姓、名、手机号、邮箱、WhatsApp、地区、备注）— 选填</td><td style="position: relative;">查看通用；编辑需「编辑商家信息」功能权限</td></tr>
       <tr><td><strong>Tab 2 — KYC 认证材料</strong></td><td style="position: relative;">证件类型 / 号码 / 姓 / 名（脱敏）/ 有效期 / 证件照片（正面 / 背面 / 护照只一面）+ 选填内容：企业名称、证照类型、证照编号、法定代表/董事、企业地址、证照有效期、证照照片</td><td style="position: relative;">查看通用；证件号默认脱敏，原值需特定权限点击查看</td></tr>
-      <tr><td><strong>Tab 3 — 限额与保证金</strong>（仅买家）</td><td style="position: relative;">香港店每日下单限额（店铺币种）输入框 + 保证金金额（店铺币种）输入框 + 保证金转账凭证图片上传；展示状态 / 确认时间 / 确认人</td><td style="position: relative;">查看通用；编辑需「配置限额 / 保证金」功能权限点（沿用既有权限）</td></tr>
+      <tr><td><strong>Tab 3 — 限额与保证金</strong>（仅买家）</td><td style="position: relative;">香港店每日下单限额（店铺币种）输入框 + 保证金金额（店铺币种）输入框 + 保证金转账凭证图片上传；展示状态 / 提交时间</td><td style="position: relative;">查看通用；编辑需「配置限额 / 保证金」功能权限点（沿用既有权限）</td></tr>
       <tr><td><strong>Tab 4 — 维护人绑定</strong></td><td style="position: relative;">当前绑定维护人（姓名、OB 账号、绑定时间、操作人）+ 绑定/解绑/更换 操作 + 历史绑定列表</td><td style="position: relative;">查看通用；写操作需「绑定维护人」功能权限点</td></tr>
       <tr><td><strong>Tab 5 — 操作日志</strong></td><td style="position: relative;">时间线展示创建、KYC 认证、限额修改、维护人绑定变更、停用/启用 等所有操作；含操作人、操作时间、变更前后值，信息脱敏</td><td style="position: relative;">数据权限按角色裁剪（维护人仅看自己范围）</td></tr>
     </tbody>
@@ -3413,9 +3412,9 @@ body.editing .edit-mode-banner { display:block; }
       <tr><td><strong>保证金区域</strong></td><td style="position: relative;">当限额填写值 &gt; 免保上限时，保证金区域自动展开（或高亮提示需缴纳保证金）。包含保证金金额输入框和转账凭证上传。</td></tr>
       <tr><td><strong>保证金金额输入框</strong></td><td style="position: relative;">可编辑输入框，单位同店铺币种。填写买家实际转账的保证金金额。</td></tr>
       <tr><td><strong>保证金转账凭证上传</strong></td><td style="position: relative;">图片上传区域，支持 JPG / PNG，单张 ≤ 5MB。上传后展示缩略图，可预览和删除。</td></tr>
-      <tr><td><strong>保证金状态</strong></td><td style="position: relative;">展示当前保证金状态：<span class="tag" style="background:#F3F4F6;color:#6B7280;">未提交</span> / <span class="tag" style="background:#FFF7E6;color:#D46B08;">待确认</span> / <span class="tag" style="background:#F6FFED;color:#52C41A;">已确认</span>。</td></tr>
-      <tr><td><strong>确认时间 / 确认人</strong></td><td style="position: relative;">保证金确认后展示确认操作的时间和操作人。</td></tr>
-      <tr><td><strong>「保存」按钮</strong></td><td style="position: relative;">点击后校验：① 限额 ≥ 0（设为 0 即冻结大额购买）；② 限额 ≤ 免保上限（无保证金时）或 ≤ 保证金 × 10（有保证金时）；③ 限额 &gt; 免保上限时需已上传凭证且保证金已确认。校验通过后提交保存。</td></tr>
+      <tr><td><strong>保证金状态</strong></td><td style="position: relative;">展示当前保证金状态：<span class="tag" style="background:#F3F4F6;color:#6B7280;">未提交</span> / <span class="tag" style="background:#F6FFED;color:#52C41A;">已提交</span>。</td></tr>
+      <tr><td><strong>提交时间</strong></td><td style="position: relative;">保证金转账记录提交后展示提交时间。</td></tr>
+      <tr><td><strong>「保存」按钮</strong></td><td style="position: relative;">点击后校验：① 限额 ≥ 0（设为 0 即冻结大额购买）；② 限额 ≤ 免保上限（无保证金时）或 ≤ 保证金 × 10（有保证金时）；③ 限额 &gt; 免保上限时需已上传凭证且保证金已提交。校验通过后提交保存。</td></tr>
     </tbody>
   </table>
 
@@ -4167,8 +4166,8 @@ mermaid.initialize({
     'q-proof-hint':['未提交凭证前限额无法调高，仅可保留默认最小值','Without proof, limit must stay at default minimum'],
     'q-status':['保证金状态','Deposit Status'],
     'q-st-pending':['未提交','Not submitted'],
-    'q-st-submitted':['已提交待确认','Submitted, pending review'],
-    'q-confirm':['确认时间 / 确认人','Confirmed At / By'],
+    'q-st-submitted':['已提交','Submitted'],
+    'q-confirm':['提交时间','Submitted At'],
     'q-save':['💾 校验并保存','💾 Validate & Save'],
     'q-cancel':['取消','Cancel'],
     'p-sales':['维护人绑定','Advisor Binding'],
@@ -4187,7 +4186,7 @@ mermaid.initialize({
     'lg-1':['admin01 创建商家 HK Mobile Trade Co.（自动绑定维护人：张三 / OB1001）','admin01 created HK Mobile Trade Co. (auto-bound advisor: Z. San / OB1001)'],
     'lg-2':['admin01 完成 KYC 认证 → 已认证','admin01 KYC verified → Verified'],
     'lg-3':['admin02 编辑基本信息：手机号','admin02 edited basic info: phone'],
-    'lg-4':['admin01 配置每日下单限额 50,000 HKD（保证金 5,000 已确认）','admin01 set daily limit 50,000 HKD (deposit 5,000 confirmed)'],
+    'lg-4':['admin01 配置每日下单限额 50,000 HKD（保证金 5,000 已提交）','admin01 set daily limit 50,000 HKD (deposit 5,000 submitted)'],
     'add-title':['添加商家（单页录入）','Add Merchant (Single Page)'],
     'add-basic':['基本信息（个人）','Basic Info (Personal)'],
     'ph-input':['请输入','Input…'],
@@ -4273,7 +4272,7 @@ mermaid.initialize({
     'lg-create':['创建商家 HK Mobile Trade Co.（自动绑定维护人：张三 / OB1001）','Created HK Mobile Trade Co. (auto-bound to Z. San / OB1001)'],
     'lg-kyc':['完成 KYC 认证 → 已认证','KYC verification completed → Verified'],
     'lg-edit-basic':['编辑基本信息：手机号','Edited basic info: phone'],
-    'lg-quota':['配置每日下单限额（保证金 5,000 已确认）','Set daily limit (deposit 5,000 confirmed)'],
+    'lg-quota':['配置每日下单限额（保证金 5,000 已提交）','Set daily limit (deposit 5,000 submitted)'],
     'lg-rebind':['更换维护人','Reassigned advisor'],
     'lg-disable':['停用商家','Disabled merchant'],
     'lg-enable':['启用商家','Enabled merchant']
@@ -4522,7 +4521,7 @@ mermaid.initialize({
       +   '</div>'
       +   '<div class="wf-form-row">'
       +     '<div class="wf-form-item"><div class="wf-form-label" data-i18n="q-status">保证金状态</div><div><span class="wf-tag wf-tag-default" data-bind="qStatus" data-i18n="q-st-pending">未提交</span></div></div>'
-      +     '<div class="wf-form-item"><div class="wf-form-label" data-i18n="q-confirm">确认时间 / 确认人</div><div style="font-size:11px;color:#262626;">— / —</div></div>'
+      +     '<div class="wf-form-item"><div class="wf-form-label" data-i18n="q-confirm">提交时间</div><div style="font-size:11px;color:#262626;">—</div></div>'
       +   '</div>'
       +   '<div style="display:flex;gap:6px;margin-top:8px;">'
       +     '<button class="wf-btn wf-btn-primary" data-act="qSave" data-i18n="q-save">💾 校验并保存</button>'
@@ -4595,7 +4594,7 @@ mermaid.initialize({
       +     logItem('2026-04-10 14:23','admin01','lg-create','创建商家 HK Mobile Trade Co.（自动绑定维护人：张三 / OB1001）','','')
       +     logItem('2026-04-10 14:25','admin01','lg-kyc','完成 KYC 认证 → 已认证','未认证','已认证')
       +     logItem('2026-04-12 10:08','admin02','lg-edit-basic','编辑基本信息：手机号','+852 9000 0000','+852 9123 4567')
-      +     logItem('2026-04-15 16:40','admin01','lg-quota','配置每日下单限额（保证金 5,000 已确认）','—','50,000 HKD')
+      +     logItem('2026-04-15 16:40','admin01','lg-quota','配置每日下单限额（保证金 5,000 已提交）','—','50,000 HKD')
       +     logItem('2026-04-18 09:15','admin01','lg-rebind','更换维护人','李四 / OB1002','张三 / OB1001')
       +     logItem('2026-04-20 11:42','admin03','lg-disable','停用商家','使用','停用')
       +     logItem('2026-04-22 10:01','admin03','lg-enable','启用商家','停用','使用')
