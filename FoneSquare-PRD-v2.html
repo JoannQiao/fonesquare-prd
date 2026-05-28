@@ -500,7 +500,7 @@ body.editing .edit-mode-banner { display:block; }
         <div class="swim-num">3</div>
         <div class="swim-cell"><div class="swim-node sn-user">输入手机号<br>点击「获取验证码」</div></div>
         <div class="swim-cell"><div class="flow-arrow">→</div></div>
-        <div class="swim-cell"><div class="swim-node sn-backend">生成6位OTP<br>频率限制：60s/次，10次/天<br>错误限制：连续5次错误锁定1小时<span class="arrow-down">↓</span></div></div>
+        <div class="swim-cell"><div class="swim-node sn-backend">生成6位OTP<br>频率限制：60s/次，同号码10次/天，同IP 100次/小时<br>错误限制：连续5次错误锁定1小时<span class="arrow-down">↓</span></div></div>
         <div class="swim-cell"></div>
       </div>
       <div class="swim-step" style="grid-template-columns:36px 1fr 1fr 1fr 1fr;">
@@ -890,7 +890,7 @@ body.editing .edit-mode-banner { display:block; }
       <tr><td>1</td><td>数据需求</td><td style="position: relative;"><span style="background-color: rgb(249, 250, 251);">全局页面埋点UV/PV（详细见下方埋点说明表格）：</span><br><span style="background-color: rgb(249, 250, 251);">① 注册转化漏斗：启动APP → 选择登录方式 → 发送OTP → 验证成功 → 完成注册</span><br><span style="background-color: rgb(249, 250, 251);">② KYC转化率：注册用户 → 发起认证 → 提交材料 → 校验通过</span><br><span style="background-color: rgb(249, 250, 251);">③ 登录方式分布：按手机号/WhatsApp/邮箱统计注册用户占比</span><br><span style="background-color: rgb(249, 250, 251);">④ 各国/地区注册用户数量分布</span><br></td></tr>
       
       <tr><td>2</td><td>性能需求</td><td style="position: relative;">OTP发送延迟 ≤ 5秒；KYC OCR识别 ≤ 8秒；KYC制裁名单校验 ≤ 3秒；登录页首屏加载 ≤ 2秒</td></tr>
-      <tr><td>3</td><td>安全需求</td><td style="position: relative;">① OTP防刷：同号码60秒限发1次，同IP每小时≤10次<br>② OTP验证码安全规则（全局统一）：6位纯数字，有效期5分钟，重发间隔60秒，连续错误5次后锁定1小时<br>③ 制裁名单校验仅在KYC身份认证阶段执行<br>④ 密码输入错误处理规则：连续输入错误 5 次后，账号登录锁定 1 小时；锁定期间禁止密码登录，但允许 OTP 登录；锁定次数在 24 小时内累计，24 小时后自动重置</td></tr>
+      <tr><td>3</td><td>安全需求</td><td style="position: relative;">① OTP防刷：同号码60秒限发1次、每天≤10次；同IP每小时≤100次<br>② OTP验证码安全规则（全局统一）：6位纯数字，有效期5分钟，重发间隔60秒，连续错误5次后锁定1小时<br>③ 制裁名单校验仅在KYC身份认证阶段执行<br>④ 密码输入错误处理规则：连续输入错误 5 次后，账号登录锁定 1 小时；锁定期间禁止密码登录，但允许 OTP 登录；锁定次数在 24 小时内累计，24 小时后自动重置</td></tr>
       
       
       <tr><td>4</td><td>设计要求</td><td style="position: relative;">
@@ -1790,7 +1790,7 @@ body.editing .edit-mode-banner { display:block; }
     <div class="spec-row"><div class="spec-label">有效期</div><div class="spec-value">5分钟</div></div>
     <div class="spec-row"><div class="spec-label">重发间隔</div><div class="spec-value">60秒倒计时</div></div>
     <div class="spec-row"><div class="spec-label">错误限制</div><div class="spec-value">连续错误5次后锁定1小时</div></div>
-    <div class="spec-row"><div class="spec-label">防刷策略</div><div class="spec-value">同一号码/IP 每小时最多10次请求</div></div>
+    <div class="spec-row"><div class="spec-label">防刷策略</div><div class="spec-value">同一号码每天最多10次；同一IP每小时最多100次</div></div>
     <div class="spec-row"><div class="spec-label">SMS服务</div><div class="spec-value">京东云国际短信服务（支持200+国家/地区）</div></div>
     <div class="spec-row"><div class="spec-label">WhatsApp通道</div><div class="spec-value">WhatsApp官方Business API直连（不依赖Twilio等第三方）</div></div>
   </div>
