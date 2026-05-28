@@ -779,8 +779,8 @@ body{
             <div class="du-label">Upload Business License</div>
             <div class="du-hint">JPG / PNG / PDF, max 20 MB</div>
           </div>
-          <div class="ocr-banner pending">
-            <span>⏳</span> Upload license to auto-recognize
+          <div class="ocr-row">
+            <div class="ocr-field" style="flex:1 1 100%;"><div class="of-label">Company Name</div><div class="of-val placeholder">Auto-detect</div></div>
           </div>
           <div class="ocr-row">
             <div class="ocr-field"><div class="of-label">License Type</div><div class="of-val placeholder">Auto-detect</div></div>
@@ -2071,14 +2071,7 @@ myCenter: `【My Center — 个人中心】
 - 未认证 → 已认证：用户完成KYC认证后自动切换
 - 已认证 → 受限：后端季度风控轮询命中制裁名单，服务端推送状态变更
 - 受限 → 已认证：客服人工审核确认误判后，后台解除限制
-
-■ 埋点事件
-- page_view: my_center
-- click: kyc_banner（未认证横幅）
-- click: restricted_banner（受限横幅 → WhatsApp客服）
-- click: order_stat_{type}
-- click: wa_support（WhatsApp图标）
-- click: menu_{item}`,
+`,
 
 meGuest: `【My Center (Guest) — 未登录个人中心】
 
@@ -2123,11 +2116,6 @@ APP启动时检测 isLoggedIn 状态（JWT Token 有效性），若未登录则 
 - LOG IN 按钮：直接跳转登录页
 - 登录成功后：Me Tab 自动切换为 myCenter（已登录个人中心）
 
-■ 埋点事件
-- PV: me_guest_view（未登录Me页曝光）
-- CLK: me_guest_action_click（未登录态点击功能入口，携带 target 参数）
-- CLK: me_guest_login_btn（点击底部 LOG IN 按钮）
-
 ■ 原型演示说明
 - 通过顶部「登录状态」开关切换 Logged In / Guest 模式
 - Guest 模式下自动展示此页面，Logged In 切回 My Center`,
@@ -2140,7 +2128,7 @@ profile: `【Profile — 身份认证】
 ■ 页面结构
 1. 国家/地区（必填）
    - 单框多级联动选择器（支持搜索），有几级选几级，不固定三级
-   - 排序规则：① 置顶设备所在地国家 ② 常用地区（香港、澳门、中国大陆、台湾、新加坡）③ 其余按字母排序，无需按大洲分组
+   - 排序规则：① 置顶设备所在地国家 ② 其余按字母排序，无需按大洲分组
    - 选择地区后决定可用证件类型和合规要求
 
 2. 身份验证（必填）
@@ -2150,15 +2138,13 @@ profile: `【Profile — 身份认证】
      · 护照：仅上传信息页
    - OCR自动识别：姓名（First Name / Last Name 分别填入）、证件号码
    - OCR结果可直接编辑（contenteditable）
-   - 证件有效期：日期范围选择器
+   - 证件有效期：日期范围选择器，支持选择长期
 
 3. 企业信息（选填，默认折叠）
-   - 支持OCR自动识别的证件：营业执照（中国大陆）、商业登记证BR（香港）、公司注册证书CI（香港）
-     → OCR识别后自动填入企业名称、注册号、法人/董事、地址等字段，用户可编辑修正
-   - 不支持OCR的证件：其他国家/地区企业证照
-     → 仅支持图片上传，企业认证信息需手动填写（企业名称、注册号等为空白输入框）
-   - 判断逻辑：根据用户所选国家/地区自动切换（中国大陆、香港为OCR模式，其余为手动模式）
-   - 执照有效期
+   - 本期企业证照不支持OCR识别，所有字段均为手动填写
+   - 上传营业执照/商业登记证等企业证照图片（JPG/PNG/PDF，最大20MB）
+   - 手动填写字段：企业名称、证照类型、注册号、法定代表人/董事、企业地址
+   - 执照有效期：日期范围选择器
 
 4. 操作按钮
    - SUBMIT & CONTINUE：提交后触发风控制裁名单校验，通过后返回个人中心
@@ -2172,13 +2158,7 @@ profile: `【Profile — 身份认证】
 ■ 账号受限状态下的行为
 - 受限用户访问Profile页：正常展示已提交的认证信息（只读，不可编辑）
 - 不允许重新提交KYC：按钮置灰 + Toast提示"账号受限，请联系客服"
-- 用户若通过Settings → Identity Verification进入，同样为只读状态
-
-■ 埋点事件
-- page_view: profile_kyc
-- click: id_type_{type}
-- click: upload_document
-- click: submit_profile（success/fail）`,
+- 用户若通过Settings → Identity Verification进入，同样为只读状态`,
 
 orders: `【My Orders — 订单列表】
 
@@ -2201,11 +2181,7 @@ orders: `【My Orders — 订单列表】
 - 待支付订单：可继续支付已有订单（不新增限制）
 - 新建订单：禁止（由商品详情页/下单按钮侧控制，非本页负责）
 - 售后服务：已有订单的售后正常可用
-
-■ 埋点事件
-- page_view: order_list
-- click: filter_tab_{status}
-- click: order_card（携带order_id）`,
+`,
 
 loginMethods: `【Login Methods — 登录方式管理】
 
@@ -2237,11 +2213,7 @@ loginMethods: `【Login Methods — 登录方式管理】
 ■ 与KYC重复身份检测的联动
 - 添加登录方式时，若该号码/邮箱已被其他账号使用，弹出重复提示
 - 引导用户联系客服处理，不自动迁移
-
-■ 埋点事件
-- page_view: login_methods
-- click: add_login_method
-- click: nudge_add_phone`,
+`,
 
 addMethod: `【Add Login Method — 添加登录方式】
 
@@ -2301,11 +2273,7 @@ settings: `【Settings — 设置】
 - Language / Privacy / About：正常可用
 - 退出登录：正常可用
 - 新增提示：设置页顶部可考虑增加红色提示条"账号受限，部分功能不可用"（待确认是否需要）
-
-■ 埋点事件
-- page_view: settings
-- click: setting_{item}
-- click: logout`,
+`,
 
 changePwd: `【Change Password — 修改密码】
 
@@ -2321,18 +2289,14 @@ changePwd: `【Change Password — 修改密码】
 - 当前密码连续错误5次 → 锁定15分钟
 - 新密码不得与最近3次密码相同
 - 修改成功 → 其他设备token失效，需重新登录
-
-■ 埋点事件
-- page_view: change_password
-- click: update_password（success/fail）`,
+`,
 
 langSelect: `【Language — 语言选择】
 
 ■ 支持语言
-- 🇬🇧 English（默认）
-- 🇨🇳 简体中文
-- 🇵🇭 Filipino（菲律宾语）
-- 🇸🇦 العربية（阿拉伯语，RTL布局）
+- English
+- 简体中文
+- 繁体中文
 
 ■ 交互说明
 - 当前选中项显示绿色 ✓
@@ -2341,7 +2305,6 @@ langSelect: `【Language — 语言选择】
 
 ■ 技术方案
 - 偏好保存至用户profile + localStorage
-- 阿拉伯语需切换RTL文字方向
 - 每种语言对应独立i18n JSON文件`,
 
 helpSupport: `【Help & Support — 帮助与支持】
@@ -2361,14 +2324,10 @@ helpSupport: `【Help & Support — 帮助与支持】
    - 配置微信客服企业号
 
 ■ 账号受限用户引导
-- 受限用户从My Center红色横幅点击 → 直接唤起WhatsApp客服
+- 受限用户从My Center红色横幅点击 → 直接唤起当前页
 - 受限用户主动进入Help页 → 所有渠道正常可用
-- WhatsApp客服工单系统：受限用户发起会话时，预填消息模板（如"My account is restricted, ID: {user_id}"）
 
-■ 埋点事件
-- page_view: help_support
-- click: whatsapp_support
-- click: wechat_support`,
+`,
 
 privacy: `【Privacy Policy — 隐私政策】
 
@@ -2412,11 +2371,7 @@ kycDup: `【KYC 重复身份识别 — Identity Notice】
 点击"继续使用已认证账号"后，后端判断是否存在登录方式类型冲突：
   ▸ 无冲突（已认证账号缺少当前登录类型）→ 进入"补全登录方式"流程
   ▸ 有冲突（已认证账号已有同类型登录方式）→ 进入"冲突提示"页，引导直接登录已认证账号，不停用当前账号
-
-■ 埋点
-- page_view: kyc_dup_detected
-- click: kyc_dup_continue（继续使用已认证账号）
-- click: kyc_dup_cancel（使用其他证件）`,
+`,
 
 kycDupConflict: `【KYC 重复身份 — 登录方式类型冲突】
 
@@ -2454,11 +2409,7 @@ kycDupConflict: `【KYC 重复身份 — 登录方式类型冲突】
 | 邮箱 A | 手机号 + 邮箱 B | 冲突（同类型邮箱）→ 本页 |
 | 手机号 | 仅邮箱 | 无冲突 → 补全流程 |
 | 邮箱 | 仅手机号 | 无冲突 → 补全流程 |
-
-■ 埋点
-- page_view: kyc_dup_conflict
-- click: kyc_dup_conflict_go_login（前往登录）
-- click: kyc_dup_conflict_cancel（使用其他证件）`,
+`,
 
 kycDupSupplement: `【KYC 重复身份 — 补全登录方式】
 
@@ -2542,7 +2493,7 @@ function loadNotes() {
     if (raw) allNotes = JSON.parse(raw);
   } catch (e) {}
   for (const k in defaultNotes) {
-    if (!allNotes[k]) allNotes[k] = defaultNotes[k];
+    if (!(k in allNotes)) allNotes[k] = defaultNotes[k];
   }
 }
 
@@ -2734,6 +2685,7 @@ en: {
   'profile.bizUpload': 'Upload Business License',
   'profile.bizHint': 'JPG / PNG / PDF, max 20 MB',
   'profile.bizOcrPending': 'Upload license to auto-recognize',
+  'profile.bizName': 'Company Name',
   'profile.licenseType': 'License Type',
   'profile.regNumber': 'Reg. Number',
   'profile.legalRep': 'Legal Rep / Director',
@@ -2922,6 +2874,7 @@ zh: {
   'profile.bizUpload': '上传营业执照',
   'profile.bizHint': 'JPG / PNG / PDF，最大20MB',
   'profile.bizOcrPending': '上传执照后自动识别',
+  'profile.bizName': '企业名称',
   'profile.licenseType': '证照类型',
   'profile.regNumber': '注册号',
   'profile.legalRep': '法定代表人/董事',
@@ -3110,6 +3063,7 @@ zh: {
   'profile.bizUpload': '上傳營業執照',
   'profile.bizHint': 'JPG / PNG / PDF，最大20MB',
   'profile.bizOcrPending': '上傳執照後自動辨識',
+  'profile.bizName': '企業名稱',
   'profile.licenseType': '證照類型',
   'profile.regNumber': '註冊號',
   'profile.legalRep': '法定代表人/董事',
@@ -3345,7 +3299,7 @@ function applyLocale() {
   if (ocrPend) setHTML(ocrPend, '<span>⏳</span> ' + t('profile.bizOcrPending'));
 
   var ofLabels = qsa('s-profile', '.of-label');
-  ['profile.firstName','profile.lastName','profile.idNumber','profile.licenseType','profile.regNumber','profile.legalRep','profile.bizAddress'].forEach(function(k, i) { if (ofLabels[i]) setText(ofLabels[i], t(k)); });
+  ['profile.firstName','profile.lastName','profile.idNumber','profile.bizName','profile.licenseType','profile.regNumber','profile.legalRep','profile.bizAddress'].forEach(function(k, i) { if (ofLabels[i]) setText(ofLabels[i], t(k)); });
   qsa('s-profile', '.of-edit').forEach(function(el) { setText(el, t('profile.tapEdit')); });
   qsa('s-profile', '.of-val.placeholder').forEach(function(el) { setText(el, t('profile.autoDetect')); });
 
