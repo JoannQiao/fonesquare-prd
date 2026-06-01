@@ -565,7 +565,7 @@ body{
         <div class="profile-avatar">J</div>
         <div class="profile-info">
           <div class="pi-name">Joann Qiao</div>
-          <div class="pi-sub">+852 9123 4567</div>
+          <div class="pi-sub">+852 ****4567</div>
           <div class="kyc-badge unverified" id="mcBadge">
             <span id="mcBadgeIcon">⚠️</span><span id="mcBadgeText">Unverified</span>
           </div>
@@ -894,7 +894,7 @@ body{
       <label style="font-size:12px;font-weight:700;color:var(--t2);display:block;margin-bottom:8px;text-transform:uppercase;letter-spacing:.6px;" data-i18n="kycDupSup.emailLabel">Email to add</label>
       <div style="display:flex;align-items:center;background:var(--bgi);border:1.5px solid var(--bd);border-radius:var(--r-md);padding:12px 14px;margin-bottom:20px;">
         <span style="font-size:16px;margin-right:10px;">✉️</span>
-        <span style="flex:1;font-size:14px;font-weight:500;color:var(--t1);">new.user@example.com</span>
+        <span style="flex:1;font-size:14px;font-weight:500;color:var(--t1);">n***@example.com</span>
       </div>
 
       <label style="font-size:12px;font-weight:700;color:var(--t2);display:block;margin-bottom:8px;text-transform:uppercase;letter-spacing:.6px;" data-i18n="kycDupSup.acctLabel">Bind to account</label>
@@ -1153,7 +1153,7 @@ body{
           <div style="display:flex;align-items:center;gap:10px;">
             <span style="font-size:18px;">✉️</span>
             <div>
-              <div style="font-size:14px;font-weight:600;">joann@company.com</div>
+              <div style="font-size:14px;font-weight:600;">j***@company.com</div>
               <div style="font-size:11px;color:var(--t3);">Email · Added Mar 2026</div>
             </div>
           </div>
@@ -1166,7 +1166,7 @@ body{
           <div style="display:flex;align-items:center;gap:10px;">
             <span style="font-size:18px;">📱</span>
             <div>
-              <div style="font-size:14px;font-weight:600;">+852 9876 5432</div>
+              <div style="font-size:14px;font-weight:600;">+852 ****5432</div>
               <div style="font-size:11px;color:var(--t3);">Phone · Just now</div>
             </div>
           </div>
@@ -1233,7 +1233,7 @@ body{
     <div class="body" style="padding:28px 20px;display:flex;flex-direction:column;align-items:center;">
       <div style="width:56px;height:56px;background:var(--blue-bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:14px;">📱</div>
       <div style="font-size:18px;font-weight:700;margin-bottom:8px;">Verify Your Phone</div>
-      <div style="font-size:14px;color:var(--t2);text-align:center;line-height:1.5;margin-bottom:20px;">Enter the code sent to<br><strong>+852 9876 5432</strong></div>
+      <div style="font-size:14px;color:var(--t2);text-align:center;line-height:1.5;margin-bottom:20px;">Enter the code sent to<br><strong>+852 ****5432</strong></div>
       <div style="display:flex;gap:10px;margin-bottom:16px;">
         <div style="width:44px;height:52px;border:2px solid var(--blue);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;background:#fff;">5</div>
         <div style="width:44px;height:52px;border:2px solid var(--blue);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;background:#fff;">2</div>
@@ -2031,7 +2031,7 @@ myCenter: `【My Center — 个人中心】
 1. 个人信息卡片（红色渐变背景）
    - 头像：取用户 First Name 首字母（如 First Name: Joann → "J"），MVP不支持上传头像
    - 姓名：取自OCR识别结果或注册手机号
-   - 手机号：脱敏展示，如 +852 9123 ****
+   - 手机号：脱敏展示，如 +852 ****4567（手机号 / WhatsApp / 邮箱在 APP 端一律脱敏，不展示明文）
    - KYC状态角标：未认证（黄色⚠️）/ 已认证（绿色✅）/ 账号受限（红色🔒）
 
 2. KYC引导横幅 / 已认证状态 / 账号受限
@@ -2190,7 +2190,7 @@ loginMethods: `【Login Methods — 登录方式管理】
 
 ■ 页面结构
 1. 已绑定方式列表
-   - 每行：图标 + 具体号码/邮箱 + 类型标签 + 添加时间
+   - 每行：图标 + 脱敏号码/邮箱 + 类型标签 + 添加时间（手机号如 +852 ****5432，邮箱如 j***@company.com，WhatsApp 同手机号规则，均不展示明文）
    - PRIMARY 标签：标识主要联系方式
    - NEW 标签：新绑定的方式
 
@@ -2226,6 +2226,10 @@ addMethod: `【Add Login Method — 添加登录方式】
 2. 输入号码/邮箱
 3. 点击发送验证码 → 跳转OTP验证页
 4. 验证通过 → 绑定成功，返回登录方式列表
+
+■ 脱敏说明
+- 输入框为用户本人正在输入的号码/邮箱，显示明文便于核对
+- 绑定成功后在 Login Methods 列表中一律脱敏展示（如 +852 ****5432、j***@company.com）
 
 ■ 埋点事件
 - click: login_methods_type_select
@@ -2419,7 +2423,7 @@ kycDupSupplement: `【KYC 重复身份 — 补全登录方式】
 ■ 页面结构
 1. 主标题："Bind this email to the verified account / 将该邮箱绑定到已认证账号"
 2. 说明文案：解释已认证账号当前只有手机号登录，补全后可用两种方式登录
-3. "Email to add" 只读展示用户当前邮箱
+3. "Email to add" 只读脱敏展示用户当前邮箱（如 n***@example.com，保留首字母 + 完整域名）
 4. "Bind to account" 只读展示已认证账号脱敏信息 + ✓ Verified 标签
 5. 🔐 安全提示：下一步会向已认证手机号下发OTP，用于确认账号所有权
 6. 主按钮："Send verification code / 发送验证码"
