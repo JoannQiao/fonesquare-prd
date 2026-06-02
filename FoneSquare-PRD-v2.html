@@ -2350,6 +2350,7 @@ body.editing .edit-mode-banner { display:block; }
         <tr><td>用户尝试用已停用账号登录</td><td style="position: relative;">提示该账号已停用，引导使用主账号登录</td></tr>
         <tr><td>证件被盗用</td><td style="position: relative;">OTP 验证拦截 — 攻击者无法收到验证码，绑定无法完成</td></tr>
         <tr><td><strong>当前登录方式与已认证账号同类型但不同号</strong><br><em>（如当前用手机号 A 登录，已认证账号绑定手机号 B）</em></td><td style="position: relative;">进入「登录方式类型冲突」页面 → 提示已有账号且已绑定同类型登录方式 → 引导用户直接登录已认证账号 → <strong>当前账号不可替换原有登录信息</strong> → 当前未认证账号不停用（可继续使用，但无法用此证件认证）</td></tr>
+        <tr><td><strong>当前为手机号 / WhatsApp，已认证账号已有手机号 / WhatsApp 但号码不一致</strong><br><em>（如当前用 WhatsApp A 登录，已认证账号绑定手机号 B）</em></td><td style="position: relative;">phone 与 whatsapp 是两种独立登录通道，但同一手机号需跨通道（短信 / WhatsApp）全局唯一；当前为号码型登录方式（手机号 / WhatsApp），而已认证账号已存在任一号码型登录方式且号码与当前不一致时，会破坏号码唯一性约束，故在补全流程中判定冲突 → 进入「登录方式类型冲突」页面 → 引导用户直接登录已认证账号 → <strong>不可把当前登录方式加到已认证账号</strong> → 当前未认证账号不停用（可继续使用，但无法用此证件认证）</td></tr>
       </tbody>
     </table>
   </div>
@@ -3595,12 +3596,12 @@ body.editing .edit-mode-banner { display:block; }
       <tr><td rowspan="9">基本信息（个人）</td><td>商家类型</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">Checkbox 多选：买家 / 卖家，可同时勾选</td></tr>
       <tr><td>名</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">与证件一致</td></tr>
       <tr><td>姓</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">与证件一致</td></tr>
-      <tr><td>手机号</td><td><span class="tag" style="background:#F3F4F6;color:#6B7280;">选填</span></td><td style="position: relative;">含区号，格式校验（手机、邮箱、WhatsApp 三选一必填）</td></tr>
+      <tr><td>手机号</td><td><span class="tag" style="background:#F3F4F6;color:#6B7280;">选填</span></td><td style="position: relative;">区号下拉（如 +852）+ 号码输入框，格式校验（手机、邮箱、WhatsApp 三选一必填）</td></tr>
       <tr><td>邮箱</td><td><span class="tag" style="background:#F3F4F6;color:#6B7280;">选填</span></td><td style="position: relative;">格式校验</td></tr>
-      <tr><td>WhatsApp</td><td><span class="tag" style="background:#F3F4F6;color:#6B7280;">选填</span></td><td style="position: relative;">类似电话号码的 WhatsApp 账号</td></tr>
+      <tr><td>WhatsApp</td><td><span class="tag" style="background:#F3F4F6;color:#6B7280;">选填</span></td><td style="position: relative;">区号下拉（与手机号共用同一套区号选项）+ 号码输入框；<strong>填写时号码须与手机号完全一致（区号 + 号码相同）</strong></td></tr>
       <tr><td>所在地区</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">下拉选择</td></tr>
       <tr><td>备注</td><td><span class="tag" style="background:#F3F4F6;color:#6B7280;">选填</span></td><td style="position: relative;">—</td></tr>
-      <tr><td colspan="3" style="position: relative; color:#8C8C8C; font-size:11px;">💡 手机号、邮箱、WhatsApp 三个联系方式至少填写一项</td></tr>
+      <tr><td colspan="3" style="position: relative; color:#8C8C8C; font-size:11px;">💡 手机号、邮箱、WhatsApp 三个联系方式至少填写一项；如填写 WhatsApp，须与手机号一致（区号 + 号码完全相同）</td></tr>
       <tr><td rowspan="6">KYC 认证材料（个人）</td><td>证件类型</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">HKID / 澳门ID / 身份证 / 护照</td></tr>
       <tr><td>证件号码</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">按证件类型格式校验</td></tr>
       <tr><td>名（与证件一致）</td><td><span class="tag tag-p0">必填</span></td><td style="position: relative;">与证件一致</td></tr>
@@ -3621,7 +3622,7 @@ body.editing .edit-mode-banner { display:block; }
   <div class="info-box info">
     <span class="ib-icon">ℹ️</span>
     <div>
-      • 单页底部「✅ 提交创建」按钮，提交前前端校验必填项 + 格式校验 + 三选一联系方式校验<br>
+      • 单页底部「✅ 提交创建」按钮，提交前前端校验必填项 + 格式校验 + 三选一联系方式校验 + WhatsApp 与手机号一致性校验<br>
       • 提交成功后 Toast 提示并可跳转至商家详情页<br>
       • 后台添加商家 → 操作人自动绑定为该商家的维护人（与角色无关）<br>
       • 本页不提供"维护人分配"操作
@@ -4210,8 +4211,9 @@ mermaid.initialize({
     'c-license':['营业执照照片','Business License Photo'],
     'c-license-hint':['JPG / PNG / PDF ≤ 10MB，提交可获更高交易额度','JPG/PNG/PDF ≤ 10MB; raises transaction quota'],
     'add-phone-ph':['请输入手机号','Enter phone number'],
-    'add-wa-ph':['选填','Optional'],
-    'add-contact-hint':['手机号、邮箱、WhatsApp 三选一必填','Phone, Email, or WhatsApp — at least one required'],
+    'add-wa-ph':['请输入 WhatsApp 号码','Enter WhatsApp number'],
+    'add-wa-same':['⚠️ WhatsApp 号码须与手机号一致（区号 + 号码完全相同）','⚠️ WhatsApp number must match the phone number (same country code + number)'],
+    'add-contact-hint':['手机号、邮箱、WhatsApp 三选一必填；如填写 WhatsApp，须与手机号完全一致（区号 + 号码相同）','Phone, Email, or WhatsApp — at least one required; if WhatsApp is provided, it must exactly match the phone number (same country code + number)'],
     'add-photo-hint':['护照仅需上传一面；JPG/PNG ≤ 5MB','Passport: one side only; JPG/PNG ≤ 5MB'],
     'add-corp-doc-ph':['商业登记证等','Business Registration etc.'],
     'add-corp-photo-hint':['JPG / PNG / PDF ≤ 10MB','JPG/PNG/PDF ≤ 10MB'],
@@ -4632,7 +4634,14 @@ mermaid.initialize({
       +     formItem('b-email','邮箱',false,'ph-optional','选填','wf-input')
       +   '</div>'
       +   '<div class="wf-form-row">'
-      +     formItem('b-whatsapp','WhatsApp',false,'add-wa-ph','选填','wf-input')
+      +     '<div class="wf-form-item">'
+      +       '<div class="wf-form-label"><span data-i18n="b-whatsapp">WhatsApp</span></div>'
+      +       '<div style="display:flex;gap:6px;">'
+      +         '<div class="wf-select" style="width:100px;flex-shrink:0;font-size:12px;">+852 ▾</div>'
+      +         '<div class="wf-input" style="flex:1;" data-i18n="add-wa-ph">请输入 WhatsApp 号码</div>'
+      +       '</div>'
+      +       '<div style="font-size:10px;color:#8C8C8C;margin-top:4px;" data-i18n="add-wa-same">⚠️ WhatsApp 号码须与手机号一致（区号 + 号码完全相同）</div>'
+      +     '</div>'
       +     formItem('b-region','所在地区',true,'add-region-ph','下拉选择','wf-select')
       +   '</div>'
       +   '<div class="wf-form-row">'
@@ -4883,7 +4892,7 @@ mermaid.initialize({
       } else if (name === 'saCancel') {
         root.querySelector('[data-bind="saReassignBox"]').style.display = 'none';
       } else if (name === 'addSubmit') {
-        var m2 = state.lang === 'zh' ? '✅ 创建成功（演示）— 实际提交时校验证件唯一性 / 制裁名单核查 / 触发归属规则' : '✅ Created (demo) — real submit will check ID uniqueness, sanction list and ownership rules';
+        var m2 = state.lang === 'zh' ? '✅ 创建成功（演示）— 实际提交时校验证件唯一性 / 制裁名单核查 / 触发归属规则；并校验 WhatsApp 号码与手机号一致' : '✅ Created (demo) — real submit will check ID uniqueness, sanction list, ownership rules, and that WhatsApp matches the phone number';
         alert(m2);
         go(root, 'list', state);
       } else if (name === 'mfDownload') {
