@@ -2233,10 +2233,10 @@ body.editing .edit-mode-banner { display:block; }
   <table style="position: relative;">
     <thead><tr><th>国籍</th><th>可选证件类型</th><th>证件号格式</th></tr></thead>
     <tbody>
-      <tr><td>🇭🇰 Hong Kong（香港）</td><td>香港身份证（HK ID） / 护照（Passport）</td><td style="position: relative;">HKID: X000000(0)</td></tr>
-      <tr><td>🇲🇴 Macau（澳门）</td><td>澳门身份证（MO ID） / 护照（Passport）</td><td style="position: relative;">Macau ID: 1/5/7XXXXXXX</td></tr>
-      <tr><td>🇨🇳 China（中国大陆）</td><td>居民身份证（CN ID） / 护照（Passport）</td><td style="position: relative;">身份证: 18位</td></tr>
-      <tr><td>其他地区</td><td>仅护照（Passport）</td><td style="position: relative;">按国际格式校验</td></tr>
+      <tr><td>🇭🇰 Hong Kong（香港）</td><td>香港身份证（HK ID） / 护照（Passport）</td><td style="position: relative;"><code>/^[A-Za-z]{1,2}\s*\d{6}\s*(\(\s*[0-9Aa]\s*\)|[0-9Aa])$/i</code></td></tr>
+      <tr><td>🇲🇴 Macau（澳门）</td><td>澳门身份证（MO ID） / 护照（Passport）</td><td style="position: relative;"><code>/^[157]\s*\d{6}\s*(\(\s*\d\s*\)|\d)$/</code></td></tr>
+      <tr><td>🇨🇳 China（中国大陆）</td><td>居民身份证（CN ID） / 护照（Passport）</td><td style="position: relative;"><code>/^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}(18|19|20)\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{3}[\dXx]$)$/</code></td></tr>
+      <tr><td>其他地区（仅护照 Passport）</td><td>仅护照（Passport）</td><td style="position: relative;"><code>/^[A-Za-z0-9]{6,11}$/</code></td></tr>
     </tbody>
   </table>
 
@@ -4206,6 +4206,11 @@ mermaid.initialize({
     'add-region-ph':['国家 / 省份 / 城市 三级联动','Country / Province / City'],
     'add-kyc':['KYC 认证材料（个人）','KYC (Personal)'],
     'add-doc-ph':['按地区动态展示（HK ID / 护照 / 身份证…）','Dynamic by region (HK ID / Passport / ID…)'],
+    'add-idtype-hkid':['香港身份证（HK ID）','HK ID Card'],
+    'add-idtype-moid':['澳门身份证（MO ID）','Macau ID Card'],
+    'add-idtype-cnid':['中国居民身份证','China Resident ID'],
+    'add-idtype-passport':['护照（Passport）','Passport'],
+    'add-idnum-ph':['请输入证件号码','Enter ID number'],
     'add-valid-ph':['不可选过去日期','Future date only'],
     'add-valid-sep':['至','to'],
     'add-valid-hint':['选择起止日期；结束日期不可早于今天','Select start–end; end date cannot be before today'],
@@ -4653,8 +4658,20 @@ mermaid.initialize({
 
       + '<div class="wf-card"><div class="wf-card-head" data-i18n="add-kyc">KYC 认证材料（个人）</div><div class="wf-card-body">'
       +   '<div class="wf-form-row">'
-      +     formItem('k-doc','证件类型',true,'add-doc-ph','HKID / 澳门ID / 身份证 / 护照','wf-select')
-      +     formItem('k-num','证件号码',true,'ph-input','请输入','wf-input')
+      +     '<div class="wf-form-item">'
+      +       '<div class="wf-form-label"><span class="req">*</span><span data-i18n="k-doc">证件类型</span></div>'
+      +       '<select class="wf-select" data-bind="addIdType" style="color:#262626;">'
+      +         '<option value="hkid" data-i18n="add-idtype-hkid">香港身份证（HK ID）</option>'
+      +         '<option value="moid" data-i18n="add-idtype-moid">澳门身份证（MO ID）</option>'
+      +         '<option value="cnid" data-i18n="add-idtype-cnid">中国居民身份证</option>'
+      +         '<option value="passport" data-i18n="add-idtype-passport">护照（Passport）</option>'
+      +       '</select>'
+      +     '</div>'
+      +     '<div class="wf-form-item">'
+      +       '<div class="wf-form-label"><span class="req">*</span><span data-i18n="k-num">证件号码</span></div>'
+      +       '<input type="text" class="wf-input" data-bind="addIdNum" data-i18n-ph="add-idnum-ph" placeholder="请输入证件号码" style="color:#262626;outline:none;">'
+      +       '<div class="wf-field-error" data-bind="addIdNumErr" style="display:none;color:#FF4D4F;font-size:10px;margin-top:4px;"></div>'
+      +     '</div>'
       +   '</div>'
       +   '<div class="wf-form-row">'
       +     formItem('k-lastName','姓（与证件一致）',true,'ph-input','请输入','wf-input')
@@ -4774,6 +4791,12 @@ mermaid.initialize({
       var v = pair[lang === 'zh' ? 0 : 1];
       if (/<\w+/.test(v)) el.innerHTML = v;
       else el.textContent = v;
+    });
+    root.querySelectorAll('[data-i18n-ph]').forEach(function(el){
+      var pk = el.getAttribute('data-i18n-ph');
+      var ppair = I18N[pk];
+      if (!ppair) return;
+      el.setAttribute('placeholder', ppair[lang === 'zh' ? 0 : 1]);
     });
   }
 
@@ -4929,6 +4952,29 @@ mermaid.initialize({
       } else if (name === 'saCancel') {
         root.querySelector('[data-bind="saReassignBox"]').style.display = 'none';
       } else if (name === 'addSubmit') {
+        // 证件号按证件类型正则校验（与 APP 端 KYC 同一套规则）
+        var ID_PATTERNS = {
+          passport: /^[A-Za-z0-9]{6,11}$/,
+          moid: /^[157]\s*\d{6}\s*(\(\s*\d\s*\)|\d)$/,
+          hkid: /^[A-Za-z]{1,2}\s*\d{6}\s*(\(\s*[0-9Aa]\s*\)|[0-9Aa])$/i,
+          cnid: /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}(18|19|20)\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{3}[\dXx]$)$/
+        };
+        var typeEl = root.querySelector('[data-bind="addIdType"]');
+        var numEl = root.querySelector('[data-bind="addIdNum"]');
+        var errEl = root.querySelector('[data-bind="addIdNumErr"]');
+        var idType = typeEl ? typeEl.value : 'passport';
+        var idNum = numEl ? (numEl.value || '').trim() : '';
+        var pattern = ID_PATTERNS[idType] || ID_PATTERNS.passport;
+        if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
+        if (numEl) numEl.style.borderColor = '';
+        if (!idNum || !pattern.test(idNum)) {
+          var errMsg = !idNum
+            ? (state.lang === 'zh' ? '请输入证件号码' : 'Please enter the ID number')
+            : (state.lang === 'zh' ? '证件号码格式不正确，请检查所选证件类型与号码是否匹配' : 'Invalid ID number format for the selected document type');
+          if (errEl) { errEl.textContent = errMsg; errEl.style.display = 'block'; }
+          if (numEl) { numEl.style.borderColor = '#FF4D4F'; numEl.focus(); }
+          return;
+        }
         var m2 = state.lang === 'zh' ? '✅ 创建成功（演示）— 实际提交时校验证件唯一性 / 制裁名单核查 / 触发归属规则；并校验 WhatsApp 号码与手机号一致' : '✅ Created (demo) — real submit will check ID uniqueness, sanction list, ownership rules, and that WhatsApp matches the phone number';
         alert(m2);
         go(root, 'list', state);

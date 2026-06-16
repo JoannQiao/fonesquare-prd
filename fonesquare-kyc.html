@@ -744,7 +744,7 @@ body{
         <div class="ocr-row">
           <div class="ocr-field">
             <div class="of-label">ID Number</div>
-            <div class="of-val editable" contenteditable="true">A123456(7)</div>
+            <div class="of-val editable" id="idNumberInput" contenteditable="true">A123456(7)</div>
             <div class="of-edit">✏️ tap to edit</div>
           </div>
         </div>
@@ -1914,7 +1914,26 @@ function pickIdType(chip, type) {
   updateIdUploadView(type);
 }
 
+/* ── ID number regex by document type ── */
+var ID_NUMBER_PATTERNS = {
+  passport: /^[A-Za-z0-9]{6,11}$/,
+  moid: /^[157]\s*\d{6}\s*(\(\s*\d\s*\)|\d)$/,
+  hkid: /^[A-Za-z]{1,2}\s*\d{6}\s*(\(\s*[0-9Aa]\s*\)|[0-9Aa])$/i,
+  cnid: /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}(18|19|20)\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{3}[\dXx]$)$/
+};
+
+function validateIdNumber() {
+  var el = document.getElementById('idNumberInput');
+  var val = el ? (el.textContent || '').trim() : '';
+  var pattern = ID_NUMBER_PATTERNS[currentIdType] || ID_NUMBER_PATTERNS.passport;
+  return pattern.test(val);
+}
+
 function completeProfile() {
+  if (!validateIdNumber()) {
+    toast(t('toast.idNumberInvalid'));
+    return;
+  }
   profileCompleted = true;
   setAccountState('verified');
   toast(t('toast.profileSuccess'));
@@ -2138,6 +2157,11 @@ profile: `【Profile — 身份认证】
      · 护照：仅上传信息页
    - OCR自动识别：姓名（First Name / Last Name 分别填入）、证件号码
    - OCR结果可直接编辑（contenteditable）
+   - 证件号格式校验（按证件类型，提交时校验，不通过则拦截并提示）：
+     · 护照（不区分国家）：/^[A-Za-z0-9]{6,11}$/
+     · 澳门身份证：/^[157]\\s*\\d{6}\\s*(\\(\\s*\\d\\s*\\)|\\d)$/
+     · 香港身份证：/^[A-Za-z]{1,2}\\s*\\d{6}\\s*(\\(\\s*[0-9Aa]\\s*\\)|[0-9Aa])$/i
+     · 中国居民身份证：15 位或 18 位（18 位末位可为 X）
    - 证件有效期：日期范围选择器，支持选择长期
 
 3. 企业信息（选填，默认折叠）
@@ -2815,6 +2839,7 @@ en: {
   'notes.confirmReset': 'Reset all notes to default? Custom edits will be lost.',
   'toast.langSelected': ' selected ✓',
   'toast.profileSuccess': 'Profile submitted successfully ✓',
+  'toast.idNumberInvalid': 'Invalid ID number format for the selected document type',
   'toast.loggedOut': 'Logged out successfully',
   'toast.waSupport': 'Opening WhatsApp support chat…',
   'toast.openWa': 'Opening WhatsApp…',
@@ -3004,6 +3029,7 @@ zh: {
   'notes.confirmReset': '重置所有备注为默认内容？自定义内容将丢失。',
   'toast.langSelected': ' 已选择 ✓',
   'toast.profileSuccess': '资料提交成功 ✓',
+  'toast.idNumberInvalid': '证件号格式与所选证件类型不匹配',
   'toast.loggedOut': '已退出登录',
   'toast.waSupport': '正在打开WhatsApp客服…',
   'toast.openWa': '正在打开WhatsApp…',
@@ -3193,6 +3219,7 @@ zh: {
   'notes.confirmReset': '重設所有備註為預設內容？自訂內容將遺失。',
   'toast.langSelected': ' 已選擇 ✓',
   'toast.profileSuccess': '資料提交成功 ✓',
+  'toast.idNumberInvalid': '證件號格式與所選證件類型不符',
   'toast.loggedOut': '已登出',
   'toast.waSupport': '正在開啟WhatsApp客服…',
   'toast.openWa': '正在開啟WhatsApp…',
