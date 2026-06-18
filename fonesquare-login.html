@@ -856,10 +856,6 @@ body{
   <span class="nav-sep">›</span>
   <button class="nav-btn" onclick="go('success')">Homepage</button>
   <span class="nav-sep">|</span>
-  <button class="nav-btn" onclick="go('waInput')">WA Input</button>
-  <span class="nav-sep">›</span>
-  <button class="nav-btn" onclick="go('waOtp')">WA OTP</button>
-  <span class="nav-sep">|</span>
   <button class="nav-btn" onclick="go('emailInput')">Email</button>
   <span class="nav-sep">›</span>
   <button class="nav-btn" onclick="go('emailOtp')">Email OTP</button>
@@ -950,7 +946,6 @@ body{
           </div>
           <div class="dvd"><span>or</span></div>
           <div class="alt-row">
-            <button class="alt-btn wa" onclick="go('waInput')"><span class="i"><svg class="wa-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span><span>WhatsApp</span></button>
             <button class="alt-btn" onclick="go('emailInput')"><span class="i">✉️</span><span>Email</span></button>
           </div>
           <button class="btn" onclick="go('smsOtp')">LOGIN / SIGN UP</button>
@@ -1317,73 +1312,6 @@ body{
     <div class="home-ind"></div>
   </div>
 
-  <!-- ====== WA INPUT ====== -->
-  <div class="screen" id="s-waInput">
-    <div class="sb">
-      <span class="time">9:41</span>
-      <span class="ic"><svg width="52" height="12"><use href="#sb-icons"/></svg></span>
-    </div>
-    <div class="hdr">
-      <button class="hdr-back" onclick="go('login')">←</button>
-      <span class="hdr-title">WhatsApp Login</span>
-    </div>
-    <div class="body">
-      <div class="hero-center" style="padding-top:8px;">
-        <div class="h-icon wa" style="font-size:36px;display:flex;align-items:center;justify-content:center;"><svg class="wa-icon" style="width:36px;height:36px;" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
-        <h2>Login via WhatsApp</h2>
-        <p>We'll send a verification code to your WhatsApp</p>
-      </div>
-      <div style="padding:20px 24px;">
-        <div class="info-box wa">
-          <span class="ib-i">ℹ️</span>
-          <span>Verification code sent via WhatsApp</span>
-        </div>
-        <label class="form-label">WhatsApp Number</label>
-        <div class="phone-grp">
-          <div class="phone-pfx" onclick="openCountryPicker(this)">
-            <span class="f">🇭🇰</span><span class="code">+852</span><span class="a">▾</span>
-          </div>
-          <input type="tel" placeholder="Enter WhatsApp number" inputmode="numeric">
-        </div>
-        <button class="btn wa-green" onclick="go('waOtp')">SEND WHATSAPP CODE</button>
-      </div>
-    </div>
-    <div class="home-ind"></div>
-  </div>
-
-  <!-- ====== WA OTP ====== -->
-  <div class="screen" id="s-waOtp">
-    <div class="sb">
-      <span class="time">9:41</span>
-      <span class="ic"><svg width="52" height="12"><use href="#sb-icons"/></svg></span>
-    </div>
-    <div class="hdr">
-      <button class="hdr-back" onclick="go('waInput')">←</button>
-      <span class="hdr-title">WhatsApp Verification</span>
-    </div>
-    <div class="body">
-      <div class="hero-center">
-        <div class="h-icon wa" style="font-size:36px;display:flex;align-items:center;justify-content:center;"><svg class="wa-icon" style="width:36px;height:36px;" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
-        <h2>Check Your WhatsApp</h2>
-        <p>We sent a 6-digit code to<br><span class="hl">+852 ****4567</span></p>
-        <div class="channel-tag" style="color:#25D366;"><svg class="wa-icon" style="width:14px;height:14px;margin-right:4px;" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> via WhatsApp</div>
-      </div>
-      <div class="otp-row">
-        <input class="otp-c ok" type="text" maxlength="1" value="8">
-        <input class="otp-c ok" type="text" maxlength="1" value="3">
-        <input class="otp-c" type="text" maxlength="1" value="">
-        <input class="otp-c" type="text" maxlength="1" value="">
-        <input class="otp-c" type="text" maxlength="1" value="">
-        <input class="otp-c" type="text" maxlength="1" value="">
-      </div>
-      <div class="resend">Didn't receive? <b>Resend in 01:00</b></div>
-      <div style="padding:28px 24px 0;">
-        <button class="btn wa-green" onclick="go('setPwd')">VERIFY & CONTINUE</button>
-      </div>
-    </div>
-    <div class="home-ind"></div>
-  </div>
-
   <!-- ====== EMAIL INPUT ====== -->
   <div class="screen" id="s-emailInput">
     <div class="sb">
@@ -1701,7 +1629,6 @@ body{
 <!-- Screen map -->
 <div class="screen-map">
   <b>📱 SMS 注册：</b> Splash → Login → SMS OTP → Set Pwd（必填）→ 首页<br>
-  <b>WhatsApp 注册：</b> Login → WA Input → WA OTP → Set Pwd（必填）→ 首页<br>
   <b>✉️ Email 注册：</b> Login → Email → Email OTP → Set Pwd（必填）→ 注册完成 → 首页<br>
   <b>🔒 密码登录：</b> Login (Password Tab) → Login Success（自动跳转）→ 首页<br>
   <b>🛡️ KYC 认证：</b> 下单前校验 / "Me"页面入口 → Profile（独立于注册流程）
@@ -2241,8 +2168,6 @@ const screenMeta = [
   {id:'profile', label:'KYC 身份验证（独立入口）'},
   {id:'success', label:'Homepage 首页'},
   {id:'loginOk', label:'Login Success 登录成功（自动跳转）'},
-  {id:'waInput', label:'WhatsApp 手机输入'},
-  {id:'waOtp',   label:'WhatsApp OTP 验证'},
   {id:'emailInput', label:'Email 邮箱输入'},
   {id:'emailOtp',label:'Email OTP 邮箱验证'},
   {id:'pwdLogin',label:'Pwd Login 密码登录'},
@@ -2270,7 +2195,7 @@ APP启动开屏页，展示品牌形象，建立用户对平台的第一印象�
 • 根据系统语言/IP自动匹配默认语言和区号`,
 
 login: `【页面功能】
-登录/注册统一入口，支持手机号OTP和密码两种登录方式，同时提供WhatsApp和邮箱的替代通道入口。
+登录/注册统一入口，支持手机号OTP和密码两种登录方式，同时提供邮箱替代通道入口。~~（原计划含 WhatsApp 替代通道入口，因 WhatsApp Business API 申请受阻，本期暂缓）~~
 
 【Tab切换】
 ① Phone Tab（默认）：手机号+OTP登录/注册
@@ -2282,8 +2207,9 @@ login: `【页面功能】
 • 点击"LOGIN / SIGN UP"后调用后端发送OTP
 
 【替代登录入口】
-• "or" 分割线下方提供WhatsApp / Email两个快捷入口
-• WhatsApp按钮跳转至WhatsApp手机号输入页
+• "or" 分割线下方提供 Email 快捷入口
+• ~~"or" 分割线下方提供WhatsApp / Email两个快捷入口~~（WhatsApp 本期暂缓）
+• ~~WhatsApp按钮跳转至WhatsApp手机号输入页~~（本期暂缓）
 • Email按钮跳转至邮箱输入页
 
 【密码登录Tab】
@@ -2345,12 +2271,12 @@ setPwd: `【页面功能】
 
 【V1.1 更新】
 🔐 密码设置为注册必填项，不可跳过
-• 适用于所有注册方式（手机号/WhatsApp/Email）
+• 适用于所有注册方式（手机号/Email；~~WhatsApp 本期暂缓~~）
 • 完成密码设置后直接进入首页，不再引导身份验证
 
 【流程位置】
 • 注册流程第2步（共2步）：OTP验证 → 设置密码 → 进入首页
-• 进入条件：SMS/WhatsApp OTP验证成功后（新用户）
+• 进入条件：SMS OTP验证成功后（新用户）~~（原含 WhatsApp OTP，本期暂缓）~~
 
 【密码强度规则】
 • 最低长度：8个字符，最大20个字符
@@ -2368,7 +2294,7 @@ setPwd: `【页面功能】
 【不可跳过】
 • 无"Skip"按钮，密码设置为必填项
 • 设置完成后才能进入首页
-• 设置后用户可用 手机号+密码 / 邮箱+密码 / WhatsApp号+密码 快捷登录
+• 设置后用户可用 手机号+密码 / 邮箱+密码 快捷登录 ~~/ WhatsApp号+密码（本期暂缓）~~
 
 【安全】
 • 密码传输采用HTTPS + 前端AES加密
@@ -2448,7 +2374,7 @@ Chip Selector 横排，当前支持：
 ═══════════════════════
 三、联系邮箱（选填）
 ═══════════════════════
-• 仅在手机号/WhatsApp注册渠道显示
+• 仅在手机号注册渠道显示 ~~/ WhatsApp（本期暂缓）~~
 • 邮箱注册用户此处不显示（已关联邮箱）
 • 用途：订单通知、密码找回、营销触达
 • placeholder："For order notifications"
@@ -2505,7 +2431,9 @@ success: `示意页面，产品功能见场次需求
 • 可考虑在此页增加新手引导卡片（后续迭代）
 `,
 
-waInput: `【页面功能】
+  waInput: `【本期暂缓 ⛔ WhatsApp 登录/注册】因 WhatsApp Business API 申请受阻，本期不实现 WhatsApp 登录/注册，相关页面与交互已移除。以下说明保留存档（整段暂缓）：
+~~
+【页面功能】
 WhatsApp登录渠道入口，用户输入WhatsApp号码以接收OTP。
 
 【适用场景】
@@ -2531,9 +2459,12 @@ WhatsApp登录渠道入口，用户输入WhatsApp号码以接收OTP。
 【注意事项】
 • WhatsApp Business API需预先申请审批模板
 • 模板消息有24小时会话窗口限制
-• 需确保模板语言版本覆盖目标市场`,
+• 需确保模板语言版本覆盖目标市场
+~~`,
 
-waOtp: `【页面功能】
+  waOtp: `【本期暂缓 ⛔ WhatsApp 验证】因 WhatsApp Business API 申请受阻，本期不实现 WhatsApp 登录/注册，相关页面与交互已移除。以下说明保留存档（整段暂缓）：
+~~
+【页面功能】
 WhatsApp验证码输入页，用户填入通过WhatsApp收到的6位OTP。
 
 【验证码规则】
@@ -2556,10 +2487,11 @@ WhatsApp验证码输入页，用户填入通过WhatsApp收到的6位OTP。
 
 【验证成功后】
 • 新用户 → 制裁名单预筛 → 设置密码页
-• 老用户 → 直接进入首页`,
+• 老用户 → 直接进入首页
+~~`,
 
-emailInput: `【页面功能】
-邮箱登录/注册渠道入口，用户输入邮箱地址以接收验证码。作为手机号和WhatsApp之外的第三登录通道，主要面向无本地手机号的用户和企业采购场景。
+  emailInput: `【页面功能】
+邮箱登录/注册渠道入口，用户输入邮箱地址以接收验证码。作为手机号之外的另一登录通道，主要面向无本地手机号的用户和企业采购场景。~~（原表述为"手机号和WhatsApp之外的第三登录通道"，WhatsApp 本期暂缓）~~
 
 【入口路径】
 • Login首页 → 底部社交登录区 → 点击 Email 图标进入本页
@@ -2572,7 +2504,7 @@ emailInput: `【页面功能】
 • 用户无当地手机号（如国际旅行者、海外采购商）
 • 企业用户偏好使用工作邮箱（如 alice@company.com）
 • 目标市场中邮箱渗透率高的地区（欧美、中东）
-• SMS/WhatsApp通道不可用时的兜底方案
+• SMS 通道不可用时的兜底方案 ~~（原含 WhatsApp 通道，本期暂缓）~~
 • 批量采购客户习惯邮箱沟通，方便订单通知闭环
 
 ═══════════════════════
@@ -3673,36 +3605,6 @@ function applyLocale() {
   // ── Homepage (registration complete) ──
   // No dynamic i18n needed — homepage is locale-independent UI mockup
 
-  // ── WhatsApp Input ──
-  const waInput = _s('#s-waInput');
-  if (waInput) {
-    _h(waInput.querySelector('.hdr-title'), 'waInput.title');
-    _h(waInput.querySelector('h2'), 'waInput.heading');
-    _h(waInput.querySelector('.hero-center p'), 'waInput.desc');
-    const waInfoSpan = waInput.querySelector('.info-box span:last-child');
-    _h(waInfoSpan, 'waInput.info');
-    _h(waInput.querySelector('.form-label'), 'waInput.label');
-    _p(waInput.querySelector('.phone-grp input'), 'waInput.placeholder');
-    _h(waInput.querySelector('.btn'), 'waInput.btn');
-  }
-
-  // ── WhatsApp OTP ──
-  const waOtp = _s('#s-waOtp');
-  if (waOtp) {
-    _h(waOtp.querySelector('.hdr-title'), 'waOtp.title');
-    _h(waOtp.querySelector('h2'), 'waOtp.heading');
-    const waP = waOtp.querySelector('.hero-center p');
-    if (waP) _i(waP, t('waOtp.desc') + '<br><span class="hl">+852 ****4567</span>');
-    const waChTag = waOtp.querySelector('.channel-tag');
-    if (waChTag) {
-      const svgMarkup = waChTag.querySelector('svg')?.outerHTML || '';
-      _i(waChTag, svgMarkup + ' ' + t('waOtp.channel'));
-    }
-    const waResend = waOtp.querySelector('.resend');
-    if (waResend) _i(waResend, t('waOtp.resend') + ' <b>' + t('waOtp.resendTimer') + '</b>');
-    _h(waOtp.querySelector('.body .btn'), 'waOtp.btn');
-  }
-
   // ── Email Input ──
   const emailInput = _s('#s-emailInput');
   if (emailInput) {
@@ -3848,7 +3750,6 @@ function applyLocale() {
   const mapEl = _s('.screen-map');
   if (mapEl) {
     mapEl.innerHTML = `<b>${t('map.sms')}</b> Splash → Login → SMS OTP → Set Pwd（必填）→ 注册完成 → 首页<br>` +
-      `<b>${t('map.wa')}</b> Login → WA Input → WA OTP → Set Pwd（必填）→ 注册完成 → 首页<br>` +
       `<b>${t('map.email')}</b> Login → Email → Email OTP → Set Pwd（必填）→ 注册完成 → 首页<br>` +
       `<b>${t('map.pwd')}</b> Login (Password Tab) → Login Success（自动跳转）→ 首页<br>` +
       `<b>${t('map.kyc')}</b> 下单前校验 / "Me"页面入口 → Profile（独立于注册流程）`;

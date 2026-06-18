@@ -996,7 +996,7 @@ body{
         </div>
         <div class="menu-item" onclick="go('loginMethods')">
           <div class="mi-icon" style="background:#E0F2FE;">🔗</div>
-          <div><div class="mi-text">Login Methods</div><div class="mi-sub">Manage phone, email, WhatsApp</div></div>
+          <div><div class="mi-text">Login Methods</div><div class="mi-sub">Manage phone, email</div></div>
           <span class="mi-arrow">›</span>
         </div>
         <div class="menu-item" onclick="go('changePwd')">
@@ -1113,7 +1113,7 @@ body{
         <p>FoneSquare ("we", "us", or "our") respects your privacy and is committed to protecting your personal data.</p>
         <p><b>1. Data We Collect</b><br>We collect personal information you provide during registration: name, phone number, email, nationality, identity documents for KYC compliance.</p>
         <p><b>2. How We Use Your Data</b><br>Account creation and login · Identity verification and sanctions screening · Order processing and delivery · Customer support · Compliance with legal obligations.</p>
-        <p><b>3. Data Sharing</b><br>We share data only with: JD Cloud (SMS delivery), WhatsApp Business API (OTP), risk control partners (sanctions screening), and as required by law.</p>
+        <p><b>3. Data Sharing</b><br>We share data only with: JD Cloud (SMS delivery), <del style="color:var(--t3);">WhatsApp Business API (OTP)</del> <span style="color:var(--t3);font-size:11px;">(login OTP deferred this release)</span>, risk control partners (sanctions screening), and as required by law.</p>
         <p><b>4. Data Retention</b><br>Account data is retained for the life of your account + 3 years. KYC documents are retained per regulatory requirements (minimum 5 years).</p>
         <p><b>5. Your Rights</b><br>You may request access, correction, or deletion of your data. Contact: privacy@fonesquare.com</p>
         <p id="privLastUpdated" style="font-size:11px;color:var(--t3);margin-top:20px;">Last updated: April 2026 · Version 1.0</p>
@@ -1187,7 +1187,7 @@ body{
       <div style="border:2px dashed var(--bd);border-radius:var(--r-md);padding:16px;text-align:center;cursor:pointer;" onclick="go('addMethod')">
         <span style="font-size:22px;">＋</span>
         <div style="font-size:14px;font-weight:600;color:var(--blue);margin-top:4px;">Add Login Method</div>
-        <div style="font-size:11px;color:var(--t3);margin-top:2px;">Phone / Email / WhatsApp</div>
+        <div style="font-size:11px;color:var(--t3);margin-top:2px;">Phone / Email</div>
       </div>
     </div>
     <div class="home-ind"></div>
@@ -1205,16 +1205,10 @@ body{
         <div style="flex:1;"><div style="font-size:14px;font-weight:600;">Phone Number</div><div style="font-size:11px;color:var(--t2);">Login via SMS OTP</div></div>
         <span style="color:var(--blue);font-size:16px;font-weight:700;">●</span>
       </div>
-      <div style="background:#fff;border:1.5px solid var(--bd);border-radius:var(--r-md);padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:10px;opacity:0.5;">
+      <div style="background:#fff;border:1.5px solid var(--bd);border-radius:var(--r-md);padding:12px 14px;margin-bottom:20px;display:flex;align-items:center;gap:10px;opacity:0.5;">
         <span style="font-size:18px;">✉️</span>
         <div style="flex:1;"><div style="font-size:14px;font-weight:600;color:var(--t3);">Email</div><div style="font-size:11px;color:var(--bd);">Already linked</div></div>
       </div>
-      <div style="background:#fff;border:1.5px solid var(--bd);border-radius:var(--r-md);padding:12px 14px;margin-bottom:20px;display:flex;align-items:center;gap:10px;cursor:pointer;">
-        <span style="font-size:18px;">💬</span>
-        <div style="flex:1;"><div style="font-size:14px;font-weight:600;">WhatsApp</div><div style="font-size:11px;color:var(--t2);">Login via WhatsApp OTP</div></div>
-        <span style="color:var(--bd);font-size:16px;font-weight:700;">○</span>
-      </div>
-
       <label style="font-size:12px;font-weight:700;color:var(--t2);display:block;margin-bottom:8px;text-transform:uppercase;letter-spacing:.6px;">Phone Number</label>
       <div style="display:flex;gap:6px;margin-bottom:20px;">
         <div style="background:var(--bgi);border:1.5px solid var(--bd);border-radius:var(--r-md);padding:12px 10px;font-size:13px;width:80px;text-align:center;font-weight:500;">🇭🇰 +852</div>
@@ -2050,7 +2044,7 @@ myCenter: `【My Center — 个人中心】
 1. 个人信息卡片（红色渐变背景）
    - 头像：取用户 First Name 首字母（如 First Name: Joann → "J"），MVP不支持上传头像
    - 姓名：取自OCR识别结果或注册手机号
-   - 手机号：脱敏展示，如 +852 ****4567（手机号 / WhatsApp / 邮箱在 APP 端一律脱敏，不展示明文）
+   - 手机号：脱敏展示，如 +852 ****4567（手机号 / 邮箱在 APP 端一律脱敏，不展示明文；~~WhatsApp 作为登录方式本期暂缓~~）
    - KYC状态角标：未认证（黄色⚠️）/ 已认证（绿色✅）/ 账号受限（红色🔒）
 
 2. KYC引导横幅 / 已认证状态 / 账号受限
@@ -2210,11 +2204,11 @@ orders: `【My Orders — 订单列表】
 loginMethods: `【Login Methods — 登录方式管理】
 
 ■ 页面定位
-用户管理已绑定的登录方式（手机号/邮箱/WhatsApp），可添加新方式、查看主联系方式。
+用户管理已绑定的登录方式（手机号/邮箱~~ / WhatsApp~~），可添加新方式、查看主联系方式。（~~WhatsApp 作为登录方式本期暂缓~~）
 
 ■ 页面结构
 1. 已绑定方式列表
-   - 每行：图标 + 脱敏号码/邮箱 + 类型标签 + 添加时间（手机号如 +852 ****5432，邮箱如 j***@company.com，WhatsApp 同手机号规则，均不展示明文）
+   - 每行：图标 + 脱敏号码/邮箱 + 类型标签 + 添加时间（手机号如 +852 ****5432，邮箱如 j***@company.com，~~WhatsApp 同手机号规则，~~均不展示明文）
    - PRIMARY 标签：标识主要联系方式
    - NEW 标签：新绑定的方式
 
@@ -2229,9 +2223,9 @@ loginMethods: `【Login Methods — 登录方式管理】
 - Settings → Login Methods
 
 ■ 业务规则
-- 同类型方式最多各绑定1个（如1个手机号、1个邮箱、1个WhatsApp）
+- 同类型方式最多各绑定1个（如1个手机号、1个邮箱~~、1个WhatsApp~~）
 - 至少保留1个登录方式，不可全部解绑
-- WhatsApp号码若与手机号相同，视为同一条目
+- ~~WhatsApp号码若与手机号相同，视为同一条目~~（本期暂缓）
 - 添加新方式需OTP验证
 
 ■ 与KYC重复身份检测的联动
@@ -2245,7 +2239,7 @@ addMethod: `【Add Login Method — 添加登录方式】
 选择并添加新的登录方式。
 
 ■ 流程
-1. 选择类型：手机号 / 邮箱 / WhatsApp
+1. 选择类型：手机号 / 邮箱~~ / WhatsApp~~（~~WhatsApp 本期暂缓~~）
    - 已绑定的类型置灰，显示 "Already linked"
 2. 输入号码/邮箱
 3. 点击发送验证码 → 跳转OTP验证页
@@ -2404,18 +2398,18 @@ kycDup: `【KYC 重复身份识别 — Identity Notice】
 kycDupConflict: `【KYC 重复身份 — 登录方式类型冲突】
 
 ■ 核心判定原则
-保留 phone 与 whatsapp 两种独立登录通道（不视为同一槽位）。规则前提：同一手机号跨通道（短信 / WhatsApp）全局唯一、登录进入同一账号；每个账号每种登录方式类型最多 1 个（phone ≤ 1、whatsapp ≤ 1、email ≤ 1），一个账号可同时拥有手机号与 WhatsApp（二者号码可不同），也可拥有 email。在重复身份补全流程中（当前账号尝试把自己的登录方式补全到已认证账号），出现以下冲突时不可补全 / 不可新增该登录方式：只能去登录原账号，不可把当前登录方式加到已认证账号；当前未认证账号不停用、仍可用，但无法用此证件完成认证。
+（~~注：WhatsApp 作为登录通道本期暂缓，以下涉及 WhatsApp 的通道/冲突表述同步暂缓；phone 与 email 通道逻辑不变~~）保留 phone ~~与 whatsapp~~ 独立登录通道（不视为同一槽位）。规则前提：同一手机号~~跨通道（短信 / WhatsApp）~~全局唯一、登录进入同一账号；每个账号每种登录方式类型最多 1 个（phone ≤ 1、~~whatsapp ≤ 1、~~email ≤ 1），~~一个账号可同时拥有手机号与 WhatsApp（二者号码可不同），~~也可拥有 email。在重复身份补全流程中（当前账号尝试把自己的登录方式补全到已认证账号），出现以下冲突时不可补全 / 不可新增该登录方式：只能去登录原账号，不可把当前登录方式加到已认证账号；当前未认证账号不停用、仍可用，但无法用此证件完成认证。
 
 ■ 触发条件
 用户在"重复身份检测"页点击"继续使用已认证账号"后，后端检测到以下任一情况：
-1.（同类型已占用）已认证账号已有与当前账号【相同类型】的登录方式（都是邮箱 / 都是手机号 / 都是 WhatsApp）。
-2.（号码型号码不一致）当前登录方式是【手机号或 WhatsApp】，且已认证账号已存在任一【号码型登录方式（手机号或 WhatsApp）】、其号码与当前登录号码不同 —— 因同一手机号需跨通道（短信 / WhatsApp）全局唯一，不同号码型登录方式之间号码不一致会破坏号码唯一性约束，故在补全流程中视为冲突。
+1.（同类型已占用）已认证账号已有与当前账号【相同类型】的登录方式（都是邮箱 / 都是手机号~~ / 都是 WhatsApp~~）。
+2.（号码型号码不一致）当前登录方式是【手机号~~或 WhatsApp~~】，且已认证账号已存在任一【号码型登录方式（手机号~~或 WhatsApp~~）】、其号码与当前登录号码不同 —— 因同一手机号需~~跨通道（短信 / WhatsApp）~~全局唯一，不同号码型登录方式之间号码不一致会破坏号码唯一性约束，故在补全流程中视为冲突。
 
 ■ 特殊场景：号码不一致冲突
-当前账号的号码型登录方式（手机号 / WhatsApp）与已认证账号已有的号码型登录方式号码不同（无论同通道还是跨通道）。
+当前账号的号码型登录方式（手机号~~ / WhatsApp~~）与已认证账号已有的号码型登录方式号码不同（无论同通道还是跨通道）。
 示例 A（同通道）：当前用手机号 +852 9111 登录 → 证件已关联另一账号，该账号绑定手机号 +852 9222。
-示例 B（跨通道）：当前用 WhatsApp +852 9111 登录 → 证件已关联另一账号，该账号已有手机号 +852 9222（WhatsApp 通道为空）。
-▸ 提示文案："该证件已关联已认证账号，该账号已有号码型登录方式（手机号 / WhatsApp）。请直接登录已认证账号。"
+~~示例 B（跨通道）：当前用 WhatsApp +852 9111 登录 → 证件已关联另一账号，该账号已有手机号 +852 9222（WhatsApp 通道为空）。~~（本期暂缓）
+▸ 提示文案："该证件已关联已认证账号，该账号已有号码型登录方式（手机号~~ / WhatsApp~~）。请直接登录已认证账号。"
 ▸ 当前账号不可替换已认证账号的原有登录信息
 ▸ 当前未认证账号不停用，用户可继续使用（但无法通过此证件完成认证）
 
@@ -2431,8 +2425,8 @@ kycDupConflict: `【KYC 重复身份 — 登录方式类型冲突】
    副按钮："Use a different ID / 使用其他证件"
 
 ■ 业务规则
-- 保留 phone / whatsapp 两条独立登录通道，email 独立；每种登录方式类型每账号最多 1 个
-- 同一手机号跨通道（短信 / WhatsApp）全局唯一、进入同一账号
+- 保留 phone ~~/ whatsapp~~ 登录通道，email 独立；每种登录方式类型每账号最多 1 个
+- 同一手机号~~跨通道（短信 / WhatsApp）~~全局唯一、进入同一账号
 - 补全流程中：同类型已占用，或号码型登录方式之间号码不一致 → 冲突
 - 不停用当前未认证账号（用户可继续使用）
 - 不执行任何登录方式补全 / 新增
@@ -2443,11 +2437,11 @@ kycDupConflict: `【KYC 重复身份 — 登录方式类型冲突】
 ■ 冲突场景矩阵
 | 当前账号登录方式 | 已认证账号已有 | 结果 |
 | 手机号 A | 手机号 B（+邮箱） | 冲突（手机号类型已占用）→ 本页 |
-| WhatsApp A | 手机号 B（WhatsApp 通道为空） | 冲突（号码型号码不一致）→ 本页 |
-| 手机号 A | WhatsApp B（手机号通道为空） | 冲突（号码型号码不一致）→ 本页 |
+~~| WhatsApp A | 手机号 B（WhatsApp 通道为空） | 冲突（号码型号码不一致）→ 本页 |（本期暂缓）~~
+~~| 手机号 A | WhatsApp B（手机号通道为空） | 冲突（号码型号码不一致）→ 本页 |（本期暂缓）~~
 | 邮箱 A | 邮箱 B（+手机号） | 冲突（邮箱类型已占用）→ 本页 |
-| 手机号 / WhatsApp | 仅邮箱 | 无冲突 → 补全流程 |
-| 邮箱 | 仅手机号 / 仅 WhatsApp | 无冲突 → 补全流程 |
+| 手机号~~ / WhatsApp~~ | 仅邮箱 | 无冲突 → 补全流程 |
+| 邮箱 | 仅手机号~~ / 仅 WhatsApp~~ | 无冲突 → 补全流程 |
 `,
 
 kycDupSupplement: `【KYC 重复身份 — 补全登录方式】
@@ -2796,7 +2790,7 @@ en: {
   'settings.idVerify': 'Identity Verification',
   'settings.idVerifyDesc': 'Manage your KYC documents',
   'settings.loginMethods': 'Login Methods',
-  'settings.loginMethodsDesc': 'Manage phone, email, WhatsApp',
+  'settings.loginMethodsDesc': 'Manage phone, email',
   'settings.changePwd': 'Change Password',
   'settings.changePwdDesc': 'Update your login password',
   'settings.language': 'Language',
@@ -2986,7 +2980,7 @@ zh: {
   'settings.idVerify': '身份认证',
   'settings.idVerifyDesc': '管理您的KYC证件',
   'settings.loginMethods': '登录方式',
-  'settings.loginMethodsDesc': '管理手机号、邮箱、WhatsApp',
+  'settings.loginMethodsDesc': '管理手机号、邮箱',
   'settings.changePwd': '修改密码',
   'settings.changePwdDesc': '更新您的登录密码',
   'settings.language': '语言',
@@ -3176,7 +3170,7 @@ zh: {
   'settings.idVerify': '身份認證',
   'settings.idVerifyDesc': '管理您的KYC證件',
   'settings.loginMethods': '登入方式',
-  'settings.loginMethodsDesc': '管理手機號、信箱、WhatsApp',
+  'settings.loginMethodsDesc': '管理手機號、信箱',
   'settings.changePwd': '修改密碼',
   'settings.changePwdDesc': '更新您的登入密碼',
   'settings.language': '語言',
