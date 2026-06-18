@@ -389,7 +389,7 @@ body.editing .edit-mode-banner { display:block; }
       
       
       
-      <tr><td>2026-03-31</td><td>新建：登录注册、KYC实名认证、商家管理后台 PRD 初稿</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-04-07</td><td>V1.1 更新：注册流程密码必填、去除身份认证主动引导、身份重复引导优化、后台限额配置简化</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-04-15</td><td>V1.1 更新：语言支持调整为 English / 简体中文 / 繁體中文，去除菲律宾语和阿拉伯语</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-04-15</td><td>V1.2 更新：注册完成过渡页、邮箱统一使用通用密码设置页、忘记密码支持手机号+邮箱双模式</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-04-16</td><td>V1.4 更新：① 身份认证页三级联动地区选择器（国家→省份→城市，同一弹窗面包屑导航）；② 证件类型按地区动态展示（HK→HK ID/护照、MO→MO ID/护照、CN→身份证/护照、其他→仅护照）；③ 繁體中文（zh-TW）完整语言包支持；④ 个人中心订单状态调整为 Unpaid/Paid/Cancelled 三状态；⑤ 企业信息选填加引导文案鼓励填写；⑥ KYC重复身份处理流程集成到身份认证页</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-04-28</td><td>V2.6 后台原型菜单回归 + 每页页面定位下放交互图：① 「<strong>商家列表 / 商家详情 / 添加商家</strong>」三页的<strong>「页面定位」info-box 紧下方</strong>各嵌入一份完整可交互原型；② 原型保留<strong>侧边菜单</strong>（参考截图样式），但仅含两组：「<strong>商家管理 → 商家列表</strong>」与「<strong>下载中心 → 我的文件</strong>」（导出文件存放页，30 天有效）；③ 原型用&nbsp;<code>data-prototype="merchant-admin"</code>&nbsp;+&nbsp;<code>data-init-view</code>&nbsp;占位 + 通用模板渲染脚本 实现，三页共享同一份代码、独立状态；④ 列表页「📥 导出」会演示提交导出任务后跳转到「我的文件」；「我的文件」支持下载.</td><td style="position: relative;">乔谦<br></td></tr><tr><td>2026-04-28</td><td>V2.9 详情页结构按 PRD 规约重塑 + 列表操作精简：① 列表操作列删「编辑」，改为<strong>「查看 + 停用/启用」</strong>（按 status 动态切换文案与色）；② 详情头部第二行采用&nbsp;<strong>「ID · 维护人：姓名(OB号) · 注册日期」</strong>；③ Tab 4 名称<strong>「维护人绑定 → 维护人绑定」</strong>；④ Tab 1 基本信息拆为<strong>「个人信息」+「企业信息（选填）」</strong>双卡，卡内右上角配独立<strong>「编辑」</strong>入口；⑤ Tab 2 KYC 拆为<strong>「个人 KYC」+「企业 KYC（选填）」</strong>，证件号脱敏 + 「点击查看原值」；⑥ Tab 4 重写：当前绑定（姓名/OB账号/绑定时间/操作人）+ 绑定/解绑/更换 + 历史绑定列表；⑦ Tab 5 操作日志补全 7 类事件（创建/KYC/编辑/限额/换绑/停用/启用），每条带操作人、操作时间、变更前后值（红→绿对比）。</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-05-19</td><td>V1.5 个人中心 &amp; 帮助页结构优化：① <strong>个人中心头部精简</strong>：移除「My Center」标题与 WhatsApp 客服按钮，页面内容上移；② <strong>FAQ 升级为一级入口</strong>：从 Help &amp; Support 内部移出，置于 Me 页面 Quick Actions 区域，与「Help &amp; Support」并列；③ <strong>Help &amp; Support 重构</strong>：仅保留「WhatsApp Support」+「WeChat Support」两个客服渠道（去除 Email Support 与 FAQ 入口），WeChat 使用 SVG 品牌图标；④ <strong>i18n 全量同步</strong>：EN / zh-CN / zh-HK 三语言包新增 <code>myCenter.faq</code>、<code>help.wechat</code>、<code>toast.openWechat</code>；⑤ <strong>埋点表全局重编号</strong>：消除两表序号重叠，统一为 #1–#124 连续编号，新增 <code>my_center_faq</code> / <code>help_wechat_support</code>，移除 <code>my_center_wa_support</code> / <code>help_email_support</code> / <code>help_faq</code>。</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-05-25</td><td>V1.6 Me 页面未登录态（Guest）：① <strong>新增 My Center (Guest) 独立页面</strong>：未登录时 Me Tab 展示占位页面，保持已登录 My Center 布局框架，头部显示「Log in / Sign up」引导，订单数量显示 0，所有功能入口点击触发「请先登录」toast 并高亮底部登录条；② <strong>底部登录引导条</strong>：蓝绿渐变卡片 + 呼吸动画，点击 LOG IN 跳转 <code>fonesquare-login.html</code>；③ <strong>原型 Demo 支持</strong>：快捷导航新增「My Center (Guest)」按钮，状态模拟区新增「Toggle Login State」切换；④ <strong>静态交互图</strong>：新增 Guest Me 缩略图（MG），标注未登录占位页；⑤ <strong>埋点 +3 事件</strong>：<code>me_guest_view</code>（PV）、<code>me_guest_action_click</code>（CLK）、<code>me_guest_login_btn</code>（CLK），全表重编号 #1–#127；⑥ <strong>i18n 全量同步</strong>：EN / zh-CN / zh-HK 三语言包新增 <code>meGuest.*</code> 和 <code>toast.loginRequired</code>。</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-06-18</td><td>确认业务：因 WhatsApp Business API 申请问题，本期暂不实现 WhatsApp 登录相关功能。PRD 中 WhatsApp 登录/注册相关说明、规格与埋点均以划线标注暂缓；交互流程图（WhatsApp OTP 登录泳道图）与原型（登录入口、Path B 注册流程、账号合并示意）中相关内容已移除。WhatsApp 客服/联系入口不受影响，保留原样。商家 WhatsApp 联系字段本期亦一并暂缓：字段规格表划线标注、添加商家表单与商家详情中该字段移除，手机/邮箱由三选一改为二选一；WhatsApp 客服入口保留不受影响。</td><td style="position: relative;">乔谦</td></tr>
+      <tr><td>2026-03-31</td><td>新建：登录注册、KYC实名认证、商家管理后台 PRD 初稿</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-04-07</td><td>V1.1 更新：注册流程密码必填、去除身份认证主动引导、身份重复引导优化、后台限额配置简化</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-04-15</td><td>V1.1 更新：语言支持调整为 English / 简体中文 / 繁體中文，去除菲律宾语和阿拉伯语</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-04-15</td><td>V1.2 更新：注册完成过渡页、邮箱统一使用通用密码设置页、忘记密码支持手机号+邮箱双模式</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-04-16</td><td>V1.4 更新：① 身份认证页三级联动地区选择器（国家→省份→城市，同一弹窗面包屑导航）；② 证件类型按地区动态展示（HK→HK ID/护照、MO→MO ID/护照、CN→身份证/护照、其他→仅护照）；③ 繁體中文（zh-TW）完整语言包支持；④ 个人中心订单状态调整为 Unpaid/Paid/Cancelled 三状态；⑤ 企业信息选填加引导文案鼓励填写；⑥ KYC重复身份处理流程集成到身份认证页</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-04-28</td><td>V2.6 后台原型菜单回归 + 每页页面定位下放交互图：① 「<strong>商家列表 / 商家详情 / 添加商家</strong>」三页的<strong>「页面定位」info-box 紧下方</strong>各嵌入一份完整可交互原型；② 原型保留<strong>侧边菜单</strong>（参考截图样式），但仅含两组：「<strong>商家管理 → 商家列表</strong>」与「<strong>下载中心 → 我的文件</strong>」（导出文件存放页，30 天有效）；③ 原型用&nbsp;<code>data-prototype="merchant-admin"</code>&nbsp;+&nbsp;<code>data-init-view</code>&nbsp;占位 + 通用模板渲染脚本 实现，三页共享同一份代码、独立状态；④ 列表页「📥 导出」会演示提交导出任务后跳转到「我的文件」；「我的文件」支持下载.</td><td style="position: relative;">乔谦<br></td></tr><tr><td>2026-04-28</td><td>V2.9 详情页结构按 PRD 规约重塑 + 列表操作精简：① 列表操作列删「编辑」，改为<strong>「查看 + 停用/启用」</strong>（按 status 动态切换文案与色）；② 详情头部第二行采用&nbsp;<strong>「ID · 维护人：姓名(OB号) · 注册日期」</strong>；③ Tab 4 名称<strong>「维护人绑定 → 维护人绑定」</strong>；④ Tab 1 基本信息拆为<strong>「个人信息」+「企业信息（选填）」</strong>双卡，卡内右上角配独立<strong>「编辑」</strong>入口；⑤ Tab 2 KYC 拆为<strong>「个人 KYC」+「企业 KYC（选填）」</strong>，证件号脱敏 + 「点击查看原值」；⑥ Tab 4 重写：当前绑定（姓名/OB账号/绑定时间/操作人）+ 绑定/解绑/更换 + 历史绑定列表；⑦ Tab 5 操作日志补全 7 类事件（创建/KYC/编辑/限额/换绑/停用/启用），每条带操作人、操作时间、变更前后值（红→绿对比）。</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-05-19</td><td>V1.5 个人中心 &amp; 帮助页结构优化：① <strong>个人中心头部精简</strong>：移除「My Center」标题与 WhatsApp 客服按钮，页面内容上移；② <strong>FAQ 升级为一级入口</strong>：从 Help &amp; Support 内部移出，置于 Me 页面 Quick Actions 区域，与「Help &amp; Support」并列；③ <strong>Help &amp; Support 重构</strong>：仅保留「WhatsApp Support」+「WeChat Support」两个客服渠道（去除 Email Support 与 FAQ 入口），WeChat 使用 SVG 品牌图标；④ <strong>i18n 全量同步</strong>：EN / zh-CN / zh-HK 三语言包新增 <code>myCenter.faq</code>、<code>help.wechat</code>、<code>toast.openWechat</code>；⑤ <strong>埋点表全局重编号</strong>：消除两表序号重叠，统一为 #1–#124 连续编号，新增 <code>my_center_faq</code> / <code>help_wechat_support</code>，移除 <code>my_center_wa_support</code> / <code>help_email_support</code> / <code>help_faq</code>。</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-05-25</td><td>V1.6 Me 页面未登录态（Guest）：① <strong>新增 My Center (Guest) 独立页面</strong>：未登录时 Me Tab 展示占位页面，保持已登录 My Center 布局框架，头部显示「Log in / Sign up」引导，订单数量显示 0，所有功能入口点击触发「请先登录」toast 并高亮底部登录条；② <strong>底部登录引导条</strong>：蓝绿渐变卡片 + 呼吸动画，点击 LOG IN 跳转 <code>fonesquare-login.html</code>；③ <strong>原型 Demo 支持</strong>：快捷导航新增「My Center (Guest)」按钮，状态模拟区新增「Toggle Login State」切换；④ <strong>静态交互图</strong>：新增 Guest Me 缩略图（MG），标注未登录占位页；⑤ <strong>埋点 +3 事件</strong>：<code>me_guest_view</code>（PV）、<code>me_guest_action_click</code>（CLK）、<code>me_guest_login_btn</code>（CLK），全表重编号 #1–#127；⑥ <strong>i18n 全量同步</strong>：EN / zh-CN / zh-HK 三语言包新增 <code>meGuest.*</code> 和 <code>toast.loginRequired</code>。</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-06-18</td><td>确认业务：因 WhatsApp Business API 申请问题，本期暂不实现 WhatsApp 登录相关功能。PRD 中 WhatsApp 登录/注册相关说明、规格与埋点均以划线标注暂缓；交互流程图（WhatsApp OTP 登录泳道图）与原型（登录入口、Path B 注册流程、账号合并示意）中相关内容已移除。WhatsApp 客服/联系入口不受影响，保留原样。商家 WhatsApp 联系字段本期亦一并暂缓：字段规格表划线标注、添加商家表单与商家详情中该字段移除，手机/邮箱由三选一改为二选一；WhatsApp 客服入口保留不受影响。</td><td style="position: relative;">乔谦</td></tr><tr><td>2026-06-18</td><td>基于律师海外数据合规审查的调整：① 邮箱注册页增加用户条款展示与勾选（未勾选不可提交；WhatsApp 注册页待功能恢复时同步补充）；② 用户认证页针对菲律宾用户增加敏感个人数据授权同意勾选（必填）；③ 新增 Terms of Service 查看入口。</td><td style="position: relative;">乔谦</td></tr>
     </tbody>
   </table>
 </div>
@@ -1535,6 +1535,10 @@ body.editing .edit-mode-banner { display:block; }
             <div style="font-size:8px;color:#8e8e93;margin-bottom:8px;">Enter email for verification code</div>
             <div class="fl" style="text-align:left;">Email Address</div>
             <div class="inp"><span class="ico">✉️</span><span class="val ph">you@example.com</span></div>
+            <div style="display:flex;gap:4px;align-items:flex-start;text-align:left;margin:8px 0 6px;">
+              <span style="font-size:9px;">☑️</span>
+              <div style="font-size:7px;color:#6B7280;line-height:1.4;">I have read and agree to the <span style="color:#E53935;">Terms of Service</span> and <span style="color:#E53935;">Privacy Policy</span> <b style="color:#92400E;">· 未勾选不可提交</b></div>
+            </div>
             <div class="cta">SEND VERIFICATION CODE</div>
             <div style="font-size:8px;color:#8e8e93;margin-top:8px;">Have a password? <span style="color:#E53935;">Login with password</span></div>
           </div>
@@ -1677,6 +1681,7 @@ body.editing .edit-mode-banner { display:block; }
     <div class="spec-row"><div class="spec-label">邮箱验证码</div><div class="spec-value">6位数字，5分钟有效，新注册+未设密码用户登录时发送</div></div>
     <div class="spec-row"><div class="spec-label">登录分支</div><div class="spec-value">已注册+有密码→密码登录 ｜ 已注册+无密码→验证码登录+引导设密码 ｜ 未注册→验证码验证+设密码+注册</div></div>
     <div class="spec-row"><div class="spec-label">忘记密码</div><div class="spec-value">支持手机号或邮箱双模式验证（底部弹层Tab切换：📱 Phone / ✉️ Email）→ OTP验证 → 重设密码，验证码5分钟有效</div></div>
+    <div class="spec-row"><div class="spec-label">用户条款勾选<br><span class="tag tag-p0">合规·2026-06-18</span></div><div class="spec-value"><strong>邮箱注册/验证码入口页（Email Login）「发送验证码」按钮上方新增用户条款勾选项</strong>：勾选框 + 「我已阅读并同意 服务条款 / 隐私政策」文案，文案与登录/注册首页条款口径完全一致，复用同一 in-file i18n key（<code>login.terms.tos</code> / <code>login.terms.pp</code>，勾选前缀 <code>login.agree</code>）。<strong>未勾选不可提交</strong>，点击发送时拦截并 toast 提示「请先阅读并同意服务条款和隐私政策」（<code>login.agreeRequired</code>）。Terms of Service 与 Privacy Policy 入口并列、均可点击查看。<br>⚠️ <strong>WhatsApp 注册页本期已暂缓并移除，未实现本勾选；待 WhatsApp 登录/注册恢复时，需同步在 WhatsApp 注册页补充相同的用户条款勾选。</strong></div></div>
   </div>
   <div class="spec-group">
     <div class="spec-group-title">🔐 密码设置（通用，注册必填） <span class="tag tag-p0" style="margin-left:8px;">P0</span></div>
@@ -1707,6 +1712,9 @@ body.editing .edit-mode-banner { display:block; }
       <tr><td>LR-10</td><td>Token有效期30天，用户活跃时自动续期；支持多设备登录</td><td style="position: relative;">登录成功</td></tr>
       <tr><td>LR-11</td><td>忘记密码支持<strong>手机号+邮箱双模式验证</strong>，底部弹层Tab切换（📱 Phone / ✉️ Email）。输入手机号或邮箱后发送OTP验证码，验证通过后进入密码重设页面</td><td style="position: relative;">忘记密码</td></tr>
       <tr><td>LR-12</td><td>语言选择支持 English / 简体中文 / 繁體中文（3种），选择器不展示国旗图标，使用通用图标</td><td style="position: relative;">多语言</td></tr>
+      <tr><td>LR-17</td><td><strong>（合规·2026-06-18）邮箱注册/验证码入口页增加用户条款展示与勾选</strong>：勾选框 + 「我已阅读并同意 服务条款 / 隐私政策」，与登录/注册首页口径一致并复用同一 in-file i18n key；<strong>未勾选不可提交</strong>，点击发送验证码时拦截并 toast 提示。WhatsApp 注册页本期暂缓不实现，待功能恢复时同步补充相同勾选。</td><td style="position: relative;">邮箱注册</td></tr>
+      <tr><td>LR-18</td><td><strong>（合规·2026-06-18）KYC 用户认证页针对菲律宾用户（country=菲律宾/PH）增加敏感个人数据授权同意勾选</strong>，为<strong>菲律宾用户提交认证的必填项</strong>：仅当国家=菲律宾时在页面底部额外显示，切换为非菲律宾国家时隐藏并清除勾选；未勾选时阻断提交并 toast 提示。三语权威文案见 KYC 规格。in-file i18n key：<code>kyc.phConsent</code> / <code>kyc.phConsentRequired</code>。</td><td style="position: relative;">KYC身份认证</td></tr>
+      <tr><td>LR-19</td><td><strong>（合规·2026-06-18）新增 Terms of Service 查看入口</strong>：在每处出现 Privacy Policy 查看入口处并列新增 Terms of Service 入口（登录/注册首页底部条款区、邮箱注册页勾选、KYC 个人中心设置页）。ToS 正文暂无正式文案，使用与 Privacy Policy 同版式的占位结构并标注「条款正文待法务提供」。in-file i18n key：<code>common.termsOfService</code>（英 Terms of Service / 简 服务条款 / 繁 服務條款）。</td><td style="position: relative;">条款/合规</td></tr>
     </tbody>
   </table>
 </div>
@@ -1842,6 +1850,10 @@ body.editing .edit-mode-banner { display:block; }
               <div style="flex:1;border:2px dashed #e5e7eb;border-radius:8px;padding:6px;text-align:center;font-size:7px;color:#9CA3AF;">📷 Back</div>
             </div>
             <div style="background:#edf7ed;padding:4px 6px;border-radius:6px;font-size:7px;color:#2e7d32;margin-bottom:6px;">✅ OCR: Joann Qiao · A123456(7)</div>
+            <div style="display:flex;gap:4px;align-items:flex-start;background:#FFFBEB;border:1px solid #FBBF24;border-radius:6px;padding:5px 6px;margin-bottom:6px;">
+              <span style="font-size:8px;">☑️</span>
+              <div style="font-size:6.5px;color:#92400E;line-height:1.4;">I agree to AHS DEVICE HONG KONG LIMITED using my sensitive personal data… <b>🇵🇭 仅菲律宾用户显示·必填</b></div>
+            </div>
             <div style="background:#E63946;color:#fff;text-align:center;padding:10px;border-radius:10px;font-weight:700;font-size:10px;">SUBMIT &amp; CONTINUE</div>
           </div>
           <div class="hi"></div>
@@ -1899,6 +1911,7 @@ body.editing .edit-mode-banner { display:block; }
             <div class="mi"><span>🌐 Language</span><span class="ar" style="color:#9CA3AF;font-size:9px;margin-right:4px;">English ›</span></div>
             <div class="sep"></div>
             <div class="mi"><span>📄 Privacy Policy</span><span class="ar">›</span></div>
+            <div class="mi"><span>📑 Terms of Service</span><span class="ar">›</span></div>
             <div class="mi"><span>ℹ️ About FoneSquare</span><span class="ar">›</span></div>
             <div class="sep"></div>
             <div style="text-align:center;padding:10px;border:1px solid #FCA5A5;border-radius:10px;margin-top:6px;color:#DC2626;font-size:10px;font-weight:600;background:#FFF5F5;">🚪 Log Out</div>
@@ -2077,6 +2090,22 @@ body.editing .edit-mode-banner { display:block; }
     🚀 打开高保真交互原型（My Center → Profile → Orders → Settings → Change Pwd → Language → Help &amp; Support 完整流程）
   </a>
   <p style="font-size:12px;color:var(--gray-500);margin-top:4px;">支持KYC状态展示（三状态切换）、WhatsApp客服、单框多级联动地区选择器（支持搜索）、动态证件类型、身份认证OCR（First Name / Last Name 分别识别填入）、KYC重复身份处理流程（含登录方式类型冲突场景）、订单筛选（Unpaid/Paid/Cancelled）、语言切换（English/简体中文/繁體中文）、每页均附中文产品说明</p>
+
+  <h3>合规调整规格（律师海外数据合规审查 · 2026-06-18）</h3>
+  <div class="info-box info">
+    <span class="ib-icon">🛡️</span>
+    <div><strong>菲律宾敏感个人数据授权同意（必填）</strong>：在用户认证页（KYC 身份认证，含「国家→省份→城市」地区选择器的页面），当用户选择 <strong>country = 菲律宾（Philippines / PH）</strong> 时，在页面底部、提交按钮上方<strong>额外显示</strong>一个菲律宾特有的敏感数据授权同意勾选项；country 非菲律宾时不显示（切换离开菲律宾时自动隐藏并清除勾选）。该勾选为<strong>菲律宾用户提交认证的必填项</strong>：未勾选时阻断提交并 toast 提示。in-file i18n key：<code>kyc.phConsent</code>（勾选文案）、<code>kyc.phConsentRequired</code>（未勾选提示）。</div>
+  </div>
+  <div class="spec-group">
+    <div class="spec-group-title">📝 菲律宾同意勾选三语文案（逐字使用）</div>
+    <div class="spec-row"><div class="spec-label">简体中文</div><div class="spec-value">本人同意 AHS DEVICE HONG KONG LIMITED 按照隐私政策使用我的敏感个人数据进行账户认证。</div></div>
+    <div class="spec-row"><div class="spec-label">English</div><div class="spec-value">I agree to AHS DEVICE HONG KONG LIMITED using my sensitive personal data for account authentication in accordance with the privacy policy.</div></div>
+    <div class="spec-row"><div class="spec-label">繁體中文</div><div class="spec-value">本人同意 AHS DEVICE HONG KONG LIMITED 按照隱私權政策使用我的敏感個人資料進行帳戶認證。</div></div>
+  </div>
+  <div class="info-box info">
+    <span class="ib-icon">📑</span>
+    <div><strong>新增 Terms of Service 查看入口</strong>：在每处出现 Privacy Policy 查看入口的位置并列新增 Terms of Service 入口。本模块落地于<strong>个人中心 → Settings 的「Privacy Policy」下方并列「Terms of Service」</strong>菜单项，点击进入与 Privacy Policy 同版式的条款查看页。ToS 正文暂无正式文案，使用占位结构并标注<strong>「条款正文待法务提供」</strong>。in-file i18n key：<code>common.termsOfService</code>（英 Terms of Service / 简 服务条款 / 繁 服務條款）、<code>terms.*</code>。</div>
+  </div>
 
   <h3>个人认证信息字段规格</h3>
   <table style="position: relative;">

@@ -533,6 +533,18 @@ body{
 }
 .foot-text a{color:var(--pri);text-decoration:none;font-weight:600;}
 
+/* terms agreement checkbox (email registration) */
+.agree-row{
+  display:flex;align-items:flex-start;gap:8px;
+  margin-top:16px;cursor:pointer;
+}
+.agree-row input[type="checkbox"]{
+  width:16px;height:16px;margin:1px 0 0;flex-shrink:0;
+  accent-color:var(--pri);cursor:pointer;
+}
+.agree-text{font-size:11.5px;color:var(--t2);line-height:1.5;}
+.agree-text a{color:var(--pri);text-decoration:none;font-weight:600;}
+
 .link-right{
   display:block;text-align:right;
   font-size:13px;color:var(--pri);font-weight:600;
@@ -1334,7 +1346,15 @@ body{
           <span class="ico">✉️</span>
           <input class="inp" type="email" placeholder="you@example.com">
         </div>
-        <button class="btn" onclick="go('emailOtp')">SEND VERIFICATION CODE</button>
+        <label class="agree-row" id="emailAgreeRow">
+          <input type="checkbox" id="emailAgreeChk">
+          <span class="agree-text" id="emailAgreeText">
+            I have read and agree to the
+            <a href="#" onclick="event.preventDefault();">Terms of Service</a> and
+            <a href="#" onclick="event.preventDefault();">Privacy Policy</a>
+          </span>
+        </label>
+        <button class="btn" onclick="submitEmailEntry()">SEND VERIFICATION CODE</button>
         <p class="foot-text" style="margin-top:20px;">
           Already have a password? <a onclick="switchTab('pwd');go('login');">Login with password</a>
         </p>
@@ -1839,6 +1859,16 @@ function toast(msg) {
   t.textContent = msg;
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+/* Email registration entry: terms must be agreed before sending the code */
+function submitEmailEntry() {
+  const chk = document.getElementById('emailAgreeChk');
+  if (chk && !chk.checked) {
+    toast(t('login.agreeRequired'));
+    return;
+  }
+  go('emailOtp');
 }
 
 /* ═══════════ COUNTRY PICKER ═══════════ */
@@ -2460,7 +2490,9 @@ WhatsApp登录渠道入口，用户输入WhatsApp号码以接收OTP。
 • WhatsApp Business API需预先申请审批模板
 • 模板消息有24小时会话窗口限制
 • 需确保模板语言版本覆盖目标市场
-~~`,
+~~
+
+【待恢复提醒 · 合规】待 WhatsApp 登录/注册恢复时，需同步在 WhatsApp 注册页补充与邮箱注册页/登录首页一致的用户条款勾选（服务条款 + 隐私政策，未勾选不可提交）。`,
 
   waOtp: `【本期暂缓 ⛔ WhatsApp 验证】因 WhatsApp Business API 申请受阻，本期不实现 WhatsApp 登录/注册，相关页面与交互已移除。以下说明保留存档（整段暂缓）：
 ~~
@@ -2574,6 +2606,15 @@ WhatsApp验证码输入页，用户填入通过WhatsApp收到的6位OTP。
 • 同一IP每小时上限：20次（防恶意刷码）
 • 超限提示："Too many requests. Please try again later."
 • 验证码暴力破解防护：连续5次错误 → 锁定30分钟
+
+═══════════════════════
+七、用户条款与合规勾选（律师审查新增）
+═══════════════════════
+• 在「发送验证码」按钮上方新增用户条款勾选项（勾选框 + 文案）
+• 文案："我已阅读并同意 服务条款 / 隐私政策"（与登录/注册首页条款口径一致，复用同一 i18n key：login.terms.tos / login.terms.pp）
+• 校验：未勾选不可提交，点击发送时 toast 提示"请先阅读并同意服务条款和隐私政策"（login.agreeRequired）
+• Terms of Service 与 Privacy Policy 入口并列展示，均可点击查看
+• 注：WhatsApp 注册流程本期已暂缓并移除，未实现本勾选；待 WhatsApp 登录/注册恢复时，需同步在 WhatsApp 注册页补充相同的用户条款勾选。
 `,
 
 emailOtp: `【页面功能】
@@ -2880,6 +2921,8 @@ en: {
   'login.terms.tos': 'Terms of Service',
   'login.terms.and': 'and',
   'login.terms.pp': 'Privacy Policy',
+  'login.agree': 'I have read and agree to the',
+  'login.agreeRequired': 'Please read and agree to the Terms of Service and Privacy Policy first',
   'smsOtp.title': 'Verification',
   'smsOtp.heading': 'Enter Verification Code',
   'smsOtp.desc': 'We sent a 6-digit code via <b>SMS</b> to',
@@ -3075,6 +3118,8 @@ zh: {
   'login.terms.tos': '服务条款',
   'login.terms.and': '和',
   'login.terms.pp': '隐私政策',
+  'login.agree': '我已阅读并同意',
+  'login.agreeRequired': '请先阅读并同意服务条款和隐私政策',
   'smsOtp.title': '验证',
   'smsOtp.heading': '输入验证码',
   'smsOtp.desc': '我们已通过 <b>短信</b> 发送6位验证码至',
@@ -3270,6 +3315,8 @@ zh: {
   'login.terms.tos': '服務條款',
   'login.terms.and': '和',
   'login.terms.pp': '私隱政策',
+  'login.agree': '本人已閱讀並同意',
+  'login.agreeRequired': '請先閱讀並同意服務條款和私隱政策',
   'smsOtp.title': '驗證',
   'smsOtp.heading': '輸入驗證碼',
   'smsOtp.desc': '我們已透過 <b>短訊</b> 發送6位驗證碼至',
@@ -3613,6 +3660,8 @@ function applyLocale() {
     _h(emailInput.querySelector('.hero-center p'), 'emailInput.desc');
     _h(emailInput.querySelector('.form-label'), 'emailInput.label');
     _p(emailInput.querySelector('.inp'), 'emailInput.placeholder');
+    const eiAgree = emailInput.querySelector('#emailAgreeText');
+    if (eiAgree) _i(eiAgree, t('login.agree') + ' <a href="#" onclick="event.preventDefault();">' + t('login.terms.tos') + '</a> ' + t('login.terms.and') + ' <a href="#" onclick="event.preventDefault();">' + t('login.terms.pp') + '</a>');
     _h(emailInput.querySelector('.btn'), 'emailInput.btn');
     const eiPwdFoot = emailInput.querySelector('.foot-text');
     if (eiPwdFoot) _i(eiPwdFoot, t('emailInput.pwdLink') + ' <a onclick="switchTab(\'pwd\');go(\'login\');">' + t('emailInput.pwdLinkAction') + '</a>');

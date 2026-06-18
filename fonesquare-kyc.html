@@ -415,6 +415,19 @@ body{
 }
 .wa-cs-btn:hover{background:var(--bgi);}
 .wa-cs-btn svg{width:24px;height:24px;}
+
+/* Philippines sensitive-data consent (KYC) */
+.ph-consent{
+  margin-top:16px;padding:12px 14px;
+  background:var(--warn-bg, #FFF7E6);border:1px solid var(--bd);
+  border-radius:var(--r-md);
+}
+.ph-consent-label{display:flex;align-items:flex-start;gap:10px;cursor:pointer;}
+.ph-consent-label input[type="checkbox"]{
+  width:18px;height:18px;margin:1px 0 0;flex-shrink:0;
+  accent-color:var(--pri);cursor:pointer;
+}
+.ph-consent-text{font-size:12.5px;color:var(--t2);line-height:1.55;}
 </style>
 </head>
 <body>
@@ -442,6 +455,8 @@ body{
   <button class="nav-btn" onclick="go('helpSupport')">Help</button>
   <span class="nav-sep">|</span>
   <button class="nav-btn" onclick="go('privacy')">Privacy</button>
+  <span class="nav-sep">›</span>
+  <button class="nav-btn" onclick="go('terms')">Terms</button>
   <span class="nav-sep">›</span>
   <button class="nav-btn" onclick="go('about')">About</button>
 </div>
@@ -800,6 +815,13 @@ body{
           </div>
         </div>
 
+        <div class="ph-consent" id="phConsentRow" style="display:none;">
+          <label class="ph-consent-label">
+            <input type="checkbox" id="phConsentChk">
+            <span class="ph-consent-text" id="phConsentText">I agree to AHS DEVICE HONG KONG LIMITED using my sensitive personal data for account authentication in accordance with the privacy policy.</span>
+          </label>
+        </div>
+
         <div style="margin-top:16px;padding-bottom:20px;">
           <button class="btn" onclick="completeProfile()" data-i18n="profile.submit">SUBMIT & CONTINUE</button>
           <button class="btn ghost" onclick="go('kycDup')" style="margin-top:6px;color:#E89400;border-color:#F5D568;" data-i18n="profile.demoDup">🎬 Demo: Simulate duplicate identity</button>
@@ -1021,6 +1043,11 @@ body{
           <div class="mi-text">Privacy Policy</div>
           <span class="mi-arrow">›</span>
         </div>
+        <div class="menu-item" onclick="go('terms')">
+          <div class="mi-icon" style="background:var(--bgi);">📑</div>
+          <div class="mi-text">Terms of Service</div>
+          <span class="mi-arrow">›</span>
+        </div>
         <div class="menu-item" onclick="go('about')">
           <div class="mi-icon" style="background:var(--bgi);">ℹ️</div>
           <div><div class="mi-text">About FoneSquare</div><div class="mi-sub">Version 1.0.0</div></div>
@@ -1117,6 +1144,25 @@ body{
         <p><b>4. Data Retention</b><br>Account data is retained for the life of your account + 3 years. KYC documents are retained per regulatory requirements (minimum 5 years).</p>
         <p><b>5. Your Rights</b><br>You may request access, correction, or deletion of your data. Contact: privacy@fonesquare.com</p>
         <p id="privLastUpdated" style="font-size:11px;color:var(--t3);margin-top:20px;">Last updated: April 2026 · Version 1.0</p>
+      </div>
+    </div>
+    <div class="home-ind"></div>
+  </div>
+
+  <!-- ====== TERMS OF SERVICE ====== -->
+  <div class="screen" id="s-terms">
+    <div class="sb"><span class="time">9:41</span><span class="ic"><svg width="52" height="12"><use href="#sb-icons"/></svg></span></div>
+    <div class="hdr"><button class="hdr-back" onclick="goBack()">‹</button><span class="hdr-title" id="termsHdrTitle">Terms of Service</span></div>
+    <div class="body">
+      <div class="about-block">
+        <h2 id="termsHeading">Terms of Service</h2>
+        <p id="termsPlaceholder" style="padding:10px 12px;background:var(--warn-bg, #FFF7E6);border:1px dashed var(--bd);border-radius:8px;color:var(--t2);">📝 Full terms text pending legal team.</p>
+        <p><b>1. Acceptance of Terms</b><br>By creating an account or using FoneSquare, you agree to these Terms of Service.</p>
+        <p><b>2. Use of Service</b><br>FoneSquare is a B2B platform for sourcing certified pre-owned devices. You agree to use it lawfully and provide accurate information.</p>
+        <p><b>3. Account &amp; Verification</b><br>You must complete identity verification (KYC) before placing orders, and keep your credentials secure.</p>
+        <p><b>4. Orders &amp; Payments</b><br>Order, pricing, and fulfilment terms apply as described in the platform at the time of purchase.</p>
+        <p><b>5. Liability &amp; Governing Law</b><br>Service is provided "as is" to the extent permitted by law. These terms are governed by the laws of the operating jurisdiction.</p>
+        <p id="termsLastUpdated" style="font-size:11px;color:var(--t3);margin-top:20px;">Last updated: April 2026 · Version 1.0</p>
       </div>
     </div>
     <div class="home-ind"></div>
@@ -1297,6 +1343,7 @@ const screenMeta = [
   {id:'langSelect', label:'Language'},
   {id:'helpSupport', label:'Help & Support'},
   {id:'privacy', label:'Privacy Policy'},
+  {id:'terms', label:'Terms of Service'},
   {id:'about', label:'About'},
 ];
 
@@ -1806,6 +1853,19 @@ function syncRegionSummary() {
   }
   rp.textContent = parts.join(' › ');
   rp.classList.remove('empty');
+  updatePhConsentVisibility();
+}
+
+/* ── Philippines-specific sensitive-data consent ── */
+function updatePhConsentVisibility() {
+  var row = document.getElementById('phConsentRow');
+  if (!row) return;
+  var isPH = selectedRegionCode === 'PH';
+  row.style.display = isPH ? '' : 'none';
+  if (!isPH) {
+    var chk = document.getElementById('phConsentChk');
+    if (chk) chk.checked = false;
+  }
 }
 
 /* ── Selection handlers (stay in the same modal) ── */
@@ -1927,6 +1987,13 @@ function completeProfile() {
   if (!validateIdNumber()) {
     toast(t('toast.idNumberInvalid'));
     return;
+  }
+  if (selectedRegionCode === 'PH') {
+    var phChk = document.getElementById('phConsentChk');
+    if (phChk && !phChk.checked) {
+      toast(t('kyc.phConsentRequired'));
+      return;
+    }
   }
   profileCompleted = true;
   setAccountState('verified');
@@ -2358,6 +2425,14 @@ privacy: `【Privacy Policy — 隐私政策】
 ■ 纯展示页面，无交互功能
 ■ 底部：最后更新日期 + 版本号`,
 
+terms: `【Terms of Service — 服务条款】（律师审查新增）
+
+■ 定位：与 Privacy Policy 并列的条款查看页，纯展示页面
+■ 入口：Settings → Terms of Service（位于 Privacy Policy 下方并列）；顶部导航 Privacy › Terms 并列
+■ 内容：当前为占位版式（与 Privacy Policy 同版式），已标注「条款正文待法务提供」
+■ 三语：服务条款 / Terms of Service / 服務條款（in-file i18n key：common.termsOfService、terms.*）
+■ 底部：最后更新日期 + 版本号`,
+
 about: `【About FoneSquare — 关于】
 
 ■ 内容：Logo、应用名称、版本号、公司信息、版权声明
@@ -2737,6 +2812,15 @@ en: {
   'profile.selectPlaceholder': 'Please select',
   'profile.submit': 'SUBMIT & CONTINUE',
   'profile.demoDup': '🎬 Demo: Simulate duplicate identity',
+  'kyc.phConsent': 'I agree to AHS DEVICE HONG KONG LIMITED using my sensitive personal data for account authentication in accordance with the privacy policy.',
+  'kyc.phConsentRequired': 'Please agree to the sensitive personal data authorization to continue',
+  'common.termsOfService': 'Terms of Service',
+  'common.privacyPolicy': 'Privacy Policy',
+  'terms.title': 'Terms of Service',
+  'terms.heading': 'Terms of Service',
+  'terms.placeholder': '📝 Full terms text pending legal team.',
+  'terms.lastUpdated': 'Last updated: April 2026 · Version 1.0',
+  'settings.terms': 'Terms of Service',
   'kycDup.title': 'Identity Notice',
   'kycDup.headline': 'This ID is already associated with an account',
   'kycDup.desc': 'For your security, each verified identity can belong to only one active account. Please continue with your existing verified account.',
@@ -2927,6 +3011,15 @@ zh: {
   'profile.selectPlaceholder': '请选择',
   'profile.submit': '提交并继续',
   'profile.demoDup': '🎬 演示：模拟重复身份',
+  'kyc.phConsent': '本人同意 AHS DEVICE HONG KONG LIMITED 按照隐私政策使用我的敏感个人数据进行账户认证。',
+  'kyc.phConsentRequired': '请先同意敏感个人数据授权后再提交',
+  'common.termsOfService': '服务条款',
+  'common.privacyPolicy': '隐私政策',
+  'terms.title': '服务条款',
+  'terms.heading': '服务条款',
+  'terms.placeholder': '📝 条款正文待法务提供。',
+  'terms.lastUpdated': '最后更新：2026年4月 · 版本 1.0',
+  'settings.terms': '服务条款',
   'kycDup.title': '身份提示',
   'kycDup.headline': '该证件已关联已认证账号',
   'kycDup.desc': '为保障账户安全，同一认证身份仅可对应一个在用账号，请继续使用您已认证的账号。',
@@ -3117,6 +3210,15 @@ zh: {
   'profile.selectPlaceholder': '請選擇',
   'profile.submit': '提交並繼續',
   'profile.demoDup': '🎬 演示：模擬重複身份',
+  'kyc.phConsent': '本人同意 AHS DEVICE HONG KONG LIMITED 按照隱私權政策使用我的敏感個人資料進行帳戶認證。',
+  'kyc.phConsentRequired': '請先同意敏感個人資料授權後再提交',
+  'common.termsOfService': '服務條款',
+  'common.privacyPolicy': '私隱政策',
+  'terms.title': '服務條款',
+  'terms.heading': '服務條款',
+  'terms.placeholder': '📝 條款正文待法務提供。',
+  'terms.lastUpdated': '最後更新：2026年4月 · 版本 1.0',
+  'settings.terms': '服務條款',
   'kycDup.title': '身份提示',
   'kycDup.headline': '該證件已關聯已認證帳號',
   'kycDup.desc': '為保障帳戶安全，同一認證身份僅可對應一個在用帳號，請繼續使用您已認證的帳號。',
@@ -3355,6 +3457,8 @@ function applyLocale() {
   var profBtns = qsa('s-profile', '.btn');
   if (profBtns[0]) setText(profBtns[0], t('profile.submit'));
 
+  setText(document.getElementById('phConsentText'), t('kyc.phConsent'));
+
   // ── s-orders (我的订单) ──
   setText(qs('s-orders', '.hdr-title'), t('orders.title'));
 
@@ -3379,7 +3483,8 @@ function applyLocale() {
   if (setMenu[2]) { setText(setMenu[2].querySelector('.mi-text'), t('settings.changePwd')); setText(setMenu[2].querySelector('.mi-sub'), t('settings.changePwdDesc')); }
   if (setMenu[3]) { setText(setMenu[3].querySelector('.mi-text'), t('settings.language')); }
   if (setMenu[4]) { setText(setMenu[4].querySelector('.mi-text'), t('settings.privacy')); }
-  if (setMenu[5]) { setText(setMenu[5].querySelector('.mi-text'), t('settings.about')); setText(setMenu[5].querySelector('.mi-sub'), t('settings.aboutVer')); }
+  if (setMenu[5]) { setText(setMenu[5].querySelector('.mi-text'), t('settings.terms')); }
+  if (setMenu[6]) { setText(setMenu[6].querySelector('.mi-text'), t('settings.about')); setText(setMenu[6].querySelector('.mi-sub'), t('settings.aboutVer')); }
   setText(document.getElementById('curLang'), currentLocale === 'zh' ? '简体中文' : currentLocale === 'zh-HK' ? '繁體中文' : 'English');
   setText(qs('s-settings', '.logout-btn'), t('settings.logout'));
 
@@ -3419,6 +3524,12 @@ function applyLocale() {
   setText(qs('s-privacy', '.hdr-title'), t('privacy.title'));
   setText(qs('s-privacy', '.about-block h2'), t('privacy.heading'));
   setText(document.getElementById('privLastUpdated'), t('privacy.lastUpdated'));
+
+  // ── s-terms (服务条款) ──
+  setText(document.getElementById('termsHdrTitle'), t('terms.title'));
+  setText(document.getElementById('termsHeading'), t('terms.heading'));
+  setText(document.getElementById('termsPlaceholder'), t('terms.placeholder'));
+  setText(document.getElementById('termsLastUpdated'), t('terms.lastUpdated'));
 
   // ── s-about (关于FoneSquare) ──
   setText(qs('s-about', '.hdr-title'), t('about.title'));
